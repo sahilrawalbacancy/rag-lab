@@ -1,0 +1,23 @@
+# --- secrets: never commit these ---
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# --- local vector store (contains uploaded document text) ---
+.chroma/
+
+# --- python ---
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# --- os / editor ---
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp

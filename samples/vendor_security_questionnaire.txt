@@ -1,0 +1,15 @@
+CLIENT VENDOR SECURITY ASSESSMENT
+Please answer every question. Attach evidence where indicated.
+
+1. Is customer data encrypted at rest? State the algorithm used.
+2. Is data encrypted in transit? State the minimum TLS version supported.
+3. Do you enforce multi-factor authentication for administrative access?
+4. What is your Recovery Time Objective (RTO) in a disaster recovery scenario?
+5. How long are security audit logs retained?
+6. Describe your process for revoking access when an employee leaves.
+7. Are you certified against ISO 27001?
+8. Do you undergo independent third-party penetration testing at least annually?
+9. In which geographic regions is customer data stored?
+10. Do you carry cyber liability insurance? State the coverage limit.
+11. Is production data ever used in non-production environments?
+12. How are application secrets and API keys managed?
