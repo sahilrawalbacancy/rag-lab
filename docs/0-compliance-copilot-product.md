@@ -89,12 +89,12 @@ Same tool, different documents — nothing in the code changes:
 ## Try it in 30 seconds
 
 ```bash
-.venv/bin/python -m streamlit run app.py
+.venv/bin/python -m streamlit run streamlit_app.py
 ```
 
-Click **Try it with sample documents** → **Audit 12 questions**.
+Open **Compliance Copilot**, click **Try it with sample documents** → **Audit 12 questions**.
 
 Then ask the chat *"What is the capital of France?"* — it will refuse, because the
 answer isn't in your documents. That refusal is the whole product.
 
-*Setup instructions: [README.md](README.md)*
+*Setup instructions: [README.md](../README.md)*

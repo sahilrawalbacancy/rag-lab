@@ -7,7 +7,7 @@ user journey - is glue code that unit tests cannot reach: parse/chunk are
 tested directly in test_rag.py, but the wiring from an uploaded file through
 st.file_uploader into the index is only exercised here.
 
-    .venv/bin/python test_app.py
+    .venv/bin/python tests/test_app.py
 """
 
 from __future__ import annotations
@@ -16,18 +16,20 @@ import os
 import sys
 from pathlib import Path
 
-HERE = Path(__file__).parent
-sys.path.insert(0, str(HERE))
-os.chdir(HERE)
+ROOT = Path(__file__).resolve().parent.parent
+sys.path.insert(0, str(ROOT))
+os.chdir(ROOT)
 
 from dotenv import load_dotenv  # noqa: E402
 
-load_dotenv(HERE / ".env")
+load_dotenv(ROOT / ".env")
 
 from streamlit.testing.v1 import AppTest  # noqa: E402
 
-SAMPLES = HERE / "samples"
-APP = str(HERE / "app.py")
+SAMPLES = ROOT / "data" / "samples"
+# The page runs standalone here; in the deployed app streamlit_app.py's
+# st.navigation runs the same file.
+APP = str(ROOT / "views" / "compliance_copilot.py")
 _checks = 0
 
 
@@ -203,6 +205,27 @@ def test_reload_recovery() -> None:
               not broken.exception and broken.session_state["store"] is None)
 
 
+def test_assignment_pages() -> None:
+    """Each assignment page answers an official question live, with a verified quote."""
+    print("\n[assignment pages - live]")
+    cases = (
+        ("gpo.py", "gpo", "How many depository libraries did GPO staff visit in FY 2018?", "166"),
+        ("world_bank.py", "gep", "What is the growth outlook for South Asia in this report?", "6.3"),
+        ("imac.py", "imac", "How much less energy does iMac use compared to the ENERGY STAR requirement?", "58"),
+    )
+    for page, doc_id, question, fact in cases:
+        at = AppTest.from_file(str(ROOT / "views" / page), default_timeout=600)
+        at.run()
+        check(f"{doc_id}: page loads with its three tabs", not at.exception and len(at.tabs) >= 3,
+              str(at.exception))
+        at.text_input(key=f"{doc_id}_typed").set_value(question)
+        next(b for b in at.button if b.label == "Ask").click().run()
+        text = " ".join(m.value for m in at.markdown)
+        check(f"{doc_id}: the official question is answered from the document",
+              not at.exception and "Answered from the document" in text and fact in text,
+              str(at.exception) or text[:300])
+
+
 if __name__ == "__main__":
     if not (os.environ.get("GOOGLE_API_KEY") or "").strip():
         print("SKIP - no GOOGLE_API_KEY in .env"); raise SystemExit(0)
@@ -213,4 +236,5 @@ if __name__ == "__main__":
     test_chat()
     test_session_isolation()
     test_reload_recovery()
+    test_assignment_pages()
     print(f"\nall {_checks} UI checks passed")

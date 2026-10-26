@@ -16,6 +16,11 @@ langchain-google-genai==4.4.0
 langchain-chroma==1.1.0
 chromadb==1.5.9
 
+# --- local embeddings + reranker for the assignment pages (ONNX, CPU) ---
+# Reuses the onnxruntime chromadb already installs; models download from
+# Hugging Face on first use (~190 MB).
+fastembed==0.9.0
+
 # --- document parsing ---
 pypdf==6.18.0
 docx2txt==0.9

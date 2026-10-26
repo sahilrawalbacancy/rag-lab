@@ -1,7 +1,7 @@
 """
-Compliance Copilot - Streamlit UI.
+Page 0 - Compliance Copilot, the initial chatbot.
 
-All pipeline logic lives in rag.py; this file is presentation and state only.
+All pipeline logic lives in rag/; this file is presentation and state only.
 
 Streamlit re-runs this entire script on every interaction, so anything
 expensive (the embedded index, audit results, chat history) is kept in
@@ -10,19 +10,13 @@ st.session_state and never rebuilt implicitly.
 
 from __future__ import annotations
 
-import os
-from pathlib import Path
-
 import streamlit as st
-from dotenv import load_dotenv
 
-import rag
+from rag import compliance, core
+from ui import ROOT, api_key, cached_models, get_llm
 
-# find_dotenv() inspects caller stack frames and breaks under Streamlit's
-# script runner, so the path is always explicit.
-load_dotenv(Path(__file__).parent / ".env")
-
-PERSIST_DIR = str(Path(__file__).parent / ".chroma")
+# Runtime scratch space for uploads: wiped whenever Streamlit Cloud reboots.
+PERSIST_DIR = str(ROOT / ".chroma")
 
 
 def _query_param(name: str) -> str | None:
@@ -84,17 +78,15 @@ def recover_session(embed_model: str, key: str) -> None:
     if not name or not name.startswith("kb_"):
         return
     try:
-        store = rag.open_index(embed_model, name, persist_directory=PERSIST_DIR, api_key=key)
+        store = core.open_index(embed_model, name, persist_directory=PERSIST_DIR, api_key=key)
         if store._collection.count() == 0:
             return
         st.session_state.store = store
-        st.session_state.indexed = rag.collection_summary(store)
+        st.session_state.indexed = core.collection_summary(store)
     except Exception:
         # A collection that has been pruned or never existed is not an error;
         # the user simply starts fresh.
         return
-
-st.set_page_config(page_title="Compliance Copilot", page_icon="📋", layout="wide")
 
 
 # ---------------------------------------------------------------------------
@@ -108,7 +100,6 @@ DEFAULTS = {
     "store": lambda: None,
     "indexed": list,       # [(filename, n_chunks)]
     "findings": lambda: None,
-    "questions": lambda: None,
     "chat": list,          # [(user, assistant)]
     "models": lambda: None,  # (chat_model, embed_model)
 }
@@ -124,36 +115,14 @@ for _name, _factory in DEFAULTS.items():
         st.session_state[_name] = _factory()
 
 
-def api_key() -> str:
+@st.cache_data(show_spinner=False)
+def cached_questions(text: str, model: str, key: str) -> list[str]:
     """
-    Read the key from Streamlit secrets first, then the environment.
-
-    Locally the key lives in .env; on Streamlit Community Cloud there is no
-    .env and the key is injected via st.secrets. Supporting both is what makes
-    the same code deployable without edits. Accessing st.secrets raises when no
-    secrets file exists at all, so it is guarded.
+    Extract once per questionnaire. Uncached, every rerun - any slider, any
+    chat message - called the LLM again, burned quota, and could silently
+    replace the user's edited question list with a fresh extraction.
     """
-    try:
-        if "GOOGLE_API_KEY" in st.secrets:
-            return str(st.secrets["GOOGLE_API_KEY"]).strip()
-    except Exception:
-        pass
-    return (os.environ.get("GOOGLE_API_KEY") or "").strip()
-
-
-@st.cache_resource(show_spinner=False)
-def get_llm(model: str, key: str, temperature: float = 0.0):
-    """Cached so a rerun reuses one client instead of building a new one."""
-    from langchain_google_genai import ChatGoogleGenerativeAI
-
-    return ChatGoogleGenerativeAI(
-        model=model, temperature=temperature, google_api_key=key
-    )
-
-
-@st.cache_data(show_spinner=False, ttl=3600)
-def cached_models(key: str) -> tuple[str, str]:
-    return rag.resolve_models(key)
+    return compliance.extract_questions(text, llm=get_llm(model, key))
 
 
 # ---------------------------------------------------------------------------
@@ -184,16 +153,17 @@ with st.sidebar:
 
     chat_model, embed_model = st.session_state.models
 
-    # Reopen this session's collection after a reload, and sweep away
-    # collections whose sessions are long gone.
-    recover_session(embed_model, key)
+    # Sweep away collections whose sessions are long gone, THEN reopen this
+    # session's collection after a reload. The other order recovered an
+    # expired collection, listed its documents, and then deleted it.
     # NB: st.session_state supports .get() on the live runtime but not under
     # Streamlit's own AppTest harness, so membership tests are used instead -
     # otherwise the whole UI test suite dies on an AttributeError.
     if "pruned" not in st.session_state:
         keep = st.session_state.collection if "collection" in st.session_state else None
-        rag.prune_collections(PERSIST_DIR, keep=keep)
+        core.prune_collections(PERSIST_DIR, keep=keep)
         st.session_state.pruned = True
+    recover_session(embed_model, key)
 
     st.success("Gemini connected")
     st.caption(f"**Chat** `{chat_model}`  \n**Embeddings** `{embed_model}`")
@@ -201,12 +171,12 @@ with st.sidebar:
     st.divider()
     with st.expander("Advanced settings"):
         top_k = st.slider(
-            "Passages per question", 3, 10, rag.TOP_K,
+            "Passages per question", 3, 10, core.TOP_K,
             help="How much of your document the assistant reads before "
                  "answering each question.",
         )
         workers = st.slider(
-            "Questions answered at once", 1, 8, rag.MAX_WORKERS,
+            "Questions answered at once", 1, 8, compliance.MAX_WORKERS,
             help="Higher is faster. Lower this if answers start failing on a "
                  "free API key.",
         )
@@ -221,8 +191,11 @@ with st.sidebar:
         st.subheader("Knowledge base")
         for name, n in st.session_state.indexed:
             st.caption(f"{name} — {n} passages")
-        st.caption("Refreshing the page keeps these documents loaded.")
-        if st.button("Clear knowledge base", use_container_width=True):
+        st.caption(
+            "Refreshing the page keeps these documents loaded. Anyone with "
+            "this page's URL can open them too - don't share it."
+        )
+        if st.button("Clear knowledge base", width="stretch"):
             # Drop the collection too, not just the handle, so the uploaded
             # content does not linger on the server's disk after the user
             # has explicitly cleared it.
@@ -268,23 +241,22 @@ uploads = st.file_uploader(
 col_a, col_b = st.columns([1, 3])
 with col_a:
     build_clicked = st.button(
-        "Add documents", type="primary", disabled=not uploads, use_container_width=True
+        "Add documents", type="primary", disabled=not uploads, width="stretch"
     )
 with col_b:
     use_samples = st.button(
-        "Try it with sample documents", use_container_width=True,
+        "Try it with sample documents", width="stretch",
         help="A fictional company's security policy, architecture overview "
              "and penetration-test report.",
     )
 
 if build_clicked or use_samples:
-    chunker = rag.chunk_pages_structured if structured else rag.chunk_pages
+    chunker = core.chunk_pages_structured if structured else core.chunk_pages
 
     if use_samples:
-        # An explicit list, not a glob: samples/ also holds acme_handbook.pdf,
-        # which is these two documents concatenated. Indexing it alongside them
-        # would put duplicate chunks in the store and crowd the top-k.
-        sample_dir = Path(__file__).parent / "samples"
+        # An explicit list, not a glob: the questionnaire in the same folder
+        # is a question list, not a source document.
+        sample_dir = ROOT / "data" / "samples"
         sample_names = [
             "acme_security_policy.txt",
             "acme_architecture.txt",
@@ -301,11 +273,11 @@ if build_clicked or use_samples:
     docs, indexed, failures = [], [], []
     for name, data in sources:
         try:
-            pages = rag.parse_document(data, name)
+            pages = core.parse_document(data, name)
             chunks = chunker(pages, name)
             docs += chunks
             indexed.append((name, len(chunks)))
-        except (rag.UnsupportedFile, rag.NoExtractableText) as exc:
+        except (core.UnsupportedFile, core.NoExtractableText) as exc:
             failures.append(str(exc))
 
     for message in failures:
@@ -316,7 +288,7 @@ if build_clicked or use_samples:
     else:
         with st.spinner(f"Embedding {len(docs)} chunks..."):
             try:
-                st.session_state.store = rag.build_index(
+                st.session_state.store = core.build_index(
                     docs,
                     embed_model,
                     persist_directory=PERSIST_DIR,
@@ -325,11 +297,16 @@ if build_clicked or use_samples:
                 )
                 st.session_state.indexed = indexed
                 st.session_state.findings = None
+                total = sum(n for _, n in indexed)
+                st.success(f"Ready — {len(indexed)} document(s), {total} passages indexed.")
             except Exception as exc:
+                # build_index empties the collection before embedding, so the
+                # previous index is gone too. Keeping the old handle showed
+                # "Ready" next to this error and every later answer failed.
+                st.session_state.store = None
+                st.session_state.indexed = []
+                st.session_state.findings = None
                 st.error(f"Indexing failed: `{exc}`")
-        if st.session_state.store is not None:
-            total = sum(n for _, n in indexed)
-            st.success(f"Ready — {len(indexed)} document(s), {total} passages indexed.")
 
 if st.session_state.store is None:
     st.info("Add your documents above to get started.")
@@ -351,8 +328,8 @@ mode = st.radio(
 
 questions: list[str] = []
 if mode == "Use a preset":
-    preset = st.selectbox("Preset checklist", list(rag.PRESETS))
-    questions = rag.PRESETS[preset]
+    preset = st.selectbox("Preset checklist", list(compliance.PRESETS))
+    questions = compliance.PRESETS[preset]
     with st.expander(f"{len(questions)} questions"):
         for i, q in enumerate(questions, 1):
             st.write(f"{i}. {q}")
@@ -362,12 +339,10 @@ else:
     )
     if qfile is not None:
         try:
-            pages = rag.parse_document(qfile.getvalue(), qfile.name)
+            pages = core.parse_document(qfile.getvalue(), qfile.name)
             text = "\n".join(t for _, t in pages)
             with st.spinner("Reading the questions out of the file..."):
-                questions = rag.extract_questions(
-                    text, llm=get_llm(chat_model, key)
-                )
+                questions = cached_questions(text, chat_model, key)
             st.success(f"Found {len(questions)} questions in `{qfile.name}`.")
             st.caption("Edit below if the extraction missed or merged anything.")
             edited = st.text_area(
@@ -376,7 +351,7 @@ else:
                 height=200,
             )
             questions = [q.strip() for q in edited.splitlines() if q.strip()]
-        except (rag.UnsupportedFile, rag.NoExtractableText) as exc:
+        except (core.UnsupportedFile, core.NoExtractableText) as exc:
             st.error(str(exc))
 
 # ---------------------------------------------------------------------------
@@ -389,7 +364,7 @@ if st.button(
     f"Audit {len(questions)} questions",
     type="primary",
     disabled=not questions,
-    use_container_width=True,
+    width="stretch",
 ):
     llm = get_llm(chat_model, key)
     progress = st.progress(0.0, text="Starting...")
@@ -403,7 +378,7 @@ if st.button(
         )
 
     try:
-        st.session_state.findings = rag.run_audit(
+        st.session_state.findings = compliance.run_audit(
             questions,
             st.session_state.store,
             llm,
@@ -413,7 +388,6 @@ if st.button(
             max_workers=workers,
             on_result=on_result,
         )
-        st.session_state.questions = questions
     except Exception as exc:
         st.error(f"Audit failed: `{exc}`")
     progress.empty()
@@ -421,18 +395,26 @@ if st.button(
 findings = st.session_state.findings
 
 if findings:
-    counts = rag.summarise(findings)
+    counts = compliance.summarise(findings)
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("Questions", counts["total"])
-    c2.metric("✅ Covered", counts[rag.COVERED])
-    c3.metric("⚠️ Partial", counts[rag.PARTIAL])
-    c4.metric("❌ Gaps", counts[rag.NOT_FOUND])
+    c2.metric("✅ Covered", counts[core.COVERED])
+    c3.metric("⚠️ Partial", counts[core.PARTIAL])
+    c4.metric("❌ Gaps", counts[core.NOT_FOUND])
 
-    answered = counts[rag.COVERED] + counts[rag.PARTIAL]
+    answered = counts[core.COVERED] + counts[core.PARTIAL]
     st.progress(answered / counts["total"] if counts["total"] else 0.0,
                 text=f"{answered} of {counts['total']} answerable from your documents")
 
-    gaps = [f for f in findings if f.verdict == rag.NOT_FOUND]
+    failed = [f for f in findings if f.verdict == core.ERROR]
+    if failed:
+        st.error(
+            f"**{len(failed)} question(s) could not be processed** - these are "
+            "NOT gaps, the documents were never checked. Run the audit again:\n\n"
+            + "\n".join(f"- {f.question}" for f in failed)
+        )
+
+    gaps = [f for f in findings if f.verdict == core.NOT_FOUND]
     if gaps:
         st.warning(
             f"**{len(gaps)} question(s) need a human.** Nothing in the uploaded "
@@ -442,7 +424,7 @@ if findings:
 
     st.download_button(
         "⬇ Download answers as CSV",
-        data=rag.findings_to_csv(findings),
+        data=compliance.findings_to_csv(findings),
         file_name="questionnaire_answers.csv",
         mime="text/csv",
     )
@@ -451,7 +433,7 @@ if findings:
     only_gaps = st.checkbox("Show only gaps", value=False)
 
     for i, f in enumerate(findings, 1):
-        if only_gaps and f.verdict != rag.NOT_FOUND:
+        if only_gaps and f.verdict != core.NOT_FOUND:
             continue
         sources = ", ".join(dict.fromkeys(c.label() for c in f.citations))
         with st.expander(
@@ -491,10 +473,10 @@ if prompt:
     with st.chat_message("assistant"):
         with st.spinner("Searching your documents..."):
             try:
-                hits = rag.retrieve(
+                hits = core.retrieve(
                     st.session_state.store, prompt, embed_model, k=top_k, api_key=key
                 )
-                answer, citations = rag.chat_answer(
+                answer, citations = core.chat_answer(
                     get_llm(chat_model, key), prompt, hits, history=st.session_state.chat
                 )
             except Exception as exc:

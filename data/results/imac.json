@@ -1,0 +1,3584 @@
+{
+ "doc": "imac",
+ "title": "Apple iMac Product Environmental Report (October 2024)",
+ "chat_model": "gemini-3.5-flash-lite",
+ "embed_model": "BAAI/bge-small-en-v1.5",
+ "rerank_model": "Xenova/ms-marco-MiniLM-L-12-v2",
+ "variants": {
+  "naive": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": false,
+    "rerank": false,
+    "window": 0,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense only",
+   "index": "imac__naive",
+   "summary": {
+    "total": 9,
+    "passed": 8,
+    "facts": 8,
+    "grounded": 9,
+    "evidence": 9,
+    "retrieved_expected": 8,
+    "retrieval_scored": 8,
+    "errors": 0,
+    "avg_seconds": 6.03,
+    "when": "2026-10-22 13:59"
+   },
+   "questions": [
+    {
+     "id": "imac-1",
+     "question": "How much less energy does iMac use compared to the ENERGY STAR requirement?",
+     "kind": "official",
+     "tests": "a claim qualified by a footnote",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      7,
+      12
+     ],
+     "cited_pages": [
+      7
+     ],
+     "verdict": "COVERED",
+     "answer": "iMac uses 58 percent less energy than the requirement for ENERGY STAR.",
+     "note": "",
+     "route": "",
+     "seconds": 2.17,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.7",
+       "quote": "iMac uses 58 percent less energy than the requirement for ENERGY\nSTAR.18",
+       "page": 7
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-2",
+     "question": "What is the total carbon footprint of the iMac, and how much of that comes from product use versus manufacturing?",
+     "kind": "official",
+     "tests": "a table with two configurations and different wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "PARTIAL",
+     "answer": "For the iMac (two ports) 256GB configuration, the total product footprint is 346 kg CO2e, with product use accounting for 45% and production accounting for 50%. Figures for the iMac (four ports) 512GB configuration are missing.",
+     "note": "",
+     "route": "",
+     "seconds": 5.32,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10",
+       "quote": "Greenhouse gas emissions iMac (two ports)\n256GB\nTotal product footprint 346 kg CO2e",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10",
+       "quote": "\u2022 Production 50%",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10",
+       "quote": "\u2022 Product use 45%",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-3",
+     "question": "What material is the iMac stand made from, and what percentage of it is recycled?",
+     "kind": "official",
+     "tests": "an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      4,
+      6,
+      11
+     ],
+     "cited_pages": [
+      1,
+      4
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac stand is made of aluminum, and 100 percent of it is recycled.",
+     "note": "",
+     "route": "",
+     "seconds": 1.45,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.4",
+       "quote": "Aluminum. We use 100 percent recycled aluminum in the stand.",
+       "page": 4
+      },
+      {
+       "label": "iMac Environmental Report, p.1",
+       "quote": "iMac uses 100% recycled aluminum in the stand",
+       "page": 1
+      }
+     ],
+     "context": [
+      {
+       "page": 4,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-4",
+     "question": "Which power adapter was the iMac tested with for its energy consumption figures?",
+     "kind": "trap",
+     "tests": "an endnote pages away from its claim",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      10,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+     "note": "",
+     "route": "",
+     "seconds": 7.5,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12",
+       "quote": "iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-5",
+     "question": "What is the iMac's power consumption in sleep mode at 230V?",
+     "kind": "trap",
+     "tests": "one cell of a small table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      10,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's power consumption in sleep mode at 230V is 0.59W.",
+     "note": "",
+     "route": "",
+     "seconds": 8.97,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12",
+       "quote": "Mode\nPower consumption for iMac\n100V 115V 230V",
+       "page": 12
+      },
+      {
+       "label": "iMac Environmental Report, p.12",
+       "quote": "Sleep 0.56W 0.57W 0.59W",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-6",
+     "question": "What is the carbon footprint of the iMac with four ports and 512GB?",
+     "kind": "trap",
+     "tests": "the other configuration in the same table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      7,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "The carbon footprint of the iMac (four ports) 512GB configuration is 391 kg CO2e.",
+     "note": "",
+     "route": "",
+     "seconds": 7.77,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10",
+       "quote": "Carbon\nFootprint\nConfiguration iMac (four ports)\n512GB",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10",
+       "quote": "iMac (four ports) 512GB 391 kg CO2e",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-7",
+     "question": "In the carbon chart, what were the iMac's baseline emissions and by how much were they reduced?",
+     "kind": "trap",
+     "tests": "chart values whose labels the text layer jumbles",
+     "passed": false,
+     "facts": false,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [
+      "445",
+      "99"
+     ],
+     "retrieved_pages": [
+      2,
+      7,
+      10,
+      11
+     ],
+     "cited_pages": [
+      2,
+      10
+     ],
+     "verdict": "PARTIAL",
+     "answer": "The passages do not state the baseline emissions from the carbon chart. They state that emissions for iMac (two ports) with 256GB were reduced by more than 20 percent against the business-as-usual scenario, and total product footprint is 346 kg CO2e.",
+     "note": "",
+     "route": "",
+     "seconds": 9.47,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.2",
+       "quote": "We\u2019ve reduced emissions for iMac (two ports) with 256GB by more than 20 percent against\nour business-as-usual scenario as modeled by Apple.7",
+       "page": 2
+      },
+      {
+       "label": "iMac Environmental Report, p.10",
+       "quote": "Total product footprint 346 kg CO2e",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10",
+       "quote": "GHG reductions achieved7 \u2193>20%",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 2,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-8",
+     "question": "How much recycled content is in the iMac's fiber packaging?",
+     "kind": "trap",
+     "tests": "a percentage in an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      4,
+      6,
+      11
+     ],
+     "cited_pages": [
+      6
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac packaging contains 76% recycled content.",
+     "note": "",
+     "route": "",
+     "seconds": 10.58,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.6",
+       "quote": "76%\nrecycled content in\nfiber packaging",
+       "page": 6
+      },
+      {
+       "label": "iMac Environmental Report, p.6",
+       "quote": "Our packaging for\niMac contains 76 percent recycled content, and we have protected or established enough",
+       "page": 6
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-9",
+     "question": "What is the iMac's display resolution?",
+     "kind": "trap",
+     "tests": "refusal: not in the report",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      7,
+      10,
+      12
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.06,
+     "citations": [],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  },
+  "advanced": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": true,
+    "window": 0,
+    "route": false,
+    "lead": false,
+    "footnotes": true,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, rerank, linked footnotes",
+   "index": "imac__advanced",
+   "summary": {
+    "total": 9,
+    "passed": 9,
+    "facts": 9,
+    "grounded": 9,
+    "evidence": 9,
+    "retrieved_expected": 8,
+    "retrieval_scored": 8,
+    "errors": 0,
+    "avg_seconds": 9.49,
+    "when": "2026-10-22 14:01"
+   },
+   "questions": [
+    {
+     "id": "imac-1",
+     "question": "How much less energy does iMac use compared to the ENERGY STAR requirement?",
+     "kind": "official",
+     "tests": "a claim qualified by a footnote",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      7,
+      11,
+      12
+     ],
+     "cited_pages": [
+      7
+     ],
+     "verdict": "COVERED",
+     "answer": "iMac consumes 58 percent less energy than the requirement for ENERGY STAR.",
+     "note": "",
+     "route": "",
+     "seconds": 2.51,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.7 \u00b7 Energy consumption of ENERGY STAR\u2013rated products",
+       "quote": "iMac consumes 58 percent less energy than the requirement for ENERGY STAR.[^18]",
+       "page": 7
+      }
+     ],
+     "context": [
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": 7.889399528503418
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "footnote 18",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": 7.864821434020996
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": -0.13637174665927887
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": -0.5214145183563232
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-2",
+     "question": "What is the total carbon footprint of the iMac, and how much of that comes from product use versus manufacturing?",
+     "kind": "official",
+     "tests": "a table with two configurations and different wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "The total product footprint of iMac (two ports) with 256GB is 346 kg CO\u2082e. Production accounts for 50 percent and product use accounts for 45 percent of the life cycle product emissions.",
+     "note": "",
+     "route": "",
+     "seconds": 1.86,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Greenhouse gas emissions | iMac (two ports)<br>256GB |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Total product footprint | 346 kg CO\u2082e |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Life cycle product emissions (scope 3) | 346 kg CO\u2082e |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| \u2022 Production | 50% |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| \u2022 Product use | 45% |",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 3.834113597869873
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": 3.466653347015381
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 2.1332833766937256
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": 1.5369834899902344
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Chart: Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 0.6354057788848877
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 8",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 11",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-3",
+     "question": "What material is the iMac stand made from, and what percentage of it is recycled?",
+     "kind": "official",
+     "tests": "an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      4,
+      6,
+      11,
+      12
+     ],
+     "cited_pages": [
+      1
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac stand is made from aluminum, of which 100 percent is recycled, current as of product launch.",
+     "note": "",
+     "route": "",
+     "seconds": 9.76,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.1 \u00b7 iMac uses 100% recycled aluminum in the stand",
+       "quote": "### iMac uses 100% recycled aluminum in the stand",
+       "page": 1
+      },
+      {
+       "label": "iMac Environmental Report, p.1 \u00b7 iMac uses 100% recycled aluminum in the stand",
+       "quote": "This report includes data current as of product launch.",
+       "page": 1
+      }
+     ],
+     "context": [
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": 6.599283218383789
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 6.0406036376953125
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": 5.692333698272705
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 1",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "Package and Ship",
+       "why": "retrieved",
+       "rerank": 5.547674655914307
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 3",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "footnote 17",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-4",
+     "question": "Which power adapter was the iMac tested with for its energy consumption figures?",
+     "kind": "trap",
+     "tests": "an endnote pages away from its claim",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      11,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+     "note": "",
+     "route": "",
+     "seconds": 1.89,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Endnotes",
+       "quote": "iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 7.1093878746032715
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": 3.069882869720459
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": 1.9754416942596436
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": 1.4761121273040771
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -2.272000312805176
+      }
+     ]
+    },
+    {
+     "id": "imac-5",
+     "question": "What is the iMac's power consumption in sleep mode at 230V?",
+     "kind": "trap",
+     "tests": "one cell of a small table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      11,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's power consumption in sleep mode at 230V is 0.59W.",
+     "note": "",
+     "route": "",
+     "seconds": 10.55,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Power consumption for iMac",
+       "quote": "| Mode | 100V | 115V | 230V |",
+       "page": 12
+      },
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Power consumption for iMac",
+       "quote": "| Sleep | 0.56W | 0.57W | 0.59W |",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": 5.237766742706299
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 1.852552890777588
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": -4.0953240394592285
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": -4.934184551239014
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -6.828082084655762
+      }
+     ]
+    },
+    {
+     "id": "imac-6",
+     "question": "What is the carbon footprint of the iMac with four ports and 512GB?",
+     "kind": "trap",
+     "tests": "the other configuration in the same table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "The carbon footprint of the iMac (four ports) with 512GB is 391 kg CO\u2082e.",
+     "note": "",
+     "route": "",
+     "seconds": 39.02,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Configuration | iMac (four ports)<br>512GB |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| iMac (four ports) 512GB | 391 kg CO\u2082e |",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 5.3786420822143555
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": 3.2945051193237305
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 3.163336753845215
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 3.064187526702881
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": 2.726611614227295
+      }
+     ]
+    },
+    {
+     "id": "imac-7",
+     "question": "In the carbon chart, what were the iMac's baseline emissions and by how much were they reduced?",
+     "kind": "trap",
+     "tests": "chart values whose labels the text layer jumbles",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      2
+     ],
+     "verdict": "COVERED",
+     "answer": "The baseline emissions for the iMac were 445 kg, and emissions reductions were \u201399 kg.",
+     "note": "",
+     "route": "",
+     "seconds": 9.48,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Chart: Progress toward carbon neutral",
+       "quote": "- Baseline emissions[^7]: 445 kg",
+       "page": 2
+      },
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Chart: Progress toward carbon neutral",
+       "quote": "- Emissions reductions: \u201399 kg",
+       "page": 2
+      }
+     ],
+     "context": [
+      {
+       "page": 2,
+       "section": "Chart: Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 4.500225067138672
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 8",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 11",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 3.8947482109069824
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": -1.4641709327697754
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -1.9216692447662354
+      }
+     ]
+    },
+    {
+     "id": "imac-8",
+     "question": "How much recycled content is in the iMac's fiber packaging?",
+     "kind": "trap",
+     "tests": "a percentage in an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      4,
+      6,
+      11,
+      12
+     ],
+     "cited_pages": [
+      6
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's fiber packaging contains 76 percent recycled content.",
+     "note": "",
+     "route": "",
+     "seconds": 2.18,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.6 \u00b7 Package and Ship",
+       "quote": "Our packaging for iMac contains 76 percent recycled content, and we have protected or established enough responsibly managed forests to cover all the new wood fiber we use in our packaging.[^4]",
+       "page": 6
+      },
+      {
+       "label": "iMac Environmental Report, p.6 \u00b7 Package and Ship",
+       "quote": "* **76%** recycled content in fiber packaging",
+       "page": 6
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "Package and Ship",
+       "why": "retrieved",
+       "rerank": 7.292178153991699
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 3",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "footnote 17",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": 6.225030422210693
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 1",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 3.4095611572265625
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": 2.413661003112793
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-9",
+     "question": "What is the iMac's display resolution?",
+     "kind": "trap",
+     "tests": "refusal: not in the report",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      4,
+      10,
+      11,
+      12
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 8.19,
+     "citations": [],
+     "context": [
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -0.6886823177337646
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": -1.07151460647583
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -1.2506510019302368
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": -1.3868287801742554
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": -5.745347023010254
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 1",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  },
+  "no footnote links": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": true,
+    "window": 0,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, rerank",
+   "index": "imac__advanced",
+   "summary": {
+    "total": 9,
+    "passed": 9,
+    "facts": 9,
+    "grounded": 9,
+    "evidence": 9,
+    "retrieved_expected": 8,
+    "retrieval_scored": 8,
+    "errors": 0,
+    "avg_seconds": 7.05,
+    "when": "2026-10-22 14:02"
+   },
+   "questions": [
+    {
+     "id": "imac-1",
+     "question": "How much less energy does iMac use compared to the ENERGY STAR requirement?",
+     "kind": "official",
+     "tests": "a claim qualified by a footnote",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      7,
+      12
+     ],
+     "cited_pages": [
+      7
+     ],
+     "verdict": "COVERED",
+     "answer": "iMac uses 58 percent less energy than the requirement for ENERGY STAR.",
+     "note": "",
+     "route": "",
+     "seconds": 3.12,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.7 \u00b7 Use",
+       "quote": "iMac uses 58 percent less energy than the requirement for ENERGY STAR.[^18]",
+       "page": 7
+      }
+     ],
+     "context": [
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": 7.889399528503418
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": 7.864821434020996
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 3.7194416522979736
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": -0.13637174665927887
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": -0.5214145183563232
+      }
+     ]
+    },
+    {
+     "id": "imac-2",
+     "question": "What is the total carbon footprint of the iMac, and how much of that comes from product use versus manufacturing?",
+     "kind": "official",
+     "tests": "a table with two configurations and different wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "The total product footprint of iMac (two ports) 256GB is 346 kg CO\u2082e. Product use accounts for 45 percent, and production accounts for 50 percent of the life cycle product emissions.",
+     "note": "",
+     "route": "",
+     "seconds": 7.6,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Greenhouse gas emissions | iMac (two ports)<br>256GB |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Total product footprint | 346 kg CO\u2082e |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Life cycle product emissions (scope 3) | 346 kg CO\u2082e |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| \u2022 Production | 50% |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| \u2022 Product use | 45% |",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 3.834113597869873
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": 3.466653347015381
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 2.1332833766937256
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": 1.5369834899902344
+      },
+      {
+       "page": 2,
+       "section": "Chart: Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 0.6354057788848877
+      }
+     ]
+    },
+    {
+     "id": "imac-3",
+     "question": "What material is the iMac stand made from, and what percentage of it is recycled?",
+     "kind": "official",
+     "tests": "an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      4,
+      6
+     ],
+     "cited_pages": [
+      1,
+      2
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac stand is made of 100 percent recycled aluminum.",
+     "note": "",
+     "route": "",
+     "seconds": 2.25,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.1 \u00b7 iMac uses 100% recycled aluminum in the stand",
+       "quote": "### iMac uses 100% recycled aluminum in the stand",
+       "page": 1
+      },
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Progress toward carbon neutral",
+       "quote": "This device contains more than 15 percent recycled content, including 100 percent recycled aluminum in the stand, reducing total product emissions by about 13 percent.",
+       "page": 2
+      }
+     ],
+     "context": [
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": 6.599283218383789
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 6.0406036376953125
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": 5.692333698272705
+      },
+      {
+       "page": 6,
+       "section": "Package and Ship",
+       "why": "retrieved",
+       "rerank": 5.547674655914307
+      },
+      {
+       "page": 4,
+       "section": "Smarter chemistry",
+       "why": "retrieved",
+       "rerank": 4.392251014709473
+      }
+     ]
+    },
+    {
+     "id": "imac-4",
+     "question": "Which power adapter was the iMac tested with for its energy consumption figures?",
+     "kind": "trap",
+     "tests": "an endnote pages away from its claim",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      11,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+     "note": "",
+     "route": "",
+     "seconds": 20.41,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Endnotes",
+       "quote": "iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 7.1093878746032715
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": 3.069882869720459
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": 1.9754416942596436
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": 1.4761121273040771
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -2.272000312805176
+      }
+     ]
+    },
+    {
+     "id": "imac-5",
+     "question": "What is the iMac's power consumption in sleep mode at 230V?",
+     "kind": "trap",
+     "tests": "one cell of a small table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      11,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's power consumption in sleep mode at 230V is 0.59W.",
+     "note": "",
+     "route": "",
+     "seconds": 9.4,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Power consumption for iMac",
+       "quote": "| Mode | 100V | 115V | 230V |",
+       "page": 12
+      },
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Power consumption for iMac",
+       "quote": "| Sleep | 0.56W | 0.57W | 0.59W |",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": 5.237766742706299
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 1.852552890777588
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": -4.0953240394592285
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": -4.934184551239014
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -6.828082084655762
+      }
+     ]
+    },
+    {
+     "id": "imac-6",
+     "question": "What is the carbon footprint of the iMac with four ports and 512GB?",
+     "kind": "trap",
+     "tests": "the other configuration in the same table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "The carbon footprint of the iMac (four ports) 512GB is 391 kg CO\u2082e.",
+     "note": "",
+     "route": "",
+     "seconds": 6.24,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Configuration | iMac (four ports)<br>512GB |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| iMac (four ports) 512GB | 391 kg CO\u2082e |",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 5.3786420822143555
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": 3.2945051193237305
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 3.163336753845215
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": 3.064187526702881
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": 2.726611614227295
+      }
+     ]
+    },
+    {
+     "id": "imac-7",
+     "question": "In the carbon chart, what were the iMac's baseline emissions and by how much were they reduced?",
+     "kind": "trap",
+     "tests": "chart values whose labels the text layer jumbles",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      2
+     ],
+     "verdict": "COVERED",
+     "answer": "In the carbon chart, the iMac's baseline emissions were 445 kg and emissions reductions were \u201399 kg.",
+     "note": "",
+     "route": "",
+     "seconds": 10.47,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Chart: Progress toward carbon neutral",
+       "quote": "- Baseline emissions[^7]: 445 kg",
+       "page": 2
+      },
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Chart: Progress toward carbon neutral",
+       "quote": "- Emissions reductions: \u201399 kg",
+       "page": 2
+      }
+     ],
+     "context": [
+      {
+       "page": 2,
+       "section": "Chart: Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 4.500225067138672
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 3.8947482109069824
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": -1.4641709327697754
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -1.9216692447662354
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -2.470831871032715
+      }
+     ]
+    },
+    {
+     "id": "imac-8",
+     "question": "How much recycled content is in the iMac's fiber packaging?",
+     "kind": "trap",
+     "tests": "a percentage in an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      4,
+      6
+     ],
+     "cited_pages": [
+      6
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's fiber packaging contains 76 percent recycled content.",
+     "note": "",
+     "route": "",
+     "seconds": 2.26,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.6 \u00b7 Package and Ship",
+       "quote": "Our packaging for iMac contains 76 percent recycled content, and we have protected or established enough responsibly managed forests to cover all the new wood fiber we use in our packaging.[^4]",
+       "page": 6
+      },
+      {
+       "label": "iMac Environmental Report, p.6 \u00b7 Package and Ship",
+       "quote": "* **76%** recycled content in fiber packaging",
+       "page": 6
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "Package and Ship",
+       "why": "retrieved",
+       "rerank": 7.292178153991699
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": 6.225030422210693
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": 3.4095611572265625
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": 2.413661003112793
+      },
+      {
+       "page": 1,
+       "section": "Packaging",
+       "why": "retrieved",
+       "rerank": 0.19080610573291779
+      }
+     ]
+    },
+    {
+     "id": "imac-9",
+     "question": "What is the iMac's display resolution?",
+     "kind": "trap",
+     "tests": "refusal: not in the report",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      4,
+      10,
+      11,
+      12
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.66,
+     "citations": [],
+     "context": [
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -0.6886823177337646
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": -1.07151460647583
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": -1.2506510019302368
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": -1.3868287801742554
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": -5.745347023010254
+      }
+     ]
+    }
+   ]
+  },
+  "no rerank": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": false,
+    "window": 0,
+    "route": false,
+    "lead": false,
+    "footnotes": true,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, linked footnotes",
+   "index": "imac__advanced",
+   "summary": {
+    "total": 9,
+    "passed": 9,
+    "facts": 9,
+    "grounded": 9,
+    "evidence": 9,
+    "retrieved_expected": 8,
+    "retrieval_scored": 8,
+    "errors": 0,
+    "avg_seconds": 11.96,
+    "when": "2026-10-22 14:04"
+   },
+   "questions": [
+    {
+     "id": "imac-1",
+     "question": "How much less energy does iMac use compared to the ENERGY STAR requirement?",
+     "kind": "official",
+     "tests": "a claim qualified by a footnote",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      7,
+      11,
+      12
+     ],
+     "cited_pages": [
+      7
+     ],
+     "verdict": "COVERED",
+     "answer": "iMac uses 58 percent less energy than the requirement for ENERGY STAR.",
+     "note": "",
+     "route": "",
+     "seconds": 37.0,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.7 \u00b7 Use",
+       "quote": "iMac uses 58 percent less energy than the requirement for ENERGY STAR.[^18]",
+       "page": 7
+      }
+     ],
+     "context": [
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "footnote 18",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-2",
+     "question": "What is the total carbon footprint of the iMac, and how much of that comes from product use versus manufacturing?",
+     "kind": "official",
+     "tests": "a table with two configurations and different wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "The total product footprint of the iMac (two ports) with 256GB is 346 kg CO\u2082e. Product use accounts for 45% of the life cycle product emissions, while production accounts for 50%.",
+     "note": "",
+     "route": "",
+     "seconds": 6.16,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Greenhouse gas emissions | iMac (two ports)<br>256GB |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Total product footprint | 346 kg CO\u2082e |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Life cycle product emissions (scope 3) | 346 kg CO\u2082e |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| \u2022 Production | 50% |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| \u2022 Product use | 45% |",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Chart: Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 8",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 11",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-3",
+     "question": "What material is the iMac stand made from, and what percentage of it is recycled?",
+     "kind": "official",
+     "tests": "an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      4,
+      6,
+      11
+     ],
+     "cited_pages": [
+      4
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac stand is made from 100 percent recycled aluminum.",
+     "note": "1 unverified quote(s) discarded.",
+     "route": "",
+     "seconds": 1.52,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.4 \u00b7 Design and Source",
+       "quote": "* **Aluminum.** We use 100 percent recycled aluminum in the stand.",
+       "page": 4
+      }
+     ],
+     "context": [
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 1",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 14",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "Package and Ship",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 3",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-4",
+     "question": "Which power adapter was the iMac tested with for its energy consumption figures?",
+     "kind": "trap",
+     "tests": "an endnote pages away from its claim",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      11,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+     "note": "",
+     "route": "",
+     "seconds": 1.47,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Endnotes",
+       "quote": "iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-5",
+     "question": "What is the iMac's power consumption in sleep mode at 230V?",
+     "kind": "trap",
+     "tests": "one cell of a small table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      10,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's power consumption in sleep mode at 230V is 0.59W.",
+     "note": "",
+     "route": "",
+     "seconds": 1.18,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Power consumption for iMac",
+       "quote": "| Mode | 100V | 115V | 230V |",
+       "page": 12
+      },
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Power consumption for iMac",
+       "quote": "| Sleep | 0.56W | 0.57W | 0.59W |",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-6",
+     "question": "What is the carbon footprint of the iMac with four ports and 512GB?",
+     "kind": "trap",
+     "tests": "the other configuration in the same table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "The carbon footprint of the iMac (four ports) with 512GB is 391 kg CO\u2082e.",
+     "note": "",
+     "route": "",
+     "seconds": 5.91,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Configuration | iMac (four ports)<br>512GB |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| iMac (four ports) 512GB | 391 kg CO\u2082e |",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-7",
+     "question": "In the carbon chart, what were the iMac's baseline emissions and by how much were they reduced?",
+     "kind": "trap",
+     "tests": "chart values whose labels the text layer jumbles",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      11
+     ],
+     "cited_pages": [
+      2
+     ],
+     "verdict": "COVERED",
+     "answer": "In the carbon chart, the baseline emissions were 445 kg, and emissions reductions were \u201399 kg.",
+     "note": "",
+     "route": "",
+     "seconds": 43.78,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Chart: Progress toward carbon neutral",
+       "quote": "- Baseline emissions[^7]: 445 kg",
+       "page": 2
+      },
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Chart: Progress toward carbon neutral",
+       "quote": "- Emissions reductions: \u201399 kg",
+       "page": 2
+      }
+     ],
+     "context": [
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Chart: Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 8",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 11",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-8",
+     "question": "How much recycled content is in the iMac's fiber packaging?",
+     "kind": "trap",
+     "tests": "a percentage in an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      4,
+      6,
+      11,
+      12
+     ],
+     "cited_pages": [
+      6
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's fiber packaging contains 76 percent recycled content.",
+     "note": "",
+     "route": "",
+     "seconds": 4.32,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.6 \u00b7 Package and Ship",
+       "quote": "Our packaging for iMac contains 76 percent recycled content, and we have protected or established enough responsibly managed forests to cover all the new wood fiber we use in our packaging.[^4]",
+       "page": 6
+      },
+      {
+       "label": "iMac Environmental Report, p.6 \u00b7 Package and Ship",
+       "quote": "* **76%** recycled content in fiber packaging",
+       "page": 6
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "Package and Ship",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 3",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "footnote 17",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 1",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "Packaging",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-9",
+     "question": "What is the iMac's display resolution?",
+     "kind": "trap",
+     "tests": "refusal: not in the report",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      7,
+      10,
+      11,
+      12
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 6.32,
+     "citations": [],
+     "context": [
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Designed to last",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  },
+  "dense only": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": false,
+    "rerank": false,
+    "window": 0,
+    "route": false,
+    "lead": false,
+    "footnotes": true,
+    "max_context": 10
+   },
+   "description": "top 5, dense only, linked footnotes",
+   "index": "imac__advanced",
+   "summary": {
+    "total": 9,
+    "passed": 9,
+    "facts": 9,
+    "grounded": 9,
+    "evidence": 9,
+    "retrieved_expected": 8,
+    "retrieval_scored": 8,
+    "errors": 0,
+    "avg_seconds": 11.92,
+    "when": "2026-10-22 14:05"
+   },
+   "questions": [
+    {
+     "id": "imac-1",
+     "question": "How much less energy does iMac use compared to the ENERGY STAR requirement?",
+     "kind": "official",
+     "tests": "a claim qualified by a footnote",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      10,
+      12
+     ],
+     "cited_pages": [
+      7
+     ],
+     "verdict": "COVERED",
+     "answer": "iMac uses 58 percent less energy than the requirement for ENERGY STAR.",
+     "note": "",
+     "route": "",
+     "seconds": 46.13,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.7 \u00b7 Use",
+       "quote": "iMac uses 58 percent less energy than the requirement for ENERGY STAR.[^18]",
+       "page": 7
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-2",
+     "question": "What is the total carbon footprint of the iMac, and how much of that comes from product use versus manufacturing?",
+     "kind": "official",
+     "tests": "a table with two configurations and different wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "For the iMac (two ports) with 256GB, the total product footprint is 346 kg CO\u2082e. Product use accounts for 45% of life cycle product emissions (scope 3), and production accounts for 50%.",
+     "note": "",
+     "route": "",
+     "seconds": 1.3,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Greenhouse gas emissions | iMac (two ports)<br>256GB |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Total product footprint | 346 kg CO\u2082e |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Life cycle product emissions (scope 3) | 346 kg CO\u2082e |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| \u2022 Production | 50% |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| \u2022 Product use | 45% |",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-3",
+     "question": "What material is the iMac stand made from, and what percentage of it is recycled?",
+     "kind": "official",
+     "tests": "an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      11,
+      12
+     ],
+     "cited_pages": [
+      1
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac stand is made of aluminum, of which 100 percent is recycled, based on data current as of product launch.",
+     "note": "",
+     "route": "",
+     "seconds": 5.69,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.1 \u00b7 iMac uses 100% recycled aluminum in the stand",
+       "quote": "### iMac uses 100% recycled aluminum in the stand",
+       "page": 1
+      },
+      {
+       "label": "iMac Environmental Report, p.1 \u00b7 iMac uses 100% recycled aluminum in the stand",
+       "quote": "This report includes data current as of product launch.",
+       "page": 1
+      }
+     ],
+     "context": [
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 1",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "Package and Ship",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 3",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "footnote 17",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Designed to last",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "Zero Waste to Landfill",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-4",
+     "question": "Which power adapter was the iMac tested with for its energy consumption figures?",
+     "kind": "trap",
+     "tests": "an endnote pages away from its claim",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      10,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+     "note": "",
+     "route": "",
+     "seconds": 6.52,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Endnotes",
+       "quote": "iMac is tested with the 143W Power Adapter, AC Cable (1m), and DC Cable (2m).",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Energy consumption of ENERGY STAR\u2013rated products",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-5",
+     "question": "What is the iMac's power consumption in sleep mode at 230V?",
+     "kind": "trap",
+     "tests": "one cell of a small table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      10,
+      11,
+      12
+     ],
+     "cited_pages": [
+      12
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's power consumption in sleep mode at 230V is 0.59W.",
+     "note": "",
+     "route": "",
+     "seconds": 4.4,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Power consumption for iMac",
+       "quote": "| Mode | 100V | 115V | 230V |",
+       "page": 12
+      },
+      {
+       "label": "iMac Environmental Report, p.12 \u00b7 Power consumption for iMac",
+       "quote": "| Sleep | 0.56W | 0.57W | 0.59W |",
+       "page": 12
+      }
+     ],
+     "context": [
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Use",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-6",
+     "question": "What is the carbon footprint of the iMac with four ports and 512GB?",
+     "kind": "trap",
+     "tests": "the other configuration in the same table",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      10
+     ],
+     "verdict": "COVERED",
+     "answer": "The carbon footprint of the iMac (four ports) 512GB is 391 kg CO\u2082e.",
+     "note": "",
+     "route": "",
+     "seconds": 40.16,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| Configuration | iMac (four ports)<br>512GB |",
+       "page": 10
+      },
+      {
+       "label": "iMac Environmental Report, p.10 \u00b7 Carbon Footprint",
+       "quote": "| iMac (four ports) 512GB | 391 kg CO\u2082e |",
+       "page": 10
+      }
+     ],
+     "context": [
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-7",
+     "question": "In the carbon chart, what were the iMac's baseline emissions and by how much were they reduced?",
+     "kind": "trap",
+     "tests": "chart values whose labels the text layer jumbles",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      2,
+      10,
+      11
+     ],
+     "cited_pages": [
+      2
+     ],
+     "verdict": "COVERED",
+     "answer": "In the carbon chart, the baseline emissions were 445 kg and the emissions reductions were \u201399 kg.",
+     "note": "",
+     "route": "",
+     "seconds": 1.2,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Chart: Progress toward carbon neutral",
+       "quote": "- Baseline emissions[^7]: 445 kg",
+       "page": 2
+      },
+      {
+       "label": "iMac Environmental Report, p.2 \u00b7 Chart: Progress toward carbon neutral",
+       "quote": "- Emissions reductions: \u201399 kg",
+       "page": 2
+      }
+     ],
+     "context": [
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 2,
+       "section": "Chart: Progress toward carbon neutral",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 8",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 11",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-8",
+     "question": "How much recycled content is in the iMac's fiber packaging?",
+     "kind": "trap",
+     "tests": "a percentage in an icon call-out",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      4,
+      5,
+      6,
+      11,
+      12
+     ],
+     "cited_pages": [
+      6
+     ],
+     "verdict": "COVERED",
+     "answer": "The iMac's fiber packaging contains 76 percent recycled content.",
+     "note": "",
+     "route": "",
+     "seconds": 0.92,
+     "citations": [
+      {
+       "label": "iMac Environmental Report, p.6 \u00b7 Package and Ship",
+       "quote": "* **76%** recycled content in fiber packaging",
+       "page": 6
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "Package and Ship",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 3",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "footnote 17",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "Design and Source",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 1",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "iMac uses 100% recycled aluminum in the stand",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 6",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "Zero Waste to Landfill",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 16",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "imac-9",
+     "question": "What is the iMac's display resolution?",
+     "kind": "trap",
+     "tests": "refusal: not in the report",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      7,
+      10,
+      11,
+      12
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.0,
+     "citations": [],
+     "context": [
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Power consumption for iMac",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 12,
+       "section": "Endnotes",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 7,
+       "section": "Designed to last",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "Carbon Footprint",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 11,
+       "section": "Endnotes",
+       "why": "footnote 7",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "stability": {
+  "naive": {
+   "passed": [
+    8,
+    8,
+    7
+   ],
+   "total": 9,
+   "errors": 0,
+   "per_question": {
+    "imac-1": 3,
+    "imac-2": 3,
+    "imac-3": 3,
+    "imac-4": 3,
+    "imac-5": 2,
+    "imac-6": 3,
+    "imac-7": 0,
+    "imac-8": 3,
+    "imac-9": 3
+   }
+  },
+  "advanced": {
+   "passed": [
+    9,
+    9,
+    9
+   ],
+   "total": 9,
+   "errors": 0,
+   "per_question": {
+    "imac-1": 3,
+    "imac-2": 3,
+    "imac-3": 3,
+    "imac-4": 3,
+    "imac-5": 3,
+    "imac-6": 3,
+    "imac-7": 3,
+    "imac-8": 3,
+    "imac-9": 3
+   }
+  }
+ }
+}

@@ -1,141 +1,106 @@
-# 📋 Compliance Copilot
+# 🧪 RAG Lab
 
-A RAG chatbot that **answers questionnaires from your own documents** — and tells you
-which questions your documents *cannot* answer.
+Retrieval-augmented generation, built four times: a first chatbot, then three
+documents whose **shapes** force three different designs. One Streamlit app,
+one page each, every design measured against the same naive baseline.
 
-Upload your policies, point a security questionnaire at them, and get a drafted answer
-for every question with a verified citation — or a flagged gap that needs a human.
+| Page | Document | Shape | What it forces |
+|---|---|---|---|
+| 📋 [Compliance Copilot](docs/0-compliance-copilot.md) | your uploads | policies and questionnaires | answers checked against verbatim quotes |
+| 📄 [1 · GPO](docs/1-gpo.md) | 2018 Annual Report, 82 pp | narrative text | clean text, precise retrieval |
+| 📚 [2 · World Bank](docs/2-world-bank.md) | Global Economic Prospects, 200 pp | chapters, sections, tables | a section map, section-aware retrieval, vision for tables |
+| 📊 [3 · Apple iMac](docs/3-imac.md) | Environmental Report, 12 pp | charts, tables, footnotes | vision transcription, footnote linking |
 
-> New here? [**PRODUCT.md**](PRODUCT.md) explains what it does and why it's useful, with an example.
+Each assignment page has three tabs: **Ask** (with a side-by-side naive
+comparison and the exact passages the model saw), **How it works** (what was
+measured in the document and why the design follows), and **Evaluation**
+(every variant, question by question).
 
----
+## Results
 
-## Quick start
+Each pipeline answered every question three times (`gemini-3.5-flash-lite`); a question
+passes only with the expected facts, a quote verified word for word in the document,
+and that quote on the right page or section.
+
+| Document | Naive RAG | This strategy | What made the difference |
+|---|---|---|---|
+| GPO (narrative) | 10 · 10 · 10 of 10 | 9 · 10 · 10 of 10 | Nothing beyond naive is needed — the baseline case. Merged neighbours fix sentences cut at chunk boundaries. |
+| World Bank (long, structured) | 5 · 5 · 4 of 8 | **7 · 8 · 7** of 8 | Section-aware chunks and context: naive never passes the executive-summary, 2026-vs-average or annex questions. Reranking finds table rows. |
+| iMac (visual) | 8 · 8 · 7 of 9 | **9 · 9 · 9** of 9 | Vision transcription: naive cannot read the carbon chart's values. |
+
+The write-ups ([GPO](docs/1-gpo.md) · [World Bank](docs/2-world-bank.md) ·
+[iMac](docs/3-imac.md)) explain each result, including what did *not* help.
+
+## Run it
 
 ```bash
 python3.12 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
-
-cp .env.example .env          # paste your key into it
-# free key: https://aistudio.google.com/apikey
-
-.venv/bin/python -m streamlit run app.py
+cp .env.example .env          # add GOOGLE_API_KEY - free key: https://aistudio.google.com/apikey
+.venv/bin/python -m streamlit run streamlit_app.py
 ```
 
-Click **Try it with sample documents** → **Audit 12 questions**. No files needed.
+`data/chroma/` (the vector database) and `data/results/` (the evaluation)
+are committed, so the app runs straight away.
 
----
+## Rebuild the index and the scores
 
-## What you get
-
-| Question | Verdict | Result |
-|---|---|---|
-| Is data encrypted at rest? | ✅ Covered | "Yes — AES-256 on all volumes." · *policy.txt* |
-| Is pen testing done annually? | ⚠️ Partial | "A test ran in March 2026, but no annual cadence is stated." · *pentest.pdf, p.1* |
-| Do you carry cyber insurance? | ❌ Gap | Not in your documents — needs a human. |
-
-Then download the answers as CSV, or ask free-form follow-up questions in the chat.
-
----
-
-## The pipeline
-
-```
-Upload → Parse → Chunk → Embed → Store → Retrieve → Generate → Verify
+```bash
+.venv/bin/python ingest.py                     # PDFs -> data/chroma/  (local, no API quota)
+.venv/bin/python evaluate.py --model gemini-3.5-flash-lite          # every variant, one answer model
+.venv/bin/python evaluate.py gpo --chunk-sizes 300,500,1000         # + the chunk-size experiment
 ```
 
-| Stage | How |
-|---|---|
-| **Upload** | Streamlit, multi-file — PDF, DOCX, TXT, MD |
-| **Parse** | `pypdf` / `docx2txt`, page-aware so citations can say `p.4` |
-| **Chunk** | Split at section headings, falling back to size-based |
-| **Embed** | `gemini-embedding-2`, 3072-dim, asymmetric `task_type` |
-| **Store** | Chroma — embedded, persists to `.chroma/` |
-| **Retrieve** | Per-question top-k by cosine distance |
-| **Generate** | Gemini, strict JSON verdict, then quote-verified |
+Vision transcriptions are cached in `data/vision/`; ingestion only calls
+Gemini for a page that has no cached Markdown.
 
----
+**Free-tier limits shape the design.** Every Gemini model has its own daily
+cap (500 requests for the Flash-Lite models, 20 for Flash), embeddings count
+every text as a request, and busy models answer 503. So: embeddings and
+reranking run locally; vision runs once and is cached; the app's answers fall
+back down `CHAT_PREFERENCE` when a model is spent; and an evaluation pins ONE
+answer model (`--model`, or `GEMINI_CHAT_MODEL`) so its variants stay
+comparable.
 
-## Coverage is verified, not claimed
+## How it's built
 
-Telling a model "don't hallucinate" is a request. This makes it checkable.
+```
+streamlit_app.py       navigation: Overview · Compliance Copilot · 1 · 2 · 3
+ui.py                  shared page layout (Ask / How it works / Evaluation) and cached clients
+views/                 one thin file per page
+rag/core.py            parsing, cleaning, the quote- and number-checked answer
+rag/retrieval.py       local embeddings, BM25, fusion, rerank, context expansion, ask()
+rag/narrative.py       assignment 1 strategy (GPO)
+rag/structured.py      assignment 2 strategy (World Bank): section map, routing, tables
+rag/visual.py          assignment 3 strategy (iMac): vision pages, footnote links
+rag/vision.py          Gemini page -> Markdown, cached, numbers cross-checked against the PDF
+rag/evaluation.py      scoring: facts + grounding + right page, no LLM judge
+rag/compliance.py      questionnaire logic for the Compliance Copilot page
+ingest.py, evaluate.py command-line entry points
+data/                  PDFs, vision cache, vector database, eval set, results
+docs/                  one write-up per page, also shown inside the app
+tests/                 offline checks + live UI checks
+```
 
-Every answer must include a **verbatim quote** from the retrieved text. That quote is
-then searched for in the real chunks **by code**. No quote, or a quote that isn't
-really there, and the verdict is forced down to `NOT_FOUND`.
-
-So `COVERED` never means *"the model said so"*. It means *"the supporting sentence was
-located in your document."* Tested against a deliberately lying model — invented
-quotes, **paraphrased** quotes, and confident answers with no quote are all rejected.
-
----
-
-## Design decisions
-
-**Retrieval is per-question, not global.** One shared top-k across a 12-question
-questionnaire would let one document crowd out the others, silently answering some
-questions from the wrong source.
-
-**Chunking follows section headings.** Policies are written as numbered sections; a
-fixed-size splitter cuts across them, blurring each chunk's meaning and making
-citations confusing. Measured: both approaches rank the right chunk first, but
-section-aware splitting separates it from the runner-up far more confidently.
-
-**Embeddings are asymmetric.** A question and the clause answering it aren't phrased
-alike, so documents are embedded as `RETRIEVAL_DOCUMENT` and queries as
-`RETRIEVAL_QUERY`.
-
-**One collection per session.** Sessions once shared a collection, so a second user's
-upload destroyed the first user's data and could serve them someone else's documents.
-Each session now gets its own `kb_<uuid>`, published in the URL so a page refresh
-recovers it without re-embedding. Abandoned collections are pruned after 24h.
-
-**Questions run concurrently.** 4 workers took a 12-question audit from 48s → 11s,
-with retry-with-backoff for free-tier rate limits.
-
----
+Everything runs inside the one Streamlit app - frontend, retrieval, the
+vector database and the embedding/reranking models. The only outside call is
+Gemini, for the final answer. `rag/` never imports Streamlit.
 
 ## Tests
 
 ```bash
-.venv/bin/python test_rag.py          # 60 offline checks, no API calls
-.venv/bin/python test_rag.py --live   # + 12 checks against the real API
-.venv/bin/python test_app.py          # 39 UI checks, drives the real app
+.venv/bin/python tests/test_assignments.py    # assignments, offline (local models, fake LLM)
+.venv/bin/python tests/test_rag.py            # shared core + Compliance Copilot, offline
+.venv/bin/python tests/test_rag.py --live     # + checks against the real API
+.venv/bin/python tests/test_app.py            # live UI checks, all pages
 ```
 
-`rag.py` has no Streamlit import, so the whole pipeline is testable without a browser.
+## Deploy (Streamlit Community Cloud)
 
----
+Main file `streamlit_app.py`, Python 3.12, `GOOGLE_API_KEY` under
+**App settings → Secrets**. Keep the repo and the app private: the Apple
+report is "All rights reserved". The GPO report is a U.S. government work and
+the World Bank report is CC BY 3.0 IGO.
 
-## Files
-
-```
-app.py          Streamlit UI — presentation and state only
-rag.py          the pipeline: parse, chunk, embed, store, retrieve, answer, verify
-test_rag.py     pipeline checks
-test_app.py     UI checks via Streamlit's AppTest
-samples/        a fictional company's policy, architecture and pen-test report
-```
-
----
-
-## Deploying
-
-Works on [Streamlit Community Cloud](https://share.streamlit.io) free tier (1 GB RAM;
-this app peaks at ~175 MB). Point it at `app.py` and add `GOOGLE_API_KEY` under
-**App settings → Secrets** — no code changes needed.
-
-Note the container filesystem is rebuilt on reboot, so `.chroma/` is scratch space.
-
----
-
-## Limitations
-
-- **No OCR** — scanned PDFs are rejected rather than silently mis-answered.
-- **Dense retrieval only** — adding keyword search would help on exact identifiers
-  like "SOC 2 Type II".
-- **No query rewriting** — terse questionnaire jargon would retrieve better if expanded.
-- **Chat is strictly grounded** — ask "which gap is worst?" and it correctly says the
-  documents don't say. Reasoning over findings would be a separate mode.
-- **`PARTIAL` relies on model judgement** — the quote requirement still applies, so it
-  can't be evidence-free, but the covered/partial line is a judgement call.
+On first use the app downloads the two local models (~190 MB) from Hugging
+Face; loaded, they add ~415 MB of memory.

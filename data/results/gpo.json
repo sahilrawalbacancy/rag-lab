@@ -1,0 +1,3435 @@
+{
+ "doc": "gpo",
+ "title": "GPO 2018 Annual Report",
+ "chat_model": "gemini-3.5-flash-lite",
+ "embed_model": "BAAI/bge-small-en-v1.5",
+ "rerank_model": "Xenova/ms-marco-MiniLM-L-12-v2",
+ "variants": {
+  "naive": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": false,
+    "rerank": false,
+    "window": 0,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense only",
+   "index": "gpo__naive",
+   "summary": {
+    "total": 10,
+    "passed": 10,
+    "facts": 10,
+    "grounded": 10,
+    "evidence": 10,
+    "retrieved_expected": 9,
+    "retrieval_scored": 9,
+    "errors": 0,
+    "avg_seconds": 12.88,
+    "when": "2026-10-22 14:01"
+   },
+   "questions": [
+    {
+     "id": "gpo-1",
+     "question": "How many depository libraries did GPO staff visit in FY 2018?",
+     "kind": "official",
+     "tests": "a number inside a narrative sentence",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      19,
+      20,
+      21
+     ],
+     "cited_pages": [
+      5
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO staff visited 166 depository libraries in 25 states.",
+     "note": "",
+     "route": "",
+     "seconds": 4.8,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "In FY 2018 GPO staff visited 166 depository libraries in 25 states.",
+       "page": 5
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-2",
+     "question": "What new digital system replaced FDsys, and when was it fully deployed?",
+     "kind": "official",
+     "tests": "two facts from one paragraph",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      10,
+      22,
+      39,
+      46
+     ],
+     "cited_pages": [
+      22
+     ],
+     "verdict": "COVERED",
+     "answer": "The govinfo website replaced FDsys, and it was scheduled to be completely retired and replaced by govinfo in December 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 19.8,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.22",
+       "quote": "The FDsys was scheduled to be completely retired and replaced by govinfo in December 2018.",
+       "page": 22
+      }
+     ],
+     "context": [
+      {
+       "page": 46,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 22,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 39,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 22,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-3",
+     "question": "How much did GPO procure in printing and information products in FY 2018 on behalf of federal agencies?",
+     "kind": "official",
+     "tests": "a dollar figure in narrative text",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      14,
+      16,
+      17,
+      44,
+      73
+     ],
+     "cited_pages": [
+      14,
+      17
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, the work for Federal agency information products produced via contracts with the private sector was valued at approximately $375.7 million and represented 84,111 orders.",
+     "note": "",
+     "route": "",
+     "seconds": 8.66,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.17",
+       "quote": "In FY 2018, this work was valued at approximately $375.7 million and represented 84,111 orders.",
+       "page": 17
+      },
+      {
+       "label": "GPO Annual Report 2018, p.14",
+       "quote": "Revenues from procured printing $375.7 million",
+       "page": 14
+      }
+     ],
+     "context": [
+      {
+       "page": 17,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 16,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 44,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 73,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-4",
+     "question": "How many passports did GPO produce in FY 2018?",
+     "kind": "trap",
+     "tests": "a figure exact in a stats table, rounded in the narrative",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      16,
+      18,
+      26
+     ],
+     "cited_pages": [
+      18
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO produced 16 million passports.",
+     "note": "",
+     "route": "",
+     "seconds": 9.18,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.18",
+       "quote": "In FY 2018, GPO produced 16 million passports for the State Department and has produced a total of more than 166 million passports over the past 11 years.",
+       "page": 18
+      }
+     ],
+     "context": [
+      {
+       "page": 18,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 16,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-5",
+     "question": "How many copies of how many titles did GPO distribute to depository libraries in FY 2018?",
+     "kind": "trap",
+     "tests": "two numbers in one sentence, easy to swap",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      15,
+      19,
+      73
+     ],
+     "cited_pages": [
+      5
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide.",
+     "note": "",
+     "route": "",
+     "seconds": 22.63,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "In addition, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide in\nFY 2018, while also cataloging a total of 34,367 titles.",
+       "page": 5
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 15,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 73,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-6",
+     "question": "What was GPO's net income in FY 2018?",
+     "kind": "trap",
+     "tests": "a financial figure next to the prior year's",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      25,
+      26,
+      27
+     ],
+     "cited_pages": [
+      25
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's overall net income from operations was $52.6 million in FY 2018. Apart from certain funds, GPO's net operating income was $20.4 million in FY 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 1.11,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.25",
+       "quote": "FY 2018 Financial Results Revenue totaled\n$874.5 million while expenses charged against GPO\u2019s\nbudget were $821.9 million, for an overall net income\nof $52.6 million from operations.",
+       "page": 25
+      },
+      {
+       "label": "GPO Annual Report 2018, p.25",
+       "quote": "Apart\nfrom these funds, GPO\u2019s net operating income from\nFY 2018 was $20.4 million.",
+       "page": 25
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-7",
+     "question": "How many FDLP Academy webinars did GPO host in FY 2018?",
+     "kind": "trap",
+     "tests": "a small fact in a long list",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      4,
+      5,
+      20,
+      21
+     ],
+     "cited_pages": [
+      20
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO hosted 85 webinars with 10,214 combined registrants in FY 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 8.85,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.20",
+       "quote": "During FY 2018, the FDLP Academy hosted 85 webinars with 10,214 combined registrants.",
+       "page": 20
+      }
+     ],
+     "context": [
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 4,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-8",
+     "question": "How many employees did GPO have in fiscal year 2025?",
+     "kind": "trap",
+     "tests": "refusal: the document does not say",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      12,
+      14,
+      74
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 9.23,
+     "citations": [],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 74,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-9",
+     "question": "What was GPO's net income in FY 2017?",
+     "kind": "trap",
+     "tests": "the prior year's figure in the same sentence; the same number also appears as a cash increase",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      25,
+      26,
+      27,
+      44
+     ],
+     "cited_pages": [
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's net income was $58,876 thousand in fiscal year 2017.",
+     "note": "",
+     "route": "",
+     "seconds": 35.67,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net Income $ 52,624 $ 58,876",
+       "page": 26
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 44,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-10",
+     "question": "What were GPO's operating revenues in FY 2018?",
+     "kind": "trap",
+     "tests": "two near-identical figures for adjacent years",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      25,
+      26,
+      27,
+      44
+     ],
+     "cited_pages": [
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's operating revenues were $874.5 million in FY 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 8.89,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Operating revenues were $874.5 million in FY 2018 and $874.3 million in FY 2017.",
+       "page": 26
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 44,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  },
+  "advanced": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": true,
+    "window": 1,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, rerank, \u00b11 neighbours",
+   "index": "gpo__advanced",
+   "summary": {
+    "total": 10,
+    "passed": 9,
+    "facts": 9,
+    "grounded": 10,
+    "evidence": 10,
+    "retrieved_expected": 9,
+    "retrieval_scored": 9,
+    "errors": 0,
+    "avg_seconds": 11.3,
+    "when": "2026-10-22 14:02"
+   },
+   "questions": [
+    {
+     "id": "gpo-1",
+     "question": "How many depository libraries did GPO staff visit in FY 2018?",
+     "kind": "official",
+     "tests": "a number inside a narrative sentence",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      21
+     ],
+     "cited_pages": [
+      21
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO staff visited 166 depository libraries.",
+     "note": "",
+     "route": "",
+     "seconds": 7.72,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.21",
+       "quote": "In FY 2018, GPO staff visited 166 depository libraries in 25 states, bringing the 3-year total of visits to over 610.",
+       "page": 21
+      }
+     ],
+     "context": [
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 10.499911308288574
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 10.065979957580566
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 8.250863075256348
+      }
+     ]
+    },
+    {
+     "id": "gpo-2",
+     "question": "What new digital system replaced FDsys, and when was it fully deployed?",
+     "kind": "official",
+     "tests": "two facts from one paragraph",
+     "passed": false,
+     "facts": false,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [
+      "2018"
+     ],
+     "retrieved_pages": [
+      8,
+      10,
+      22,
+      39
+     ],
+     "cited_pages": [
+      22
+     ],
+     "verdict": "COVERED",
+     "answer": "The new digital system govinfo replaced FDsys, and the govinfo website was moved out of beta in December 2017.",
+     "note": "",
+     "route": "",
+     "seconds": 9.76,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.22",
+       "quote": "Following a period of iterative development and testing, the govinfo website was moved out of beta in December 2017.",
+       "page": 22
+      },
+      {
+       "label": "GPO Annual Report 2018, p.22",
+       "quote": "The FDsys was scheduled to be completely retired and replaced by govinfo in December 2018.",
+       "page": 22
+      }
+     ],
+     "context": [
+      {
+       "page": 39,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 5.344951152801514
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 5.238783359527588
+      },
+      {
+       "page": 22,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 4.774271488189697
+      },
+      {
+       "page": 8,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 4.069913387298584
+      }
+     ]
+    },
+    {
+     "id": "gpo-3",
+     "question": "How much did GPO procure in printing and information products in FY 2018 on behalf of federal agencies?",
+     "kind": "official",
+     "tests": "a dollar figure in narrative text",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      14,
+      15,
+      17,
+      73
+     ],
+     "cited_pages": [
+      5,
+      17
+     ],
+     "verdict": "COVERED",
+     "answer": "On behalf of Federal agency partners, GPO procured more than $375 million worth of printing and other information products in FY 2018 (specifically valued at approximately $375.7 million).",
+     "note": "",
+     "route": "",
+     "seconds": 10.38,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "On behalf of our Federal agency partners, GPO\nprocured more than $375 million worth of printing\nand other information products in FY 2018.",
+       "page": 5
+      },
+      {
+       "label": "GPO Annual Report 2018, p.17",
+       "quote": "In FY 2018, this\nwork was valued at approximately $375.7 million and\nrepresented 84,111 orders.",
+       "page": 17
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 10.961477279663086
+      },
+      {
+       "page": 17,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.160799026489258
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 7.681758880615234
+      },
+      {
+       "page": 73,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 7.0730743408203125
+      },
+      {
+       "page": 15,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-4",
+     "question": "How many passports did GPO produce in FY 2018?",
+     "kind": "trap",
+     "tests": "a figure exact in a stats table, rounded in the narrative",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      14,
+      18
+     ],
+     "cited_pages": [
+      14,
+      18
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO produced 16 million passports, or 15,901,600 passports.",
+     "note": "",
+     "route": "",
+     "seconds": 27.35,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.18",
+       "quote": "In FY 2018, GPO produced 16 million passports for the State Department and has produced a total of more than 166 million passports over the past 11 years.",
+       "page": 18
+      },
+      {
+       "label": "GPO Annual Report 2018, p.14",
+       "quote": "Passports produced 15,901,600",
+       "page": 14
+      }
+     ],
+     "context": [
+      {
+       "page": 18,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.271510124206543
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 8.975787162780762
+      },
+      {
+       "page": 18,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 7.742936611175537
+      }
+     ]
+    },
+    {
+     "id": "gpo-5",
+     "question": "How many copies of how many titles did GPO distribute to depository libraries in FY 2018?",
+     "kind": "trap",
+     "tests": "two numbers in one sentence, easy to swap",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      19,
+      20
+     ],
+     "cited_pages": [
+      5
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide.",
+     "note": "",
+     "route": "",
+     "seconds": 4.72,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "In addition, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide in\nFY 2018, while also cataloging a total of 34,367 titles.",
+       "page": 5
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 10.470818519592285
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 8.194404602050781
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 6.453652381896973
+      }
+     ]
+    },
+    {
+     "id": "gpo-6",
+     "question": "What was GPO's net income in FY 2018?",
+     "kind": "trap",
+     "tests": "a financial figure next to the prior year's",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      25,
+      26
+     ],
+     "cited_pages": [
+      6,
+      25,
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO's overall net income from operations was $52.6 million, while net income excluding specific unique transactions or set-aside funds was $20.4 million.",
+     "note": "",
+     "route": "",
+     "seconds": 4.5,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net income was $52.6 million in FY 2018 compared with net income of $58.9 million in FY 2017.",
+       "page": 26
+      },
+      {
+       "label": "GPO Annual Report 2018, p.6",
+       "quote": "Revenue totaled $874.5 million and resulted in a net income of $20.4 million, excluding income that is set aside to make critically important investments in passport- related capital assets and funds resulting from a downward adjustment to GPO\u2019s long-term workers\u2019 compensation liability under the Federal Employees Compensation Act (FECA).",
+       "page": 6
+      },
+      {
+       "label": "GPO Annual Report 2018, p.25",
+       "quote": "FY 2018 Financial Results Revenue totaled $874.5 million while expenses charged against GPO\u2019s budget were $821.9 million, for an overall net income of $52.6 million from operations.",
+       "page": 25
+      },
+      {
+       "label": "GPO Annual Report 2018, p.25",
+       "quote": "Apart from these funds, GPO\u2019s net operating income from FY 2018 was $20.4 million.",
+       "page": 25
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 10.317872047424316
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.872700691223145
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.75784683227539
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-7",
+     "question": "How many FDLP Academy webinars did GPO host in FY 2018?",
+     "kind": "trap",
+     "tests": "a small fact in a long list",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      20,
+      21
+     ],
+     "cited_pages": [
+      20
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO hosted 85 webinars for the FDLP Academy in FY 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 8.28,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.20",
+       "quote": "During FY 2018, the FDLP Academy hosted 85 webinars with 10,214 combined",
+       "page": 20
+      }
+     ],
+     "context": [
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.500068664550781
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.265824317932129
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 6.298345565795898
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-8",
+     "question": "How many employees did GPO have in fiscal year 2025?",
+     "kind": "trap",
+     "tests": "refusal: the document does not say",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      12,
+      14,
+      74,
+      80
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.67,
+     "citations": [],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 5.667875289916992
+      },
+      {
+       "page": 74,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 4.606983184814453
+      },
+      {
+       "page": 12,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 1.4331121444702148
+      },
+      {
+       "page": 80,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 1.1402580738067627
+      }
+     ]
+    },
+    {
+     "id": "gpo-9",
+     "question": "What was GPO's net income in FY 2017?",
+     "kind": "trap",
+     "tests": "the prior year's figure in the same sentence; the same number also appears as a cash increase",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      25,
+      26,
+      27
+     ],
+     "cited_pages": [
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's net income was $58.9 million in FY 2017.",
+     "note": "",
+     "route": "",
+     "seconds": 37.07,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net income was $52.6 million in FY 2018 compared with net income of $58.9 million in FY 2017.",
+       "page": 26
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.925647735595703
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 8.716343879699707
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 8.712525367736816
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-10",
+     "question": "What were GPO's operating revenues in FY 2018?",
+     "kind": "trap",
+     "tests": "two near-identical figures for adjacent years",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      14,
+      25,
+      26
+     ],
+     "cited_pages": [
+      6,
+      14
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's revenue totaled $874.5 million in FY 2018, or $874,466,000 for the same period.",
+     "note": "",
+     "route": "",
+     "seconds": 1.6,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.6",
+       "quote": "Revenue totaled $874.5 million and resulted in a net income",
+       "page": 6
+      },
+      {
+       "label": "GPO Annual Report 2018, p.14",
+       "quote": "FY 2018 revenues $874,466,000",
+       "page": 14
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.754515647888184
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.122269630432129
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.602811813354492
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 8.246753692626953
+      }
+     ]
+    }
+   ]
+  },
+  "no neighbours": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": true,
+    "window": 0,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, rerank",
+   "index": "gpo__advanced",
+   "summary": {
+    "total": 10,
+    "passed": 10,
+    "facts": 10,
+    "grounded": 10,
+    "evidence": 10,
+    "retrieved_expected": 9,
+    "retrieval_scored": 9,
+    "errors": 0,
+    "avg_seconds": 11.64,
+    "when": "2026-10-22 14:04"
+   },
+   "questions": [
+    {
+     "id": "gpo-1",
+     "question": "How many depository libraries did GPO staff visit in FY 2018?",
+     "kind": "official",
+     "tests": "a number inside a narrative sentence",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      20,
+      21
+     ],
+     "cited_pages": [
+      21
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO staff visited 166 depository libraries in 25 states.",
+     "note": "",
+     "route": "",
+     "seconds": 1.53,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.21",
+       "quote": "In FY 2018,\nGPO staff visited 166 depository libraries in 25 states, bringing the 3-year total of visits to over 610.",
+       "page": 21
+      }
+     ],
+     "context": [
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 10.499911308288574
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 10.065979957580566
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.33647632598877
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.250863075256348
+      },
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 6.965336322784424
+      }
+     ]
+    },
+    {
+     "id": "gpo-2",
+     "question": "What new digital system replaced FDsys, and when was it fully deployed?",
+     "kind": "official",
+     "tests": "two facts from one paragraph",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      8,
+      10,
+      22,
+      39
+     ],
+     "cited_pages": [
+      22
+     ],
+     "verdict": "PARTIAL",
+     "answer": "The new digital system that replaced FDsys is govinfo, which was scheduled to be completely retired and replaced in December 2018. The passages do not state the exact date when govinfo was fully deployed.",
+     "note": "",
+     "route": "",
+     "seconds": 5.58,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.22",
+       "quote": "The FDsys was scheduled to be completely retired and replaced by govinfo in December 2018.",
+       "page": 22
+      }
+     ],
+     "context": [
+      {
+       "page": 39,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 5.344951152801514
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 5.238783359527588
+      },
+      {
+       "page": 22,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 4.774271488189697
+      },
+      {
+       "page": 8,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 4.069913387298584
+      },
+      {
+       "page": 22,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 3.523740291595459
+      }
+     ]
+    },
+    {
+     "id": "gpo-3",
+     "question": "How much did GPO procure in printing and information products in FY 2018 on behalf of federal agencies?",
+     "kind": "official",
+     "tests": "a dollar figure in narrative text",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      14,
+      15,
+      17,
+      73
+     ],
+     "cited_pages": [
+      5,
+      17
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO procured printing and other information products valued at more than $375 million (or approximately $375.7 million) on behalf of Federal agency partners, representing 84,111 orders.",
+     "note": "",
+     "route": "",
+     "seconds": 8.64,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "On behalf of our Federal agency partners, GPO\nprocured more than $375 million worth of printing\nand other information products in FY 2018.",
+       "page": 5
+      },
+      {
+       "label": "GPO Annual Report 2018, p.17",
+       "quote": "In FY 2018, this\nwork was valued at approximately $375.7 million and\nrepresented 84,111 orders.",
+       "page": 17
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 10.961477279663086
+      },
+      {
+       "page": 17,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.160799026489258
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 7.681758880615234
+      },
+      {
+       "page": 73,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 7.0730743408203125
+      },
+      {
+       "page": 15,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 6.45033073425293
+      }
+     ]
+    },
+    {
+     "id": "gpo-4",
+     "question": "How many passports did GPO produce in FY 2018?",
+     "kind": "trap",
+     "tests": "a figure exact in a stats table, rounded in the narrative",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      14,
+      18
+     ],
+     "cited_pages": [
+      14,
+      18
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO produced 16 million passports for the State Department in FY 2018 (alternatively listed as 15,901,600 passports produced in FY 2018).",
+     "note": "",
+     "route": "",
+     "seconds": 38.46,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.18",
+       "quote": "In FY 2018, GPO produced 16 million passports for the State Department and has produced a total of more than 166 million passports over the past 11 years.",
+       "page": 18
+      },
+      {
+       "label": "GPO Annual Report 2018, p.14",
+       "quote": "Passports produced 15,901,600",
+       "page": 14
+      }
+     ],
+     "context": [
+      {
+       "page": 18,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.271510124206543
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.975787162780762
+      },
+      {
+       "page": 18,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.789841651916504
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 7.827337265014648
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 7.742936611175537
+      }
+     ]
+    },
+    {
+     "id": "gpo-5",
+     "question": "How many copies of how many titles did GPO distribute to depository libraries in FY 2018?",
+     "kind": "trap",
+     "tests": "two numbers in one sentence, easy to swap",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      19,
+      20
+     ],
+     "cited_pages": [
+      5
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide.",
+     "note": "",
+     "route": "",
+     "seconds": 2.56,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "In addition, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide in\nFY 2018, while also cataloging a total of 34,367 titles.",
+       "page": 5
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 10.470818519592285
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.194404602050781
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 7.998656272888184
+      },
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 6.453652381896973
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 6.276709079742432
+      }
+     ]
+    },
+    {
+     "id": "gpo-6",
+     "question": "What was GPO's net income in FY 2018?",
+     "kind": "trap",
+     "tests": "a financial figure next to the prior year's",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      25,
+      26,
+      27
+     ],
+     "cited_pages": [
+      25,
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's net income was $52.6 million in FY 2018. Additionally, net operating income from FY 2018 was $20.4 million, excluding certain funds.",
+     "note": "",
+     "route": "",
+     "seconds": 1.6,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net income was $52.6 million in FY 2018 compared with net income of $58.9 million in FY 2017.",
+       "page": 26
+      },
+      {
+       "label": "GPO Annual Report 2018, p.25",
+       "quote": "Apart from these funds, GPO\u2019s net operating income from FY 2018 was $20.4 million.",
+       "page": 25
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 10.317872047424316
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.872700691223145
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.75784683227539
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.678560256958008
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.885351181030273
+      }
+     ]
+    },
+    {
+     "id": "gpo-7",
+     "question": "How many FDLP Academy webinars did GPO host in FY 2018?",
+     "kind": "trap",
+     "tests": "a small fact in a long list",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      20,
+      21
+     ],
+     "cited_pages": [
+      20
+     ],
+     "verdict": "COVERED",
+     "answer": "During FY 2018, the FDLP Academy hosted 85 webinars.",
+     "note": "",
+     "route": "",
+     "seconds": 6.52,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.20",
+       "quote": "During FY 2018, the FDLP Academy hosted 85 webinars with 10,214 combined",
+       "page": 20
+      }
+     ],
+     "context": [
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.500068664550781
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.265824317932129
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 6.298345565795898
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 5.832328796386719
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 5.398453712463379
+      }
+     ]
+    },
+    {
+     "id": "gpo-8",
+     "question": "How many employees did GPO have in fiscal year 2025?",
+     "kind": "trap",
+     "tests": "refusal: the document does not say",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      12,
+      14,
+      74,
+      80
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.59,
+     "citations": [],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 5.667875289916992
+      },
+      {
+       "page": 74,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 4.606983184814453
+      },
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 2.2465779781341553
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 1.4331121444702148
+      },
+      {
+       "page": 80,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 1.1402580738067627
+      }
+     ]
+    },
+    {
+     "id": "gpo-9",
+     "question": "What was GPO's net income in FY 2017?",
+     "kind": "trap",
+     "tests": "the prior year's figure in the same sentence; the same number also appears as a cash increase",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      25,
+      26,
+      27
+     ],
+     "cited_pages": [
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's net income was $58.9 million in FY 2017.",
+     "note": "",
+     "route": "",
+     "seconds": 1.79,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net income was $52.6 million in FY 2018 compared with net income of $58.9 million in FY 2017.",
+       "page": 26
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.925647735595703
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.716343879699707
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.712525367736816
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.550307273864746
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.454569816589355
+      }
+     ]
+    },
+    {
+     "id": "gpo-10",
+     "question": "What were GPO's operating revenues in FY 2018?",
+     "kind": "trap",
+     "tests": "two near-identical figures for adjacent years",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      14,
+      25,
+      26
+     ],
+     "cited_pages": [
+      6,
+      14
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's operating revenues totaled $874.5 million (or $874,466,000) in FY 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 48.1,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.6",
+       "quote": "Revenue totaled $874.5 million and resulted in a net income",
+       "page": 6
+      },
+      {
+       "label": "GPO Annual Report 2018, p.14",
+       "quote": "FY 2018 revenues $874,466,000",
+       "page": 14
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 9.754515647888184
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": 9.122269630432129
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.602811813354492
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved",
+       "rerank": 8.246753692626953
+      }
+     ]
+    }
+   ]
+  },
+  "no rerank": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": false,
+    "window": 1,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, \u00b11 neighbours",
+   "index": "gpo__advanced",
+   "summary": {
+    "total": 10,
+    "passed": 9,
+    "facts": 10,
+    "grounded": 10,
+    "evidence": 9,
+    "retrieved_expected": 9,
+    "retrieval_scored": 9,
+    "errors": 0,
+    "avg_seconds": 6.86,
+    "when": "2026-10-22 14:06"
+   },
+   "questions": [
+    {
+     "id": "gpo-1",
+     "question": "How many depository libraries did GPO staff visit in FY 2018?",
+     "kind": "official",
+     "tests": "a number inside a narrative sentence",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      19,
+      21
+     ],
+     "cited_pages": [
+      21
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO staff visited 166 depository libraries.",
+     "note": "",
+     "route": "",
+     "seconds": 6.46,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.21",
+       "quote": "In FY 2018, GPO staff visited 166 depository libraries in 25 states, bringing the 3-year total of visits to over 610.",
+       "page": 21
+      }
+     ],
+     "context": [
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-2",
+     "question": "What new digital system replaced FDsys, and when was it fully deployed?",
+     "kind": "official",
+     "tests": "two facts from one paragraph",
+     "passed": false,
+     "facts": true,
+     "grounded": true,
+     "evidence": false,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      8,
+      10,
+      39,
+      46
+     ],
+     "cited_pages": [
+      39
+     ],
+     "verdict": "COVERED",
+     "answer": "govinfo replaced FDsys and was scheduled to replace it in December 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 5.73,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.39",
+       "quote": "This system will be replaced by govinfo (www.govinfo.gov), which is currently in beta mode but is scheduled to replace FDsys in December 2018.",
+       "page": 39
+      }
+     ],
+     "context": [
+      {
+       "page": 39,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 46,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 8,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-3",
+     "question": "How much did GPO procure in printing and information products in FY 2018 on behalf of federal agencies?",
+     "kind": "official",
+     "tests": "a dollar figure in narrative text",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      14,
+      17,
+      23
+     ],
+     "cited_pages": [
+      5,
+      17
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO procured more than $375 million (or approximately $375.7 million) worth of printing and other information products on behalf of Federal agency partners.",
+     "note": "",
+     "route": "",
+     "seconds": 1.57,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "On behalf of our Federal agency partners, GPO\nprocured more than $375 million worth of printing\nand other information products in FY 2018.",
+       "page": 5
+      },
+      {
+       "label": "GPO Annual Report 2018, p.17",
+       "quote": "In FY 2018, this\nwork was valued at approximately $375.7 million and\nrepresented 84,111 orders.",
+       "page": 17
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 17,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 23,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-4",
+     "question": "How many passports did GPO produce in FY 2018?",
+     "kind": "trap",
+     "tests": "a figure exact in a stats table, rounded in the narrative",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      14,
+      18
+     ],
+     "cited_pages": [
+      6,
+      14
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO produced approximately 16 million passports (specifically 15,901,600 passports) for the State Department.",
+     "note": "",
+     "route": "",
+     "seconds": 1.18,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.6",
+       "quote": "In FY 2018, SID produced approximately 16 million U.S. passports for the State Department",
+       "page": 6
+      },
+      {
+       "label": "GPO Annual Report 2018, p.14",
+       "quote": "Passports produced 15,901,600",
+       "page": 14
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 18,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 18,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-5",
+     "question": "How many copies of how many titles did GPO distribute to depository libraries in FY 2018?",
+     "kind": "trap",
+     "tests": "two numbers in one sentence, easy to swap",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      19,
+      21
+     ],
+     "cited_pages": [
+      5
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO distributed 802,834 copies of 4,211 titles to depository libraries.",
+     "note": "",
+     "route": "",
+     "seconds": 44.11,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "In addition, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide in\nFY 2018, while also cataloging a total of 34,367 titles.",
+       "page": 5
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-6",
+     "question": "What was GPO's net income in FY 2018?",
+     "kind": "trap",
+     "tests": "a financial figure next to the prior year's",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      25,
+      26,
+      44
+     ],
+     "cited_pages": [
+      25,
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's net income was $52.6 million in FY 2018. Additionally, its net operating income from FY 2018 apart from specific funds was $20.4 million.",
+     "note": "",
+     "route": "",
+     "seconds": 1.54,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net income was $52.6 million in FY 2018 compared with net income of $58.9 million in FY 2017.",
+       "page": 26
+      },
+      {
+       "label": "GPO Annual Report 2018, p.25",
+       "quote": "Apart from these funds, GPO\u2019s net operating income from FY 2018 was $20.4 million.",
+       "page": 25
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 25,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 44,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-7",
+     "question": "How many FDLP Academy webinars did GPO host in FY 2018?",
+     "kind": "trap",
+     "tests": "a small fact in a long list",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      20,
+      23
+     ],
+     "cited_pages": [
+      20
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO hosted 85 FDLP Academy webinars with 10,214 combined registrants during FY 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 1.33,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.20",
+       "quote": "During FY 2018, the FDLP Academy hosted 85 webinars with 10,214 combined registrants.",
+       "page": 20
+      }
+     ],
+     "context": [
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 20,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 23,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-8",
+     "question": "How many employees did GPO have in fiscal year 2025?",
+     "kind": "trap",
+     "tests": "refusal: the document does not say",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      12,
+      40,
+      80
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 3.69,
+     "citations": [],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 40,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 80,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-9",
+     "question": "What was GPO's net income in FY 2017?",
+     "kind": "trap",
+     "tests": "the prior year's figure in the same sentence; the same number also appears as a cash increase",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      26,
+      27,
+      44
+     ],
+     "cited_pages": [
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's net income was $58.9 million in FY 2017.",
+     "note": "",
+     "route": "",
+     "seconds": 1.33,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net income was $52.6 million in FY 2018 compared with net income of $58.9 million in FY 2017.",
+       "page": 26
+      }
+     ],
+     "context": [
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 44,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-10",
+     "question": "What were GPO's operating revenues in FY 2018?",
+     "kind": "trap",
+     "tests": "two near-identical figures for adjacent years",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      14,
+      26,
+      27
+     ],
+     "cited_pages": [
+      14,
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's operating revenues were $874.5 million in FY 2018 (and FY 2018 revenues were $874,466,000).",
+     "note": "",
+     "route": "",
+     "seconds": 1.68,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Operating revenues were $874.5 million in FY 2018 and $874.3 million in FY 2017.",
+       "page": 26
+      },
+      {
+       "label": "GPO Annual Report 2018, p.14",
+       "quote": "FY 2018 revenues $874,466,000",
+       "page": 14
+      }
+     ],
+     "context": [
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  },
+  "dense only": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": false,
+    "rerank": false,
+    "window": 1,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense only, \u00b11 neighbours",
+   "index": "gpo__advanced",
+   "summary": {
+    "total": 10,
+    "passed": 10,
+    "facts": 10,
+    "grounded": 10,
+    "evidence": 10,
+    "retrieved_expected": 9,
+    "retrieval_scored": 9,
+    "errors": 0,
+    "avg_seconds": 5.39,
+    "when": "2026-10-22 14:06"
+   },
+   "questions": [
+    {
+     "id": "gpo-1",
+     "question": "How many depository libraries did GPO staff visit in FY 2018?",
+     "kind": "official",
+     "tests": "a number inside a narrative sentence",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      20,
+      21
+     ],
+     "cited_pages": [
+      21
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO staff visited 166 depository libraries.",
+     "note": "",
+     "route": "",
+     "seconds": 3.41,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.21",
+       "quote": "In FY 2018, GPO staff visited 166 depository libraries in 25 states, bringing the 3-year total of visits to over 610.",
+       "page": 21
+      }
+     ],
+     "context": [
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 21,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-2",
+     "question": "What new digital system replaced FDsys, and when was it fully deployed?",
+     "kind": "official",
+     "tests": "two facts from one paragraph",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      10,
+      22,
+      39,
+      46
+     ],
+     "cited_pages": [
+      22
+     ],
+     "verdict": "COVERED",
+     "answer": "The new digital system that replaced FDsys is govinfo, which was moved out of beta in December 2017, with FDsys scheduled to be completely retired and replaced by December 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 3.23,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.22",
+       "quote": "Following a period of iterative development and testing, the govinfo website was moved out of beta in December 2017.",
+       "page": 22
+      },
+      {
+       "label": "GPO Annual Report 2018, p.22",
+       "quote": "The FDsys was scheduled to be completely retired and replaced by govinfo in December 2018.",
+       "page": 22
+      }
+     ],
+     "context": [
+      {
+       "page": 39,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 10,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 46,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 22,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-3",
+     "question": "How much did GPO procure in printing and information products in FY 2018 on behalf of federal agencies?",
+     "kind": "official",
+     "tests": "a dollar figure in narrative text",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      14,
+      15,
+      17
+     ],
+     "cited_pages": [
+      5,
+      17
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO procured more than $375 million (or approximately $375.7 million) worth of printing and other information products on behalf of Federal agency partners.",
+     "note": "",
+     "route": "",
+     "seconds": 1.03,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "On behalf of our Federal agency partners, GPO procured more than $375 million worth of printing and other information products in FY 2018.",
+       "page": 5
+      },
+      {
+       "label": "GPO Annual Report 2018, p.17",
+       "quote": "In FY 2018, this work was valued at approximately $375.7 million and represented 84,111 orders.",
+       "page": 17
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 17,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 15,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-4",
+     "question": "How many passports did GPO produce in FY 2018?",
+     "kind": "trap",
+     "tests": "a figure exact in a stats table, rounded in the narrative",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      18,
+      26
+     ],
+     "cited_pages": [
+      18
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO produced 16 million passports for the State Department.",
+     "note": "",
+     "route": "",
+     "seconds": 1.18,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.18",
+       "quote": "In FY 2018, GPO produced 16 million passports for the State Department and has produced a total of more than 166 million passports over the past 11 years.",
+       "page": 18
+      }
+     ],
+     "context": [
+      {
+       "page": 18,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 18,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-5",
+     "question": "How many copies of how many titles did GPO distribute to depository libraries in FY 2018?",
+     "kind": "trap",
+     "tests": "two numbers in one sentence, easy to swap",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      19,
+      23
+     ],
+     "cited_pages": [
+      5
+     ],
+     "verdict": "COVERED",
+     "answer": "In FY 2018, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide.",
+     "note": "",
+     "route": "",
+     "seconds": 1.42,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.5",
+       "quote": "In addition, GPO distributed 802,834 copies of 4,211 titles to depository libraries nationwide in\nFY 2018, while also cataloging a total of 34,367 titles.",
+       "page": 5
+      }
+     ],
+     "context": [
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 23,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-6",
+     "question": "What was GPO's net income in FY 2018?",
+     "kind": "trap",
+     "tests": "a financial figure next to the prior year's",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      26,
+      27,
+      44
+     ],
+     "cited_pages": [
+      26,
+      44
+     ],
+     "verdict": "COVERED",
+     "answer": "Net income was $52.6 million in FY 2018. Excluding certain items, GPO had a net income of $20.4 million in fiscal 2018 (or $20,384 thousand).",
+     "note": "Passed on a second attempt; the first reply was rejected - Downgraded to NOT_FOUND: the answer states 20.4, which appears in none of the passages it quoted.",
+     "route": "",
+     "seconds": 38.5,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net income was $52.6 million in FY 2018 compared with net income of $58.9 million in FY 2017.",
+       "page": 26
+      },
+      {
+       "label": "GPO Annual Report 2018, p.44",
+       "quote": "Excluding income planned to be invested in capital projects to support the production of U.S. Passports, and the adjustment to the long-term Workers\u2019 Compensation Liability, GPO had net income of approximately $20.4 million in fiscal 2018, compared to $38.3 million in 2017.",
+       "page": 44
+      },
+      {
+       "label": "GPO Annual Report 2018, p.44",
+       "quote": "Summary of Net Income (in thousands) 2018 2017",
+       "page": 44
+      },
+      {
+       "label": "GPO Annual Report 2018, p.44",
+       "quote": "Net Income After Capital Projects Reserve and Workers' Compensation Liability Adjustment $ 20,384 $ 38,295",
+       "page": 44
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 44,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-7",
+     "question": "How many FDLP Academy webinars did GPO host in FY 2018?",
+     "kind": "trap",
+     "tests": "a small fact in a long list",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      5,
+      20,
+      23
+     ],
+     "cited_pages": [
+      20
+     ],
+     "verdict": "COVERED",
+     "answer": "During FY 2018, the FDLP Academy hosted 85 webinars.",
+     "note": "",
+     "route": "",
+     "seconds": 1.12,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.20",
+       "quote": "During FY 2018, the FDLP Academy hosted 85 webinars with 10,214 combined",
+       "page": 20
+      }
+     ],
+     "context": [
+      {
+       "page": 20,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 23,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-8",
+     "question": "How many employees did GPO have in fiscal year 2025?",
+     "kind": "trap",
+     "tests": "refusal: the document does not say",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      12,
+      14,
+      74
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.39,
+     "citations": [],
+     "context": [
+      {
+       "page": 12,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 14,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 74,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-9",
+     "question": "What was GPO's net income in FY 2017?",
+     "kind": "trap",
+     "tests": "the prior year's figure in the same sentence; the same number also appears as a cash increase",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      26,
+      27,
+      44
+     ],
+     "cited_pages": [
+      26,
+      44
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's net income was $58.9 million in FY 2017 (or $58,876 thousand in the summary of net income).",
+     "note": "",
+     "route": "",
+     "seconds": 1.68,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Net income was $52.6 million in FY 2018 compared with net income of $58.9 million in FY 2017.",
+       "page": 26
+      },
+      {
+       "label": "GPO Annual Report 2018, p.44",
+       "quote": "Summary of Net Income (in thousands) 2018 2017",
+       "page": 44
+      },
+      {
+       "label": "GPO Annual Report 2018, p.44",
+       "quote": "Net Income $ 52,624 $ 58,876",
+       "page": 44
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 44,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gpo-10",
+     "question": "What were GPO's operating revenues in FY 2018?",
+     "kind": "trap",
+     "tests": "two near-identical figures for adjacent years",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      6,
+      26,
+      27
+     ],
+     "cited_pages": [
+      26
+     ],
+     "verdict": "COVERED",
+     "answer": "GPO's operating revenues were $874.5 million in FY 2018.",
+     "note": "",
+     "route": "",
+     "seconds": 0.98,
+     "citations": [
+      {
+       "label": "GPO Annual Report 2018, p.26",
+       "quote": "Operating revenues were $874.5 million in FY 2018 and $874.3 million in FY 2017.",
+       "page": 26
+      }
+     ],
+     "context": [
+      {
+       "page": 6,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 26,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "experiments": {
+  "chunk_size": {
+   "300": {
+    "chunks": 754,
+    "summary": {
+     "total": 10,
+     "passed": 10,
+     "facts": 10,
+     "grounded": 10,
+     "evidence": 10,
+     "retrieved_expected": 9,
+     "retrieval_scored": 9,
+     "errors": 0,
+     "avg_seconds": 3.23,
+     "when": "2026-10-22 14:07"
+    },
+    "passed": [
+     "gpo-1",
+     "gpo-2",
+     "gpo-3",
+     "gpo-4",
+     "gpo-5",
+     "gpo-6",
+     "gpo-7",
+     "gpo-8",
+     "gpo-9",
+     "gpo-10"
+    ]
+   },
+   "500": {
+    "chunks": 451,
+    "summary": {
+     "total": 10,
+     "passed": 10,
+     "facts": 10,
+     "grounded": 10,
+     "evidence": 10,
+     "retrieved_expected": 9,
+     "retrieval_scored": 9,
+     "errors": 0,
+     "avg_seconds": 1.56,
+     "when": "2026-10-22 14:08"
+    },
+    "passed": [
+     "gpo-1",
+     "gpo-2",
+     "gpo-3",
+     "gpo-4",
+     "gpo-5",
+     "gpo-6",
+     "gpo-7",
+     "gpo-8",
+     "gpo-9",
+     "gpo-10"
+    ]
+   },
+   "1000": {
+    "chunks": 232,
+    "summary": {
+     "total": 10,
+     "passed": 10,
+     "facts": 10,
+     "grounded": 10,
+     "evidence": 10,
+     "retrieved_expected": 9,
+     "retrieval_scored": 9,
+     "errors": 0,
+     "avg_seconds": 2.13,
+     "when": "2026-10-22 14:08"
+    },
+    "passed": [
+     "gpo-1",
+     "gpo-2",
+     "gpo-3",
+     "gpo-4",
+     "gpo-5",
+     "gpo-6",
+     "gpo-7",
+     "gpo-8",
+     "gpo-9",
+     "gpo-10"
+    ]
+   }
+  }
+ },
+ "stability": {
+  "naive": {
+   "passed": [
+    10,
+    10,
+    10
+   ],
+   "total": 10,
+   "errors": 0,
+   "per_question": {
+    "gpo-1": 3,
+    "gpo-2": 3,
+    "gpo-3": 3,
+    "gpo-4": 3,
+    "gpo-5": 3,
+    "gpo-6": 3,
+    "gpo-7": 3,
+    "gpo-8": 3,
+    "gpo-9": 3,
+    "gpo-10": 3
+   }
+  },
+  "advanced": {
+   "passed": [
+    9,
+    10,
+    10
+   ],
+   "total": 10,
+   "errors": 0,
+   "per_question": {
+    "gpo-1": 3,
+    "gpo-2": 2,
+    "gpo-3": 3,
+    "gpo-4": 3,
+    "gpo-5": 3,
+    "gpo-6": 3,
+    "gpo-7": 3,
+    "gpo-8": 3,
+    "gpo-9": 3,
+    "gpo-10": 3
+   }
+  }
+ }
+}

@@ -1,0 +1,2904 @@
+{
+ "doc": "gep",
+ "title": "World Bank Global Economic Prospects, June 2026",
+ "chat_model": "gemini-3.5-flash-lite",
+ "embed_model": "BAAI/bge-small-en-v1.5",
+ "rerank_model": "Xenova/ms-marco-MiniLM-L-12-v2",
+ "variants": {
+  "naive": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": false,
+    "rerank": false,
+    "window": 0,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense only",
+   "index": "gep__naive",
+   "summary": {
+    "total": 8,
+    "passed": 5,
+    "facts": 5,
+    "grounded": 6,
+    "evidence": 6,
+    "retrieved_expected": 5,
+    "retrieval_scored": 7,
+    "errors": 0,
+    "avg_seconds": 9.12,
+    "when": "2026-10-22 14:00"
+   },
+   "questions": [
+    {
+     "id": "gep-1",
+     "question": "What is the growth outlook for South Asia in this report?",
+     "kind": "official",
+     "tests": "the right region among six that all forecast growth",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      78,
+      83,
+      95,
+      98
+     ],
+     "cited_pages": [
+      98
+     ],
+     "verdict": "COVERED",
+     "answer": "For EMDE SAR, GDP growth is forecast at 6.6 percent in 2023, 6.8 percent in 2024, 7.0 percent in 2025e, 6.3 percent in 2026f, 6.9 percent in 2027f, and 7.1 percent in 2028f. GDP per capita growth is forecast at 5.6 percent in 2023, 5.8 percent in 2024, 6.1 percent in 2025e, 5.3 percent in 2026f, 6.0 percent in 2027f, and 6.2 percent in 2028f.",
+     "note": "",
+     "route": "",
+     "seconds": 6.36,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.98",
+       "quote": "TABLE 2.9 South Asia forecast summary",
+       "page": 98
+      },
+      {
+       "label": "GEP June 2026, p.98",
+       "quote": "EMDE SAR, GDP 1 6.6 6.8 7.0 6.3 6.9 7.1 0.1 0.4",
+       "page": 98
+      },
+      {
+       "label": "GEP June 2026, p.98",
+       "quote": "GDP per capita (U.S. dollars) 5.6 5.8 6.1 5.3 6.0 6.2 0.1 0.4",
+       "page": 98
+      }
+     ],
+     "context": [
+      {
+       "page": 98,
+       "section": "",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 78,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 95,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 83,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-2",
+     "question": "What does Chapter 3 say about sovereign debt in developing economies?",
+     "kind": "official",
+     "tests": "a summary question over a 36-page chapter",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      19,
+      107,
+      109,
+      112,
+      114
+     ],
+     "cited_pages": [
+      109,
+      112
+     ],
+     "verdict": "COVERED",
+     "answer": "Chapter 3 states that rising government debt poses a key challenge for emerging market and developing economies (EMDEs) because it leads to higher interest rates, higher debt-service payments, and a greater likelihood of debt distress. Debt levels are positively associated with dollar-denominated sovereign bond spreads and domestic-currency government bond yields, and this relationship is non-linear so that increases in spreads or yields associated with increases in debt-to-GDP ratios are greater the higher the debt-to-GDP ratio. The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively. Between 2010 and 2024, median EMDE debt rose by 20 percentage points of GDP, which model estimates indicate added 114 basis points to sovereign spreads and 31 basis points to domestic-currency yields.",
+     "note": "",
+     "route": "",
+     "seconds": 6.97,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.109",
+       "quote": "Rising government debt poses a key challenge for emerging market and developing economies (EMDEs), as it leads to higher interest rates, higher debt-service payments, and a greater likelihood of debt distress.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109",
+       "quote": "This chapter explores the impact of government debt on interest rates.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109",
+       "quote": "It finds that debt levels are positively associated with dollar-denominated sovereign bond spreads and domestic-currency government bond yields.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109",
+       "quote": "The estimated relationship with debt is non-linear: the increases in spreads or yields associated with increases in debt-to-GDP ratios are greater the higher the debt-to-GDP ratio.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109",
+       "quote": "The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.112",
+       "quote": "Between 2010 and 2024, median EMDE debt rose by 20 percentage points of GDP.",
+       "page": 112
+      },
+      {
+       "label": "GEP June 2026, p.112",
+       "quote": "Based on the model estimates, this added 114 basis points to sovereign spreads and 31 basis points to domestic-currency yields.",
+       "page": 112
+      }
+     ],
+     "context": [
+      {
+       "page": 107,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 19,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 109,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 114,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 112,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-3",
+     "question": "According to the executive summary, what are the main risks to the global outlook?",
+     "kind": "official",
+     "tests": "answering from one named section, not the chapter that repeats it",
+     "passed": false,
+     "facts": false,
+     "grounded": false,
+     "evidence": false,
+     "retrieved_expected": false,
+     "missing": [
+      "3 more of: escalation|hostilities / commodity / 1.3 / trade policy / weather / financial stress"
+     ],
+     "retrieved_pages": [
+      3,
+      23,
+      29,
+      52,
+      80
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 8.18,
+     "citations": [],
+     "context": [
+      {
+       "page": 23,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 52,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 3,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 29,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 80,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-4",
+     "question": "What is the growth forecast for East Asia and Pacific in 2026?",
+     "kind": "trap",
+     "tests": "a neighbouring region with similar wording",
+     "passed": false,
+     "facts": false,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [
+      "4.2"
+     ],
+     "retrieved_pages": [
+      5,
+      40,
+      81,
+      82,
+      83
+     ],
+     "cited_pages": [
+      82
+     ],
+     "verdict": "COVERED",
+     "answer": "Growth in East Asia and Pacific is projected to moderate to 4.3 percent over 2026\u201328, on average. Additionally, growth in the Pacific Island economies is expected to slow to 3.5 percent in 2026.",
+     "note": "",
+     "route": "",
+     "seconds": 11.79,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.82",
+       "quote": "In the Pacific Island economies, growth is expected to slow to 3.5 percent in 2026 and to 3.3 percent in 2027\u201328, on average, as tourism-led growth slows in Fiji and activity in the resource sector normalizes in Papua New Guinea.",
+       "page": 82
+      },
+      {
+       "label": "GEP June 2026, p.82",
+       "quote": "Growth in EAP is projected to moderate to 4.3 percent over 2026\u201328, on average, largely reflecting China\u2019s outlook, given its sizable weight in the region.",
+       "page": 82
+      }
+     ],
+     "context": [
+      {
+       "page": 82,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 83,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 81,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 40,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-5",
+     "question": "What is Iraq's real GDP growth forecast for 2026?",
+     "kind": "trap",
+     "tests": "a table cell whose column is shifted by a footnote marker",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      40,
+      51,
+      95,
+      189,
+      190
+     ],
+     "cited_pages": [
+      95
+     ],
+     "verdict": "COVERED",
+     "answer": "Iraq's real GDP growth forecast is -8.9% for 2026f.",
+     "note": "",
+     "route": "",
+     "seconds": 1.32,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.95",
+       "quote": "TABLE 2.8 Middle East, North Africa, Afghanistan, and Pakistan economy forecasts",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95",
+       "quote": "(Real GDP growth at market prices in percent, unless indicated otherwise)",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95",
+       "quote": "Iraq 1 0.5 -1.5 -2.2 -8.9 12.2 3.5 -15.4 8.4",
+       "page": 95
+      }
+     ],
+     "context": [
+      {
+       "page": 51,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 190,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 189,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 95,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 40,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-6",
+     "question": "According to Box 1.1, how is AI expected to boost growth in the near term and over the medium term?",
+     "kind": "trap",
+     "tests": "a boxed article inside a chapter",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      30,
+      32,
+      33,
+      35
+     ],
+     "cited_pages": [
+      30
+     ],
+     "verdict": "COVERED",
+     "answer": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies. Over the medium term, its most important contribution would come from faster productivity growth.",
+     "note": "",
+     "route": "",
+     "seconds": 19.7,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.30",
+       "quote": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies.",
+       "page": 30
+      },
+      {
+       "label": "GEP June 2026, p.30",
+       "quote": "Over the medium term, however, its most important contribution would come from faster productivity growth.",
+       "page": 30
+      }
+     ],
+     "context": [
+      {
+       "page": 30,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 33,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 30,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 35,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 32,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-7",
+     "question": "According to the statistical appendix, what was euro area GDP growth in 2025?",
+     "kind": "trap",
+     "tests": "the statistical annex, not the chapter table with the same row",
+     "passed": false,
+     "facts": false,
+     "grounded": false,
+     "evidence": false,
+     "retrieved_expected": false,
+     "missing": [
+      "1.4"
+     ],
+     "retrieved_pages": [
+      28,
+      40,
+      41,
+      189
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 10.95,
+     "citations": [],
+     "context": [
+      {
+       "page": 189,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 40,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 28,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 40,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 41,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-8",
+     "question": "What does the report forecast for global growth in 2035?",
+     "kind": "trap",
+     "tests": "refusal: forecasts stop at 2028",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      3,
+      5,
+      23,
+      192
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 7.69,
+     "citations": [],
+     "context": [
+      {
+       "page": 3,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 5,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 1,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 192,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 23,
+       "section": "",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  },
+  "advanced": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": true,
+    "window": 1,
+    "route": true,
+    "lead": true,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, rerank, \u00b11 neighbours, section routing, section opening",
+   "index": "gep__advanced",
+   "summary": {
+    "total": 8,
+    "passed": 7,
+    "facts": 7,
+    "grounded": 8,
+    "evidence": 8,
+    "retrieved_expected": 7,
+    "retrieval_scored": 7,
+    "errors": 0,
+    "avg_seconds": 14.42,
+    "when": "2026-10-22 14:02"
+   },
+   "questions": [
+    {
+     "id": "gep-1",
+     "question": "What is the growth outlook for South Asia in this report?",
+     "kind": "official",
+     "tests": "the right region among six that all forecast growth",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      96,
+      97,
+      98
+     ],
+     "cited_pages": [
+      96,
+      98
+     ],
+     "verdict": "COVERED",
+     "answer": "Growth in South Asia is expected to soften to 6.3 percent in 2026, pick up to an average rate of 7 percent per year in 2027\u201328, and is projected at 6.9 percent in 2027f and 7.1 percent in 2028f according to the forecast summary.",
+     "note": "1 unverified quote(s) discarded.",
+     "route": "South Asia",
+     "seconds": 3.41,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.96 (printed 74) \u00b7 South Asia",
+       "quote": "Growth in SAR is expected to soften to 6.3 percent in 2026, mainly reflecting the adverse impact of the conflict in the Middle East, including higher energy prices, reduced supplies of oil and natural gas, and disruptions to remittances and tourism (table 2.9).",
+       "page": 96
+      },
+      {
+       "label": "GEP June 2026, p.96 (printed 74) \u00b7 South Asia",
+       "quote": "With conflict-related disruptions assumed to wane by the end of the year, growth in SAR is set to pick up to an average rate of 7 percent per year in 2027\u201328.",
+       "page": 96
+      },
+      {
+       "label": "GEP June 2026, p.98 (printed 76) \u00b7 South Asia",
+       "quote": "| | 2023 | 2024 | 2025e | 2026f | 2027f | 2028f | 2026f (change vs January 2026 forecast, percentage points) | 2027f (change vs January 2026 forecast, percentage points) |",
+       "page": 98
+      }
+     ],
+     "context": [
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": 7.591710090637207
+      },
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": 6.782047748565674
+      },
+      {
+       "page": 97,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": 6.366601943969727
+      },
+      {
+       "page": 98,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": 5.910393238067627
+      }
+     ]
+    },
+    {
+     "id": "gep-2",
+     "question": "What does Chapter 3 say about sovereign debt in developing economies?",
+     "kind": "official",
+     "tests": "a summary question over a 36-page chapter",
+     "passed": false,
+     "facts": false,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [
+      "1 more of: spread|yield|interest rate / non-linear|nonlinear|greater the higher / 110|basis points / default|credit rating|frontier|governance|short-term debt / fiscal"
+     ],
+     "retrieved_pages": [
+      109,
+      114,
+      116,
+      122
+     ],
+     "cited_pages": [
+      109,
+      122
+     ],
+     "verdict": "PARTIAL",
+     "answer": "Chapter 3 explores the impact of government debt on interest rates in emerging market and developing economies (EMDEs), finding that debt levels are positively associated with dollar-denominated sovereign bond spreads and domestic-currency government bond yields. The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively. Between 2010 and 2024, advanced economy government debt increased by an average of about 12 percentage points of GDP, which alongside the rise in domestic EMDE debt implies a total rise in yields of 149 and 40 basis points, respectively. The chapter only partially addresses sovereign debt as it focuses specifically on its relationship with interest rates and bond yields.",
+     "note": "",
+     "route": "Chapter 3",
+     "seconds": 3.18,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "This chapter explores the impact of government debt on interest rates.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.122 (printed 100) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "Between 2010 and 2024, advanced economy government debt increased by an average of about 12 percentage points of GDP.",
+       "page": 122
+      },
+      {
+       "label": "GEP June 2026, p.122 (printed 100) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "Accounting for the rise in domestic EMDE government debt and advanced economy debt on foreign-currency and domestic-currency bond yields implies a total rise in yields of 149 and 40 basis points, respectively.",
+       "page": 122
+      }
+     ],
+     "context": [
+      {
+       "page": 109,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 122,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": 6.096409797668457
+      },
+      {
+       "page": 116,
+       "section": "Box 3.1 The costs of hidden debt",
+       "why": "retrieved + neighbours",
+       "rerank": 5.808741569519043
+      },
+      {
+       "page": 114,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": 5.303869247436523
+      }
+     ]
+    },
+    {
+     "id": "gep-3",
+     "question": "According to the executive summary, what are the main risks to the global outlook?",
+     "kind": "official",
+     "tests": "answering from one named section, not the chapter that repeats it",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      19,
+      20
+     ],
+     "cited_pages": [
+      19
+     ],
+     "verdict": "COVERED",
+     "answer": "Risks to the global outlook include a renewed escalation of hostilities, more prolonged disruptions to commodity flows, energy supply disruptions accompanied by substantial financial stress, persistent trade policy uncertainty, geopolitical strains, and weather-related shocks.",
+     "note": "1 unverified quote(s) discarded.",
+     "route": "Executive Summary",
+     "seconds": 45.75,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "Risks to the outlook remain skewed to the downside.",
+       "page": 19
+      },
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "A renewed escalation of hostilities or more prolonged disruptions to commodity flows could further raise commodity prices, intensify inflationary pressures and food insecurity, trigger financial stress, and lower growth.",
+       "page": 19
+      },
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "If energy supply disruptions prove more severe than assumed and are accompanied by substantial financial stress, global growth could fall to just 1.3 percent in 2026.",
+       "page": 19
+      }
+     ],
+     "context": [
+      {
+       "page": 19,
+       "section": "Executive Summary",
+       "why": "retrieved + neighbours",
+       "rerank": 6.401034355163574
+      },
+      {
+       "page": 20,
+       "section": "Executive Summary",
+       "why": "retrieved + neighbours",
+       "rerank": -2.292713165283203
+      }
+     ]
+    },
+    {
+     "id": "gep-4",
+     "question": "What is the growth forecast for East Asia and Pacific in 2026?",
+     "kind": "trap",
+     "tests": "a neighbouring region with similar wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      81,
+      82,
+      83
+     ],
+     "cited_pages": [
+      81,
+      82,
+      83
+     ],
+     "verdict": "PARTIAL",
+     "answer": "EMDE EAP, GDP growth is forecast at 4.2 percent in 2026f, while growth in EAP excluding China is expected to slow to 4.4 percent in 2026. Growth in the Pacific Island economies is expected to slow to 3.5 percent in 2026. The passages do not provide the growth forecast for 2026 for all individual countries in the region.",
+     "note": "",
+     "route": "East Asia and Pacific",
+     "seconds": 10.33,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "| EMDE EAP, GDP [^1] | 5.2 | 5.0 | 5.0 | 4.2 | 4.4 | 4.3 | -0.2 | 0.1 |",
+       "page": 83
+      },
+      {
+       "label": "GEP June 2026, p.81 (printed 59) \u00b7 East Asia and Pacific",
+       "quote": "In EAP excluding China, growth is expected to slow to 4.4 percent in 2026 from 4.8 percent in",
+       "page": 81
+      },
+      {
+       "label": "GEP June 2026, p.82 (printed 60) \u00b7 East Asia and Pacific",
+       "quote": "In the Pacific Island economies, growth is expected to slow to 3.5 percent in 2026 and to 3.3 percent in 2027\u201328, on average, as tourism-led growth slows in Fiji and activity in the resource sector normalizes in Papua New Guinea.",
+       "page": 82
+      },
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "| | 2023 | 2024 | 2025e | 2026f | 2027f | 2028f | Percentage-point differences from January 2026 projections: 2026f | Percentage-point differences from January 2026 projections: 2027f |",
+       "page": 83
+      }
+     ],
+     "context": [
+      {
+       "page": 81,
+       "section": "East Asia and Pacific",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 82,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": 8.57231330871582
+      },
+      {
+       "page": 81,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": 7.581852912902832
+      },
+      {
+       "page": 81,
+       "section": "East Asia and Pacific",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 83,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": 7.197747230529785
+      }
+     ]
+    },
+    {
+     "id": "gep-5",
+     "question": "What is Iraq's real GDP growth forecast for 2026?",
+     "kind": "trap",
+     "tests": "a table cell whose column is shifted by a footnote marker",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      51,
+      95,
+      190
+     ],
+     "cited_pages": [
+      95
+     ],
+     "verdict": "COVERED",
+     "answer": "Iraq's real GDP growth forecast (at market prices) is -8.9 percent for 2026f.",
+     "note": "",
+     "route": "",
+     "seconds": 3.72,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "TABLE 2.8 Middle East, North Africa, Afghanistan, and Pakistan economy forecasts",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "(Real GDP growth at market prices in percent, unless indicated otherwise)",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "| | **2023** | **2024** | **2025e** | **2026f** | **2027f** | **2028f** | **2026f** | **2027f** |",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "| Iraq [^1] | 0.5 | -1.5 | -2.2 | -8.9 | 12.2 | 3.5 | -15.4 | 8.4 |",
+       "page": 95
+      }
+     ],
+     "context": [
+      {
+       "page": 51,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 6.487530708312988
+      },
+      {
+       "page": 95,
+       "section": "Middle East, North Africa, Afghanistan, and Pakistan",
+       "why": "retrieved + neighbours",
+       "rerank": 3.995201587677002
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": 2.835289239883423
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-6",
+     "question": "According to Box 1.1, how is AI expected to boost growth in the near term and over the medium term?",
+     "kind": "trap",
+     "tests": "a boxed article inside a chapter",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      30,
+      31,
+      32,
+      34
+     ],
+     "cited_pages": [
+      30
+     ],
+     "verdict": "COVERED",
+     "answer": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies. Over the medium term, its most important contribution would come from faster productivity growth.",
+     "note": "",
+     "route": "Box 1.1",
+     "seconds": 10.21,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.30 (printed 8) \u00b7 Box 1.1 How much will AI affect global growth?",
+       "quote": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies.",
+       "page": 30
+      },
+      {
+       "label": "GEP June 2026, p.30 (printed 8) \u00b7 Box 1.1 How much will AI affect global growth?",
+       "quote": "Over the medium term, however, its most important contribution would come from faster productivity growth.",
+       "page": 30
+      }
+     ],
+     "context": [
+      {
+       "page": 30,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 31,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": 4.96013879776001
+      },
+      {
+       "page": 34,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": 4.788090705871582
+      },
+      {
+       "page": 32,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": 4.595267295837402
+      }
+     ]
+    },
+    {
+     "id": "gep-7",
+     "question": "According to the statistical appendix, what was euro area GDP growth in 2025?",
+     "kind": "trap",
+     "tests": "the statistical annex, not the chapter table with the same row",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      187,
+      190,
+      192
+     ],
+     "cited_pages": [
+      187
+     ],
+     "verdict": "COVERED",
+     "answer": "Euro area GDP growth was 1.4 percent in 2025.",
+     "note": "",
+     "route": "Statistical Annex",
+     "seconds": 31.67,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| Euro area | 0.5 | 1.0 | 1.4 | 0.8 | 1.3 | 1.3 | 1.4 | 1.7 | 1.6 | 1.4 | 1.2 | 0.3 |",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| | Annual estimates and forecasts [^1] (Percent change) | | | | | | Quarterly estimates [^2] (Percent change, year-on-year) | | | | | |",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| | 2023 | 2024 | 2025e | 2026f | 2027f | 2028f | 24Q4 | 25Q1 | 25Q2 | 25Q3 | 25Q4 | 26Q1e |",
+       "page": 187
+      }
+     ],
+     "context": [
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": 1.3918509483337402
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": 0.9353396892547607
+      },
+      {
+       "page": 192,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": -1.4584808349609375
+      }
+     ]
+    },
+    {
+     "id": "gep-8",
+     "question": "What does the report forecast for global growth in 2035?",
+     "kind": "trap",
+     "tests": "refusal: forecasts stop at 2028",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      27,
+      40,
+      41,
+      66
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 7.05,
+     "citations": [],
+     "context": [
+      {
+       "page": 27,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 6.391229629516602
+      },
+      {
+       "page": 41,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 5.855921745300293
+      },
+      {
+       "page": 40,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 5.697850704193115
+      },
+      {
+       "page": 66,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 3.300269603729248
+      }
+     ]
+    }
+   ]
+  },
+  "no routing": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": true,
+    "window": 1,
+    "route": false,
+    "lead": false,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, rerank, \u00b11 neighbours",
+   "index": "gep__advanced",
+   "summary": {
+    "total": 8,
+    "passed": 7,
+    "facts": 7,
+    "grounded": 8,
+    "evidence": 8,
+    "retrieved_expected": 7,
+    "retrieval_scored": 7,
+    "errors": 0,
+    "avg_seconds": 8.08,
+    "when": "2026-10-22 14:03"
+   },
+   "questions": [
+    {
+     "id": "gep-1",
+     "question": "What is the growth outlook for South Asia in this report?",
+     "kind": "official",
+     "tests": "the right region among six that all forecast growth",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      96,
+      97,
+      98
+     ],
+     "cited_pages": [
+      96
+     ],
+     "verdict": "COVERED",
+     "answer": "Growth in South Asia is expected to soften to 6.3 percent in 2026, and is set to pick up to an average rate of 7 percent per year in 2027\u201328.",
+     "note": "",
+     "route": "",
+     "seconds": 5.08,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.96 (printed 74) \u00b7 South Asia",
+       "quote": "Growth in SAR is expected to soften to 6.3 percent in 2026, mainly reflecting the adverse impact of the conflict in the Middle East, including higher energy prices, reduced supplies of oil and natural gas, and disruptions to remittances and tourism (table 2.9).",
+       "page": 96
+      },
+      {
+       "label": "GEP June 2026, p.96 (printed 74) \u00b7 South Asia",
+       "quote": "With conflict-related disruptions assumed to wane by the end of the year, growth in SAR is set to pick up to an average rate of 7 percent per year in 2027\u201328.",
+       "page": 96
+      }
+     ],
+     "context": [
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": 7.591710090637207
+      },
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": 6.782047748565674
+      },
+      {
+       "page": 97,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": 6.366601943969727
+      },
+      {
+       "page": 98,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": 5.910393238067627
+      }
+     ]
+    },
+    {
+     "id": "gep-2",
+     "question": "What does Chapter 3 say about sovereign debt in developing economies?",
+     "kind": "official",
+     "tests": "a summary question over a 36-page chapter",
+     "passed": false,
+     "facts": false,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [
+      "1 more of: spread|yield|interest rate / non-linear|nonlinear|greater the higher / 110|basis points / default|credit rating|frontier|governance|short-term debt / fiscal"
+     ],
+     "retrieved_pages": [
+      109,
+      114,
+      116,
+      122
+     ],
+     "cited_pages": [
+      109,
+      122
+     ],
+     "verdict": "COVERED",
+     "answer": "Chapter 3 discusses how rising government debt in emerging market and developing economies (EMDEs) leads to higher interest rates, debt-service payments, and debt distress, noting that debt levels are positively associated with dollar-denominated sovereign bond spreads and domestic-currency government bond yields. The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively. Additionally, accounting for the rise in domestic EMDE government debt and advanced economy debt between 2010 and 2024 implies a total rise in yields of 149 and 40 basis points, respectively.",
+     "note": "",
+     "route": "",
+     "seconds": 3.51,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "Rising government debt poses a key challenge for emerging market and developing economies (EMDEs), as it leads to higher interest rates, higher debt-service payments, and a greater likelihood of debt distress.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.122 (printed 100) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "Between 2010 and 2024, advanced economy government debt increased by an average of about 12 percentage points of GDP. Accounting for the rise in domestic EMDE government debt and advanced economy debt on foreign-currency and domestic-currency bond yields implies a total rise in yields of 149 and 40 basis points, respectively.",
+       "page": 122
+      }
+     ],
+     "context": [
+      {
+       "page": 109,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": 7.134350299835205
+      },
+      {
+       "page": 122,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": 6.096409797668457
+      },
+      {
+       "page": 116,
+       "section": "Box 3.1 The costs of hidden debt",
+       "why": "retrieved + neighbours",
+       "rerank": 5.808741569519043
+      },
+      {
+       "page": 114,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": 5.303869247436523
+      }
+     ]
+    },
+    {
+     "id": "gep-3",
+     "question": "According to the executive summary, what are the main risks to the global outlook?",
+     "kind": "official",
+     "tests": "answering from one named section, not the chapter that repeats it",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      19,
+      29,
+      52,
+      54
+     ],
+     "cited_pages": [
+      19
+     ],
+     "verdict": "COVERED",
+     "answer": "According to the executive summary, risks to the outlook include a renewed escalation of hostilities or more prolonged disruptions to commodity flows, persistent trade policy uncertainty, geopolitical strains, and weather-related shocks.",
+     "note": "1 unverified quote(s) discarded.",
+     "route": "",
+     "seconds": 10.7,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "Risks to the outlook remain skewed to the downside.",
+       "page": 19
+      },
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "A renewed escalation of hostilities or more prolonged disruptions to commodity flows could further raise commodity prices, intensify inflationary pressures and food insecurity, trigger financial stress, and lower growth.",
+       "page": 19
+      }
+     ],
+     "context": [
+      {
+       "page": 19,
+       "section": "Executive Summary",
+       "why": "retrieved + neighbours",
+       "rerank": 6.401034355163574
+      },
+      {
+       "page": 54,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 4.889846324920654
+      },
+      {
+       "page": 52,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 4.878990173339844
+      },
+      {
+       "page": 29,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved",
+       "rerank": 4.733366012573242
+      }
+     ]
+    },
+    {
+     "id": "gep-4",
+     "question": "What is the growth forecast for East Asia and Pacific in 2026?",
+     "kind": "trap",
+     "tests": "a neighbouring region with similar wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      81,
+      82,
+      83
+     ],
+     "cited_pages": [
+      81
+     ],
+     "verdict": "COVERED",
+     "answer": "Growth in East Asia and Pacific is projected to moderate to 4.2 percent in 2026.",
+     "note": "",
+     "route": "",
+     "seconds": 28.97,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.81 (printed 59) \u00b7 East Asia and Pacific",
+       "quote": "Growth in EAP is projected to moderate to 4.2 percent in 2026 from 5 percent in 2025, reflecting the impact of the conflict as well as China\u2019s outlook (figure 2.3.A; table 2.1).",
+       "page": 81
+      }
+     ],
+     "context": [
+      {
+       "page": 82,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": 8.57231330871582
+      },
+      {
+       "page": 81,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": 7.394417762756348
+      },
+      {
+       "page": 83,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": 7.197747230529785
+      },
+      {
+       "page": 81,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": 6.909147262573242
+      }
+     ]
+    },
+    {
+     "id": "gep-5",
+     "question": "What is Iraq's real GDP growth forecast for 2026?",
+     "kind": "trap",
+     "tests": "a table cell whose column is shifted by a footnote marker",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      51,
+      95,
+      190
+     ],
+     "cited_pages": [
+      95
+     ],
+     "verdict": "COVERED",
+     "answer": "Iraq's real GDP growth forecast for 2026f is -8.9 percent.",
+     "note": "",
+     "route": "",
+     "seconds": 3.19,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "TABLE 2.8 Middle East, North Africa, Afghanistan, and Pakistan economy forecasts",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "(Real GDP growth at market prices in percent, unless indicated otherwise)",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "| | | | | | | | Percentage-point differences from January 2026 projections | |",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "| | **2023** | **2024** | **2025e** | **2026f** | **2027f** | **2028f** | **2026f** | **2027f** |",
+       "page": 95
+      },
+      {
+       "label": "GEP June 2026, p.95 (printed 73) \u00b7 Middle East, North Africa, Afghanistan, and Pakistan",
+       "quote": "| Iraq [^1] | 0.5 | -1.5 | -2.2 | -8.9 | 12.2 | 3.5 | -15.4 | 8.4 |",
+       "page": 95
+      }
+     ],
+     "context": [
+      {
+       "page": 51,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 6.487530708312988
+      },
+      {
+       "page": 95,
+       "section": "Middle East, North Africa, Afghanistan, and Pakistan",
+       "why": "retrieved + neighbours",
+       "rerank": 3.995201587677002
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": 2.835289239883423
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-6",
+     "question": "According to Box 1.1, how is AI expected to boost growth in the near term and over the medium term?",
+     "kind": "trap",
+     "tests": "a boxed article inside a chapter",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      29,
+      30,
+      31,
+      34
+     ],
+     "cited_pages": [
+      30
+     ],
+     "verdict": "COVERED",
+     "answer": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies. Over the medium term, its most important contribution would come from faster productivity growth.",
+     "note": "",
+     "route": "",
+     "seconds": 2.32,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.30 (printed 8) \u00b7 Box 1.1 How much will AI affect global growth?",
+       "quote": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies.",
+       "page": 30
+      },
+      {
+       "label": "GEP June 2026, p.30 (printed 8) \u00b7 Box 1.1 How much will AI affect global growth?",
+       "quote": "Over the medium term, however, its most important contribution would come from faster productivity growth.",
+       "page": 30
+      }
+     ],
+     "context": [
+      {
+       "page": 30,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": 8.734968185424805
+      },
+      {
+       "page": 29,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 5.304913520812988
+      },
+      {
+       "page": 31,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": 4.96013879776001
+      },
+      {
+       "page": 34,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": 4.788090705871582
+      }
+     ]
+    },
+    {
+     "id": "gep-7",
+     "question": "According to the statistical appendix, what was euro area GDP growth in 2025?",
+     "kind": "trap",
+     "tests": "the statistical annex, not the chapter table with the same row",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      28,
+      40,
+      41,
+      187
+     ],
+     "cited_pages": [
+      187
+     ],
+     "verdict": "COVERED",
+     "answer": "According to the statistical annex, euro area real GDP growth was 1.4 percent in 2025.",
+     "note": "",
+     "route": "",
+     "seconds": 3.7,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "Statistical Annex",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "# Real GDP growth",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| | Annual estimates and forecasts [^1] (Percent change) | | | | | | Quarterly estimates [^2] (Percent change, year-on-year) | | | | | |",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| | 2023 | 2024 | 2025e | 2026f | 2027f | 2028f | 24Q4 | 25Q1 | 25Q2 | 25Q3 | 25Q4 | 26Q1e |",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| Euro area | 0.5 | 1.0 | 1.4 | 0.8 | 1.3 | 1.3 | 1.4 | 1.7 | 1.6 | 1.4 | 1.2 | 0.3 |",
+       "page": 187
+      }
+     ],
+     "context": [
+      {
+       "page": 41,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 3.984999179840088
+      },
+      {
+       "page": 28,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 3.827768325805664
+      },
+      {
+       "page": 40,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 2.3906595706939697
+      },
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": 1.5641071796417236
+      }
+     ]
+    },
+    {
+     "id": "gep-8",
+     "question": "What does the report forecast for global growth in 2035?",
+     "kind": "trap",
+     "tests": "refusal: forecasts stop at 2028",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      27,
+      40,
+      41,
+      66
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 7.17,
+     "citations": [],
+     "context": [
+      {
+       "page": 27,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 6.391229629516602
+      },
+      {
+       "page": 41,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 5.855921745300293
+      },
+      {
+       "page": 40,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 5.697850704193115
+      },
+      {
+       "page": 66,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": 3.300269603729248
+      }
+     ]
+    }
+   ]
+  },
+  "no rerank": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": true,
+    "rerank": false,
+    "window": 1,
+    "route": true,
+    "lead": true,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense + BM25, \u00b11 neighbours, section routing, section opening",
+   "index": "gep__advanced",
+   "summary": {
+    "total": 8,
+    "passed": 6,
+    "facts": 6,
+    "grounded": 7,
+    "evidence": 7,
+    "retrieved_expected": 6,
+    "retrieval_scored": 7,
+    "errors": 0,
+    "avg_seconds": 13.25,
+    "when": "2026-10-22 14:04"
+   },
+   "questions": [
+    {
+     "id": "gep-1",
+     "question": "What is the growth outlook for South Asia in this report?",
+     "kind": "official",
+     "tests": "the right region among six that all forecast growth",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      96,
+      97,
+      98
+     ],
+     "cited_pages": [
+      96,
+      97,
+      98
+     ],
+     "verdict": "COVERED",
+     "answer": "Growth in South Asia (SAR) is projected to slow to 6.3 percent in 2026, before picking up to an average rate of 7 percent per year in 2027\u201328 (reaching 6.9 percent in 2027f and 7.1 percent in 2028f). Real GDP growth at market prices for EMDE SAR is 6.3 percent for 2026f, 6.9 percent for 2027f, and 7.1 percent for 2028f.",
+     "note": "1 unverified quote(s) discarded.",
+     "route": "South Asia",
+     "seconds": 49.48,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.97 (printed 75) \u00b7 South Asia",
+       "quote": "Growth in SAR is projected to slow in 2026, accompanied by a deterioration in fiscal and external balances.",
+       "page": 97
+      },
+      {
+       "label": "GEP June 2026, p.96 (printed 74) \u00b7 South Asia",
+       "quote": "With conflict-related disruptions assumed to wane by the end of the year, growth in SAR is set to pick up to an average rate of 7 percent per year in 2027\u201328.",
+       "page": 96
+      },
+      {
+       "label": "GEP June 2026, p.98 (printed 76) \u00b7 South Asia",
+       "quote": "| | 2023 | 2024 | 2025e | 2026f | 2027f | 2028f | 2026f (change vs January 2026 forecast, percentage points) | 2027f (change vs January 2026 forecast, percentage points) |",
+       "page": 98
+      }
+     ],
+     "context": [
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 98,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 97,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 98,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-2",
+     "question": "What does Chapter 3 say about sovereign debt in developing economies?",
+     "kind": "official",
+     "tests": "a summary question over a 36-page chapter",
+     "passed": false,
+     "facts": false,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [
+      "1 more of: spread|yield|interest rate / non-linear|nonlinear|greater the higher / 110|basis points / default|credit rating|frontier|governance|short-term debt / fiscal"
+     ],
+     "retrieved_pages": [
+      109,
+      120,
+      136,
+      139,
+      140
+     ],
+     "cited_pages": [
+      109
+     ],
+     "verdict": "COVERED",
+     "answer": "Chapter 3 states that rising government debt poses a key challenge for emerging market and developing economies (EMDEs) because it leads to higher interest rates, higher debt-service payments, and a greater likelihood of debt distress. The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively.",
+     "note": "",
+     "route": "Chapter 3",
+     "seconds": 1.34,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "Rising government debt poses a key challenge for emerging market and developing economies (EMDEs), as it leads to higher interest rates, higher debt-service payments, and a greater likelihood of debt distress.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively.",
+       "page": 109
+      }
+     ],
+     "context": [
+      {
+       "page": 109,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 139,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 136,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 140,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 120,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-3",
+     "question": "According to the executive summary, what are the main risks to the global outlook?",
+     "kind": "official",
+     "tests": "answering from one named section, not the chapter that repeats it",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      19,
+      20
+     ],
+     "cited_pages": [
+      19
+     ],
+     "verdict": "COVERED",
+     "answer": "Risks to the global outlook include a renewed escalation of hostilities, more prolonged disruptions to commodity flows, energy supply disruptions accompanied by substantial financial stress, persistent trade policy uncertainty, geopolitical strains, and weather-related shocks.",
+     "note": "",
+     "route": "Executive Summary",
+     "seconds": 1.61,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "Risks to the outlook remain skewed to the downside.",
+       "page": 19
+      },
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "A renewed escalation of hostilities or more prolonged disruptions to commodity flows could further raise commodity prices, intensify inflationary pressures and food insecurity, trigger financial stress, and lower growth.",
+       "page": 19
+      },
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "If energy supply disruptions prove more severe than assumed and are accompanied by substantial financial stress, global growth could fall to just 1.3 percent in 2026.",
+       "page": 19
+      },
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "Persistent trade policy uncertainty, geopolitical strains, and weather- related shocks also pose material risks.",
+       "page": 19
+      }
+     ],
+     "context": [
+      {
+       "page": 19,
+       "section": "Executive Summary",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 20,
+       "section": "Executive Summary",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-4",
+     "question": "What is the growth forecast for East Asia and Pacific in 2026?",
+     "kind": "trap",
+     "tests": "a neighbouring region with similar wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      81,
+      82,
+      83
+     ],
+     "cited_pages": [
+      82,
+      83
+     ],
+     "verdict": "COVERED",
+     "answer": "Growth in East Asia and Pacific (EMDE EAP, GDP) is forecast to be 4.2 percent in 2026f according to Table 2.1, and growth in the region is projected to moderate to 4.3 percent over 2026\u201328, on average.",
+     "note": "",
+     "route": "East Asia and Pacific",
+     "seconds": 1.46,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "TABLE 2.1 East Asia and Pacific forecast summary",
+       "page": 83
+      },
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "(Real GDP growth at market prices in percent, unless indicated otherwise)",
+       "page": 83
+      },
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "| EMDE EAP, GDP [^1] | 5.2 | 5.0 | 5.0 | 4.2 | 4.4 | 4.3 | -0.2 | 0.1 |",
+       "page": 83
+      },
+      {
+       "label": "GEP June 2026, p.82 (printed 60) \u00b7 East Asia and Pacific",
+       "quote": "Growth in EAP is projected to moderate to 4.3 percent over 2026\u201328, on average, largely reflecting China\u2019s outlook, given its sizable weight in the region.",
+       "page": 82
+      }
+     ],
+     "context": [
+      {
+       "page": 81,
+       "section": "East Asia and Pacific",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 82,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 83,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 81,
+       "section": "East Asia and Pacific",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-5",
+     "question": "What is Iraq's real GDP growth forecast for 2026?",
+     "kind": "trap",
+     "tests": "a table cell whose column is shifted by a footnote marker",
+     "passed": false,
+     "facts": false,
+     "grounded": false,
+     "evidence": false,
+     "retrieved_expected": false,
+     "missing": [
+      "8.9"
+     ],
+     "retrieved_pages": [
+      51,
+      98,
+      190
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.02,
+     "citations": [],
+     "context": [
+      {
+       "page": 51,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 98,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-6",
+     "question": "According to Box 1.1, how is AI expected to boost growth in the near term and over the medium term?",
+     "kind": "trap",
+     "tests": "a boxed article inside a chapter",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      30,
+      31,
+      35
+     ],
+     "cited_pages": [
+      30
+     ],
+     "verdict": "COVERED",
+     "answer": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies. Over the medium term, its most important contribution would come from faster productivity growth.",
+     "note": "",
+     "route": "Box 1.1",
+     "seconds": 6.21,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.30 (printed 8) \u00b7 Box 1.1 How much will AI affect global growth?",
+       "quote": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies. Over the medium term, however, its most important contribution would come from faster productivity growth.",
+       "page": 30
+      }
+     ],
+     "context": [
+      {
+       "page": 30,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 30,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 35,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 31,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-7",
+     "question": "According to the statistical appendix, what was euro area GDP growth in 2025?",
+     "kind": "trap",
+     "tests": "the statistical annex, not the chapter table with the same row",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      185,
+      187,
+      188,
+      190
+     ],
+     "cited_pages": [
+      187
+     ],
+     "verdict": "COVERED",
+     "answer": "Euro area GDP growth was 1.4 percent in 2025e.",
+     "note": "",
+     "route": "Statistical Annex",
+     "seconds": 43.51,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| Euro area | 0.5 | 1.0 | 1.4 | 0.8 | 1.3 | 1.3 | 1.4 | 1.7 | 1.6 | 1.4 | 1.2 | 0.3 |",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| | Annual estimates and forecasts [^1] (Percent change) | | | | | | Quarterly estimates [^2] (Percent change, year-on-year) | | | | | |",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| | 2023 | 2024 | 2025e | 2026f | 2027f | 2028f | 24Q4 | 25Q1 | 25Q2 | 25Q3 | 25Q4 | 26Q1e |",
+       "page": 187
+      }
+     ],
+     "context": [
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 185,
+       "section": "Statistical Annex",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 188,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-8",
+     "question": "What does the report forecast for global growth in 2035?",
+     "kind": "trap",
+     "tests": "refusal: forecasts stop at 2028",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      1,
+      27,
+      66,
+      192,
+      200
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.36,
+     "citations": [],
+     "context": [
+      {
+       "page": 1,
+       "section": "Front matter",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 200,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 66,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 192,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  },
+  "dense only": {
+   "settings": {
+    "k": 5,
+    "candidates": 20,
+    "hybrid": false,
+    "rerank": false,
+    "window": 1,
+    "route": true,
+    "lead": true,
+    "footnotes": false,
+    "max_context": 10
+   },
+   "description": "top 5, dense only, \u00b11 neighbours, section routing, section opening",
+   "index": "gep__advanced",
+   "summary": {
+    "total": 8,
+    "passed": 6,
+    "facts": 6,
+    "grounded": 7,
+    "evidence": 7,
+    "retrieved_expected": 6,
+    "retrieval_scored": 7,
+    "errors": 0,
+    "avg_seconds": 7.22,
+    "when": "2026-10-22 14:05"
+   },
+   "questions": [
+    {
+     "id": "gep-1",
+     "question": "What is the growth outlook for South Asia in this report?",
+     "kind": "official",
+     "tests": "the right region among six that all forecast growth",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      96,
+      98
+     ],
+     "cited_pages": [
+      96
+     ],
+     "verdict": "COVERED",
+     "answer": "Growth in South Asia is expected to soften to 6.3 percent in 2026, and is set to pick up to an average rate of 7 percent per year in 2027\u201328.",
+     "note": "",
+     "route": "South Asia",
+     "seconds": 1.44,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.96 (printed 74) \u00b7 South Asia",
+       "quote": "Growth in SAR is expected to soften to 6.3 percent in 2026, mainly reflecting the adverse impact of the conflict in the Middle East, including higher energy prices, reduced supplies of oil and natural gas, and disruptions to remittances and tourism (table 2.9).",
+       "page": 96
+      },
+      {
+       "label": "GEP June 2026, p.96 (printed 74) \u00b7 South Asia",
+       "quote": "With conflict-related disruptions assumed to wane by the end of the year, growth in SAR is set to pick up to an average rate of 7 percent per year in 2027\u201328.",
+       "page": 96
+      }
+     ],
+     "context": [
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 98,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 98,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 96,
+       "section": "South Asia",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-2",
+     "question": "What does Chapter 3 say about sovereign debt in developing economies?",
+     "kind": "official",
+     "tests": "a summary question over a 36-page chapter",
+     "passed": false,
+     "facts": false,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [
+      "1 more of: spread|yield|interest rate / non-linear|nonlinear|greater the higher / 110|basis points / default|credit rating|frontier|governance|short-term debt / fiscal"
+     ],
+     "retrieved_pages": [
+      107,
+      109,
+      120,
+      136
+     ],
+     "cited_pages": [
+      109
+     ],
+     "verdict": "COVERED",
+     "answer": "Chapter 3 states that rising government debt poses a key challenge for emerging market and developing economies (EMDEs) because it leads to higher interest rates, higher debt-service payments, and a greater likelihood of debt distress. It finds that debt levels are positively associated with dollar-denominated sovereign bond spreads and domestic-currency government bond yields, and that the rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively.",
+     "note": "",
+     "route": "Chapter 3",
+     "seconds": 2.3,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "Rising government debt poses a key challenge for emerging market and developing economies (EMDEs), as it leads to higher interest rates, higher debt-service payments, and a greater likelihood of debt distress.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "This chapter explores the impact of government debt on interest rates.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "It finds that debt levels are positively associated with dollar-denominated sovereign bond spreads and domestic-currency government bond yields.",
+       "page": 109
+      },
+      {
+       "label": "GEP June 2026, p.109 (printed 87) \u00b7 Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "quote": "The rise in EMDE debt-to-GDP ratios since 2010 is associated with increases in sovereign spreads and domestic-currency yields of about 110 and 30 basis points, respectively.",
+       "page": 109
+      }
+     ],
+     "context": [
+      {
+       "page": 109,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 136,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 120,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 107,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved",
+       "rerank": null
+      },
+      {
+       "page": 136,
+       "section": "Chapter 3 \u00b7 A Rising Challenge: Sovereign Debt Levels and Interest Rates in EMDEs",
+       "why": "retrieved",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-3",
+     "question": "According to the executive summary, what are the main risks to the global outlook?",
+     "kind": "official",
+     "tests": "answering from one named section, not the chapter that repeats it",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      19,
+      20
+     ],
+     "cited_pages": [
+      19
+     ],
+     "verdict": "COVERED",
+     "answer": "Risks to the global outlook include a renewed escalation of hostilities, more prolonged disruptions to commodity flows, energy supply disruptions accompanied by substantial financial stress, persistent trade policy uncertainty, geopolitical strains, and weather-related shocks.",
+     "note": "1 unverified quote(s) discarded.",
+     "route": "Executive Summary",
+     "seconds": 1.72,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "Risks to the outlook remain skewed to the downside.",
+       "page": 19
+      },
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "A renewed escalation of hostilities or more prolonged disruptions to commodity flows could further raise commodity prices, intensify inflationary pressures and food insecurity, trigger financial stress, and lower growth.",
+       "page": 19
+      },
+      {
+       "label": "GEP June 2026, p.19 (printed xvii) \u00b7 Executive Summary",
+       "quote": "If energy supply disruptions prove more severe than assumed and are accompanied by substantial financial stress, global growth could fall to just 1.3 percent in 2026.",
+       "page": 19
+      }
+     ],
+     "context": [
+      {
+       "page": 19,
+       "section": "Executive Summary",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 20,
+       "section": "Executive Summary",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-4",
+     "question": "What is the growth forecast for East Asia and Pacific in 2026?",
+     "kind": "trap",
+     "tests": "a neighbouring region with similar wording",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      81,
+      82,
+      83
+     ],
+     "cited_pages": [
+      82,
+      83
+     ],
+     "verdict": "COVERED",
+     "answer": "Real GDP growth for EMDE EAP in 2026f is 4.2 percent (Table 2.1). Additionally, growth in EAP is projected to moderate to 4.3 percent over 2026\u201328 on average (Figure 2.3), and growth in the Pacific Island economies is expected to slow to 3.5 percent in 2026 (Passage 2).",
+     "note": "",
+     "route": "East Asia and Pacific",
+     "seconds": 7.45,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "| EMDE EAP, GDP [^1] | 5.2 | 5.0 | 5.0 | 4.2 | 4.4 | 4.3 | -0.2 | 0.1 |",
+       "page": 83
+      },
+      {
+       "label": "GEP June 2026, p.82 (printed 60) \u00b7 East Asia and Pacific",
+       "quote": "Growth in EAP is projected to moderate to 4.3 percent over 2026\u201328, on",
+       "page": 82
+      },
+      {
+       "label": "GEP June 2026, p.82 (printed 60) \u00b7 East Asia and Pacific",
+       "quote": "In the Pacific Island economies, growth is expected",
+       "page": 82
+      },
+      {
+       "label": "GEP June 2026, p.82 (printed 60) \u00b7 East Asia and Pacific",
+       "quote": "to slow to 3.5 percent in 2026 and to 3.3 percent",
+       "page": 82
+      },
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "TABLE 2.1 East Asia and Pacific forecast summary",
+       "page": 83
+      },
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "(Real GDP growth at market prices in percent, unless indicated otherwise)",
+       "page": 83
+      },
+      {
+       "label": "GEP June 2026, p.83 (printed 61) \u00b7 East Asia and Pacific",
+       "quote": "| | 2023 | 2024 | 2025e | 2026f | 2027f | 2028f | Percentage-point differences from January 2026 projections: 2026f | Percentage-point differences from January 2026 projections: 2027f |",
+       "page": 83
+      }
+     ],
+     "context": [
+      {
+       "page": 81,
+       "section": "East Asia and Pacific",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 82,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 83,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 83,
+       "section": "East Asia and Pacific",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-5",
+     "question": "What is Iraq's real GDP growth forecast for 2026?",
+     "kind": "trap",
+     "tests": "a table cell whose column is shifted by a footnote marker",
+     "passed": false,
+     "facts": false,
+     "grounded": false,
+     "evidence": false,
+     "retrieved_expected": false,
+     "missing": [
+      "8.9"
+     ],
+     "retrieved_pages": [
+      41,
+      43,
+      51,
+      190
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 0.95,
+     "citations": [],
+     "context": [
+      {
+       "page": 51,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 41,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 43,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-6",
+     "question": "According to Box 1.1, how is AI expected to boost growth in the near term and over the medium term?",
+     "kind": "trap",
+     "tests": "a boxed article inside a chapter",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      30,
+      33,
+      34
+     ],
+     "cited_pages": [
+      30
+     ],
+     "verdict": "COVERED",
+     "answer": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies. Over the medium term, its most important contribution would come from faster productivity growth.",
+     "note": "",
+     "route": "Box 1.1",
+     "seconds": 1.5,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.30 (printed 8) \u00b7 Box 1.1 How much will AI affect global growth?",
+       "quote": "In the near term, AI is likely to boost growth mainly through higher investment, especially in advanced economies.",
+       "page": 30
+      },
+      {
+       "label": "GEP June 2026, p.30 (printed 8) \u00b7 Box 1.1 How much will AI affect global growth?",
+       "quote": "Over the medium term, however, its most important contribution would come from faster productivity growth.",
+       "page": 30
+      }
+     ],
+     "context": [
+      {
+       "page": 30,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 33,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 30,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 34,
+       "section": "Box 1.1 How much will AI affect global growth?",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-7",
+     "question": "According to the statistical appendix, what was euro area GDP growth in 2025?",
+     "kind": "trap",
+     "tests": "the statistical annex, not the chapter table with the same row",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": true,
+     "missing": [],
+     "retrieved_pages": [
+      187,
+      188,
+      190,
+      192
+     ],
+     "cited_pages": [
+      187
+     ],
+     "verdict": "COVERED",
+     "answer": "Euro area real GDP growth was 1.4 percent in 2025e.",
+     "note": "",
+     "route": "Statistical Annex",
+     "seconds": 41.06,
+     "citations": [
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| | Annual estimates and forecasts [^1] (Percent change) | | | | | | Quarterly estimates [^2] (Percent change, year-on-year) | | | | | |",
+       "page": 187
+      },
+      {
+       "label": "GEP June 2026, p.187 (printed 165) \u00b7 Statistical Annex",
+       "quote": "| Euro area | 0.5 | 1.0 | 1.4 | 0.8 | 1.3 | 1.3 | 1.4 | 1.7 | 1.6 | 1.4 | 1.2 | 0.3 |",
+       "page": 187
+      }
+     ],
+     "context": [
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "section opening",
+       "rerank": null
+      },
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 187,
+       "section": "Statistical Annex",
+       "why": "neighbour",
+       "rerank": null
+      },
+      {
+       "page": 192,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 190,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 188,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    },
+    {
+     "id": "gep-8",
+     "question": "What does the report forecast for global growth in 2035?",
+     "kind": "trap",
+     "tests": "refusal: forecasts stop at 2028",
+     "passed": true,
+     "facts": true,
+     "grounded": true,
+     "evidence": true,
+     "retrieved_expected": null,
+     "missing": [],
+     "retrieved_pages": [
+      27,
+      40,
+      192,
+      200
+     ],
+     "cited_pages": [],
+     "verdict": "NOT_FOUND",
+     "answer": "",
+     "note": "",
+     "route": "",
+     "seconds": 1.34,
+     "citations": [],
+     "context": [
+      {
+       "page": 192,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 40,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 27,
+       "section": "Chapter 1 \u00b7 Global Outlook",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      },
+      {
+       "page": 200,
+       "section": "Statistical Annex",
+       "why": "retrieved + neighbours",
+       "rerank": null
+      }
+     ]
+    }
+   ]
+  }
+ },
+ "stability": {
+  "naive": {
+   "passed": [
+    5,
+    5,
+    4
+   ],
+   "total": 8,
+   "errors": 0,
+   "per_question": {
+    "gep-1": 2,
+    "gep-2": 3,
+    "gep-3": 0,
+    "gep-4": 0,
+    "gep-5": 3,
+    "gep-6": 3,
+    "gep-7": 0,
+    "gep-8": 3
+   }
+  },
+  "advanced": {
+   "passed": [
+    7,
+    8,
+    7
+   ],
+   "total": 8,
+   "errors": 0,
+   "per_question": {
+    "gep-1": 3,
+    "gep-2": 1,
+    "gep-3": 3,
+    "gep-4": 3,
+    "gep-5": 3,
+    "gep-6": 3,
+    "gep-7": 3,
+    "gep-8": 3
+   }
+  }
+ }
+}
