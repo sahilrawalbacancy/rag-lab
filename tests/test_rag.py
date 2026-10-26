@@ -210,6 +210,13 @@ def test_guardrail() -> None:
     check("repair: a rejected reply gets one second chance and passes the same checks",
           f.verdict == core.COVERED and len(llm.calls) == 2 and "second attempt" in f.note
           and "automatic check" in llm.calls[1], f.note)
+    table_hits = hits + [(Document(page_content="| Logs | 2026f |\n| retention | 6.9 |",
+                                   metadata={"source": "t", "page": 2}), 0.5)]
+    llm = SequenceLLM('{"verdict":"COVERED","answer":"12 months, rising to 6.9.",'
+                      '"quotes":["Logs are retained for 12 months."]}', grounded)
+    core.answer_question(llm, q, table_hits, repair=True)
+    check("the repair message says WHERE an unquoted figure is (passage [2])",
+          "6.9 appears in passage [2]" in llm.calls[1], llm.calls[1][-200:])
     llm = SequenceLLM(invented, invented)
     f = core.answer_question(llm, q, hits, repair=True)
     check("repair cannot rescue an invented answer - it stays withheld",
@@ -348,13 +355,13 @@ def test_model_choice() -> None:
                                               ["gemini-embedding-001"])
     try:
         os.environ.pop("GEMINI_CHAT_MODEL", None)
-        check("the first preferred model is chosen by default",
-              core.resolve_models("k")[0] == "gemini-3.1-flash-lite")
-        os.environ["GEMINI_CHAT_MODEL"] = "gemini-3.5-flash-lite"
-        check("GEMINI_CHAT_MODEL pins the answer model", core.resolve_models("k")[0] == "gemini-3.5-flash-lite")
+        check("the first preferred model (the one the evaluation used) is chosen by default",
+              core.resolve_models("k")[0] == "gemini-3.5-flash-lite")
+        os.environ["GEMINI_CHAT_MODEL"] = "gemini-3.1-flash-lite"
+        check("GEMINI_CHAT_MODEL pins the answer model", core.resolve_models("k")[0] == "gemini-3.1-flash-lite")
         os.environ["GEMINI_CHAT_MODEL"] = "gemini-not-on-this-key"
         check("a pinned model the key cannot reach is ignored, not used blindly",
-              core.resolve_models("k")[0] == "gemini-3.1-flash-lite")
+              core.resolve_models("k")[0] == "gemini-3.5-flash-lite")
     finally:
         # Restore, never just delete: a caller (the --live run) may have pinned a model.
         os.environ.pop("GEMINI_CHAT_MODEL", None)

@@ -431,8 +431,11 @@ class Finding:
 # key, region and time — the workshop notebook's hardcoded names are already
 # a generation out of date.
 CHAT_PREFERENCE = [
-    "gemini-3.1-flash-lite",   # measured ~5x faster than 3.x flash on this task
+    # First: the model every published evaluation score was measured with -
+    # the app should answer with the model that was evaluated. (3.1 failed
+    # the World Bank South Asia question on the live app; 3.5 passed it 3/3.)
     "gemini-3.5-flash-lite",
+    "gemini-3.1-flash-lite",   # measured ~5x faster than 3.x flash on this task
     "gemini-flash-lite-latest",
     "gemini-2.5-flash-lite",
     "gemini-3.8-flash",
@@ -839,7 +842,7 @@ def _extract_json(raw: str) -> dict:
 
 REPAIR_PROMPT = """
 
-Your previous reply was rejected by an automatic check: {problem}
+Your previous reply was rejected by an automatic check: {problem}{hint}
 Reply again in the same JSON format. Copy every quote character-for-character \
 from one passage, quote every passage (sentence or table row) that a number in \
 your answer comes from - or leave that number out - and report figures exactly \
@@ -893,15 +896,13 @@ def answer_question(
     )
 
     full_prompt = prompt.format(context=context, question=question)
-    finding = _verify(get_text(llm.invoke(full_prompt)), question, hits)
+    finding, unsupported = _verify(get_text(llm.invoke(full_prompt)), question, hits)
     rejected = finding.note.startswith(("Downgraded", "Could not parse"))
     if not (repair and rejected):
         return finding
 
-    second = _verify(
-        get_text(llm.invoke(full_prompt + REPAIR_PROMPT.format(problem=finding.note))),
-        question, hits,
-    )
+    repair_prompt = REPAIR_PROMPT.format(problem=finding.note, hint=_number_hint(unsupported, hits))
+    second, _ = _verify(get_text(llm.invoke(full_prompt + repair_prompt)), question, hits)
     if second.verdict in (COVERED, PARTIAL):
         second.note = f"Passed on a second attempt; the first reply was rejected - {finding.note} {second.note}".strip()
     else:
@@ -909,8 +910,29 @@ def answer_question(
     return second
 
 
-def _verify(raw: str, question: str, hits: list[tuple[Document, float]]) -> Finding:
-    """Parse a model reply and hold it to the quote and number checks."""
+def _number_hint(unsupported: list[str], hits: list[tuple[Document, float]]) -> str:
+    """
+    Where each unquoted figure actually is - the pointer a human reviewer gives.
+
+    "6.9 appears in none of the passages it quoted" alone rarely gets fixed:
+    the model has to find the row itself. Naming the passage turns the
+    repair into copying one table row.
+    """
+    lines = []
+    for number in unsupported:
+        where = [f"[{i}]" for i, (doc, _) in enumerate(hits, start=1) if number in _numbers(doc.page_content)]
+        lines.append(
+            f"{number} appears in passage {', '.join(where)} - quote that sentence or table row"
+            if where else f"{number} appears in no passage - leave it out"
+        )
+    return "\n" + "\n".join(lines) if lines else ""
+
+
+def _verify(raw: str, question: str, hits: list[tuple[Document, float]]) -> tuple[Finding, list[str]]:
+    """Parse a model reply and hold it to the quote and number checks.
+
+    Returns the finding and, when it was rejected for unquoted figures, those figures.
+    """
     try:
         payload = _extract_json(raw)
     except Exception as exc:
@@ -920,7 +942,7 @@ def _verify(raw: str, question: str, hits: list[tuple[Document, float]]) -> Find
             verdict=NOT_FOUND,
             answer="",
             note=f"Could not parse the model reply ({exc}).",
-        )
+        ), []
 
     verdict = str(payload.get("verdict", "")).strip().upper()
     if verdict not in (COVERED, PARTIAL, NOT_FOUND):
@@ -956,7 +978,7 @@ def _verify(raw: str, question: str, hits: list[tuple[Document, float]]) -> Find
         else:
             unverified.append(quote)
 
-    note = ""
+    note, rejected_figures = "", []
     unsupported = sorted(
         _numbers(answer) - _numbers(" ".join(cited_passages) + " " + question)
     )
@@ -973,7 +995,7 @@ def _verify(raw: str, question: str, hits: list[tuple[Document, float]]) -> Find
             f"Downgraded to NOT_FOUND: the answer states {', '.join(unsupported)}, "
             f"which appears in none of the passages it quoted."
         )
-        verdict, answer = NOT_FOUND, ""
+        verdict, answer, rejected_figures = NOT_FOUND, "", unsupported
     elif unverified:
         note = f"{len(unverified)} unverified quote(s) discarded."
 
@@ -983,7 +1005,7 @@ def _verify(raw: str, question: str, hits: list[tuple[Document, float]]) -> Find
         answer=answer,
         citations=citations,
         note=note,
-    )
+    ), rejected_figures
 
 
 # ---------------------------------------------------------------------------

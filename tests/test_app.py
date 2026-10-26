@@ -221,9 +221,12 @@ def test_assignment_pages() -> None:
         at.text_input(key=f"{doc_id}_typed").set_value(question)
         next(b for b in at.button if b.label == "Ask").click().run()
         text = " ".join(m.value for m in at.markdown)
-        check(f"{doc_id}: the official question is answered from the document",
-              not at.exception and "Answered from the document" in text and fact in text,
-              str(at.exception) or text[:300])
+        # Judge the strategy's own column: the naive column beside it can say
+        # "Answered" too, and a page-wide check once hid a strategy failure.
+        strategy = text[text.find("This document's strategy"):text.find("Naive RAG")]
+        check(f"{doc_id}: the STRATEGY answers the official question from the document",
+              not at.exception and "Answered from the document" in strategy and fact in strategy,
+              str(at.exception) or strategy[:300])
 
 
 if __name__ == "__main__":
